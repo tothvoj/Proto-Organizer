@@ -1,0 +1,155 @@
+#body {
+	font-size: 20px;
+	color: teal;
+	font-family: Calibri;
+}
+
+td {
+	font-size: 15px;
+	color: black;
+	width: 100px;
+	height: 22px;
+	text-align: center;
+}
+
+.heading {
+	font-size: 18px;
+	color: white;
+	font: bold;
+	background-color: orange;
+}
+
+table {
+	width: 900px;
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+.button {
+	border-top: 1px solid #96d1f8;
+	background: #65a9d7;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3e779d),
+		to(#65a9d7));
+	background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+	background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+	background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+	background: -o-linear-gradient(top, #3e779d, #65a9d7);
+	padding: 3px 7px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+	-moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+	box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+	text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
+	color: white;
+	font-size: 11px;
+	font-family: Georgia, serif;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+.button:hover {
+	border-top-color: #28597a;
+	background: #28597a;
+	color: #ccc;
+}
+
+.button:active {
+	border-top-color: #1b435e;
+	background: #1b435e;
+}
+
+#main_table {
+	display: inline-block;
+}
+
+#nav {
+	display: inline-block;
+	background-color: #222;
+}
+
+#nav_wrapper {
+	width: 900px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+#nav ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	position: relative;
+	min-width: 130px;
+}
+
+#nav ul li {
+	display: inline-block;
+	min-width: 130px;
+}
+
+#nav ul li:hover {
+	background-color: #333;
+}
+
+#nav ul li a, visited {
+	color: #CCC;
+	display: block;
+	padding: 15px;
+	text-decoration: none;
+}
+
+#nav ul li:hover ul {
+	display: block;
+}
+
+#nav ul ul {
+	display: none;
+	position: absolute;
+	background-color: #333;
+}
+
+#nav ul ul li {
+	display: block;
+}
+
+#nav ul ul li a:hover {
+	color: #699;
+}
+
+.tftextinput {
+	height: 17px;
+	margin: 0;
+	padding: 0px 3px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	border: 1px solid #0076a3;
+	border-right: 0px;
+	border-top-left-radius: 5px 5px;
+	border-bottom-left-radius: 5px 5px;
+}
+
+.tfbutton {
+	width: 24px;
+	height: 20px;
+	margin: 0;
+	outline: none;
+	cursor: pointer;	
+	border: solid 1px #0076a3;
+	border-right: 0px;
+	background: url('searchbutton3.gif') no-repeat;	
+	border-top-right-radius: 5px 5px;
+	border-bottom-right-radius: 5px 5px;
+}
+
+/* Fixes submit button height problem in Firefox */
+.tfbutton::-moz-focus-inner {
+	border: 0;
+}
+
+.tfclear {
+	clear: both;
+}
