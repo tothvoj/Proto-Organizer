@@ -20,7 +20,7 @@ td {
 }
 
 table {
-	width: 900px;
+	width: 950px;
 	border-collapse: collapse;
 }
 
@@ -29,6 +29,7 @@ table, th, td {
 }
 
 .button {
+	cursor: pointer;	
 	border-top: 1px solid #96d1f8;
 	background: #65a9d7;
 	background: -webkit-gradient(linear, left top, left bottom, from(#3e779d),
@@ -67,13 +68,18 @@ table, th, td {
 	display: inline-block;
 }
 
+
+#removed_devices_table {
+	display: none;
+}
+
 #nav {
 	display: inline-block;
 	background-color: #222;
 }
 
 #nav_wrapper {
-	width: 900px;
+	width: 950px;
 	margin: 0 auto;
 	text-align: left;
 }
@@ -110,6 +116,7 @@ table, th, td {
 	display: none;
 	position: absolute;
 	background-color: #333;
+	z-index: 1;
 }
 
 #nav ul ul li {
@@ -153,3 +160,51 @@ table, th, td {
 .tfclear {
 	clear: both;
 }
+
+.arrow-up {
+	width: 0; 
+	height: 0; 
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	display: block;
+	border-bottom: 7px solid black;
+	position: relative;
+	margin-bottom: 5px;	
+}
+
+.arrow-up:HOVER {
+	width: 0; 
+	height: 0; 
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	display: block;
+	border-bottom: 7px solid #808080;
+	position: relative;
+	margin-bottom: 5px;	
+}
+
+.arrow-down {
+	width: 0; 
+	height: 0; 
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	display: block;
+	border-top: 7px solid black;
+	position: relative;
+}
+
+.arrow-down:HOVER {
+	width: 0; 
+	height: 0; 
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	display: block;
+	border-top: 7px solid #808080;
+	position: relative;
+}
+
+#arrows {
+	display: inline-block;
+	overflow: hidden;
+}
+

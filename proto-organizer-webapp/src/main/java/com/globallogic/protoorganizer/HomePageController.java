@@ -1,6 +1,7 @@
 package com.globallogic.protoorganizer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.globallogic.protoorganizer.model.CheckboxHelper;
+import com.globallogic.protoorganizer.model.Helper;
 import com.globallogic.protoorganizer.model.Device;
 import com.globallogic.protoorganizer.model.Project;
 import com.globallogic.protoorganizer.model.User;
@@ -29,9 +30,19 @@ public class HomePageController {
 	UsersDAO usersDAO;
 
 	@RequestMapping("/getList")
-	public ModelAndView getDevicesList(@RequestParam(value="q", required=false) String searchText) {
+	public ModelAndView getDevicesList(@RequestParam(value="q", required=false) String searchText, @RequestParam(value="sort", required=false) Integer sortingParam) {
 		List<Device> devicesList = devicesDAO.getDevicesList(searchText);
-		return new ModelAndView("getList", "devicesList", devicesList);
+		if (sortingParam != null){
+			devicesDAO.sort(devicesList, sortingParam);
+		}
+		
+		List<Device> removedDevicesList = devicesDAO.getRemovedDevicesList();
+		
+		ModelAndView mav  = new ModelAndView("getList");
+		mav.addObject("devicesList", devicesList);
+		mav.addObject("removedDevicesList", removedDevicesList);
+		
+		return mav;
 	}
 
 	@RequestMapping("/addDevice")
@@ -69,12 +80,12 @@ public class HomePageController {
 		List<Device> devicesList = devicesDAO.getDevicesList(null);
 		ModelAndView mav = new ModelAndView("deleteDevice");
 		mav.addObject("devicesList", devicesList);
-		mav.addObject("helper", new CheckboxHelper());
+		mav.addObject("helper", new Helper());
 		return mav;
 	}
 
 	@RequestMapping("/deleteDevicesFromDB")
-	public String deleteDevicesFromDB(@ModelAttribute CheckboxHelper helper) {
+	public String deleteDevicesFromDB(@ModelAttribute Helper helper) {
 		devicesDAO.deleteBatch(helper.getIds());
 		return "redirect:/getList";
 
@@ -94,12 +105,12 @@ public class HomePageController {
 		List<Project> projectList = projectsDAO.getProjectsList();
 		ModelAndView mav = new ModelAndView("deleteProject");
 		mav.addObject("projectList", projectList);
-		mav.addObject("helper", new CheckboxHelper());
+		mav.addObject("helper", new Helper());
 		return mav;
 	}
 	
 	@RequestMapping("/deleteProjectsFromDB")
-	public String deleteProjectsFromDB(@ModelAttribute CheckboxHelper helper) {
+	public String deleteProjectsFromDB(@ModelAttribute Helper helper) {
 		projectsDAO.deleteBatch(helper.getIds());
 		return "redirect:/getList";
 	}
@@ -132,12 +143,12 @@ public class HomePageController {
 		List<User> usersList = usersDAO.getUsersList();
 		ModelAndView mav = new ModelAndView("deleteUser");
 		mav.addObject("usersList", usersList);
-		mav.addObject("helper", new CheckboxHelper());
+		mav.addObject("helper", new Helper());
 		return mav;
 	}
 
 	@RequestMapping("/deleteUsersFromDB")
-	public String deleteUsersFromDB(@ModelAttribute CheckboxHelper helper) {
+	public String deleteUsersFromDB(@ModelAttribute Helper helper) {
 		usersDAO.deleteBatch(helper.getIds());
 		return "redirect:/getList";
 
@@ -150,4 +161,22 @@ public class HomePageController {
         // return a view which will be resolved by an excel view resolver
         return new ModelAndView("excelView", "devicesList", devicesList);
     }
+	
+	@RequestMapping("/selectUser")  
+	 public ModelAndView selecUser(@RequestParam Long id) {  
+		List<User> usersList = usersDAO.getUsersList();
+		ModelAndView mav = new ModelAndView("changeOwner");
+		Helper helper = new Helper();
+		helper.setSelectedDeviceID(id);
+		mav.addObject("usersList", usersList);
+		mav.addObject("helper", helper);
+		return mav;
+	}
+	
+	@RequestMapping("/moveTo")
+	public String moveTo(@ModelAttribute Helper helper, @RequestParam Long deviceID) {
+		devicesDAO.changeOwner(deviceID, helper.getUserID());
+		return "redirect:/getList";
+
+	}
 }

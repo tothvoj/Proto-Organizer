@@ -15,5 +15,11 @@ public interface DevicesDAO {
 	public void updateDevice(Device device);
 
 	public void deleteBatch(final List<Long> ids);
+	
+	public void changeOwner(long deviceID, long userID);
+	
+	public void sort(List<Device> deviceList, int sortingParam);
+	
+	public List<Device> getRemovedDevicesList();
 
 }
