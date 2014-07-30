@@ -19,14 +19,28 @@
 		<div id="nav">
 			<div id="nav_wrapper">
 				<ul>
-		
+
+					<li><a href="#">ADD</a>
+
+						<ul>
+							<li><a href="addDevice">NEW DEVICE</a></li>
+							<li><a href="addProject">NEW PROJECT</a></li>
+							<li><a href="addUser">NEW USER</a></li>
+						</ul></li>
+					<li><a href="#">REMOVE</a>
+
+						<ul>
+							<li><a href="deleteDevice">REMOVE DEVICE</a></li>
+							<li><a href="deleteProject">REMOVE PROJECT</a></li>
+							<li><a href="deleteUser">REMOVE USER</a></li>
+						</ul></li>
 					<li><a href="#">EDIT</a></li>
 					<li><a href="#" onclick='javascript:window.print()'>PRINT</a>
 					</li>
 					<li><a href="downloadExcel">EXPORT</a></li>
 
 					<li><div id="tfheader">
-							<form id="tfnewsearch" method="post" action="getList">
+							<form id="tfnewsearch" method="post" action="getListAdmin">
 								<input type="text" class="tftextinput" name="q" size="13"
 									maxlength="120"> <input type="submit" value=" "
 									class="tfbutton">
@@ -44,52 +58,53 @@
 				<tr>
 					<td class="heading">DEVICE
 						<div id="arrows">
-							<a class="arrow-up" href="getList?sort=1"></a> <a
-								class="arrow-down" href="getList?sort=2"></a>
+							<a class="arrow-up" href="getListAdmin?sort=1"></a> <a
+								class="arrow-down" href="getListAdmin?sort=2"></a>
 						</div>
 					</td>
 					<td class="heading">PLATFORM
 						<div id="arrows">
-							<a class="arrow-up" href="getList?sort=3"></a> <a
-								class="arrow-down" href="getList?sort=4"></a>
+							<a class="arrow-up" href="getListAdmin?sort=3"></a> <a
+								class="arrow-down" href="getListAdmin?sort=4"></a>
 						</div>
 					</td>
 					<td class="heading">IMEI/SN
 						<div id="arrows">
-							<a class="arrow-up" href="getList?sort=5"></a> <a
-								class="arrow-down" href="getList?sort=6"></a>
+							<a class="arrow-up" href="getListAdmin?sort=5"></a> <a
+								class="arrow-down" href="getListAdmin?sort=6"></a>
 						</div>
 					</td>
 					<td class="heading">STATUS
 						<div id="arrows">
-							<a class="arrow-up" href="getList?sort=7"></a> <a
-								class="arrow-down" href="getList?sort=8"></a>
+							<a class="arrow-up" href="getListAdmin?sort=7"></a> <a
+								class="arrow-down" href="getListAdmin?sort=8"></a>
 						</div>
 					</td>
 					<td class="heading">PROJECT
 						<div id="arrows">
-							<a class="arrow-up" href="getList?sort=9"></a> <a
-								class="arrow-down" href="getList?sort=10"></a>
+							<a class="arrow-up" href="getListAdmin?sort=9"></a> <a
+								class="arrow-down" href="getListAdmin?sort=10"></a>
 						</div>
 					</td>
 					<td class="heading">OWNER
 						<div id="arrows">
-							<a class="arrow-up" href="getList?sort=11"></a> <a
-								class="arrow-down" href="getList?sort=12"></a>
+							<a class="arrow-up" href="getListAdmin?sort=11"></a> <a
+								class="arrow-down" href="getListAdmin?sort=12"></a>
 						</div>
 					</td>
 					<td class="heading">LAST MODIFIED
 						<div id="arrows">
-							<a class="arrow-up" href="getList?sort=13"></a> <a
-								class="arrow-down" href="getList?sort=14"></a>
+							<a class="arrow-up" href="getListAdmin?sort=13"></a> <a
+								class="arrow-down" href="getListAdmin?sort=14"></a>
 						</div>
 					</td>
 					<td class="heading">DATE
 						<div id="arrows">
-							<a class="arrow-up" href="getList?sort=15"></a> <a
-								class="arrow-down" href="getList?sort=16"></a>
+							<a class="arrow-up" href="getListAdmin?sort=15"></a> <a
+								class="arrow-down" href="getListAdmin?sort=16"></a>
 						</div>
-					</td>					
+					</td>
+					<td class="heading">CHANGE OWNER</td>
 				</tr>
 				<c:forEach var="device" items="${devicesList}">
 					<tr>
@@ -100,7 +115,9 @@
 						<td>${device.project}</td>
 						<td>${device.owner}</td>
 						<td>${device.last_modified}</td>
-						<td>${device.date}</td>						
+						<td>${device.date}</td>
+						<td><a class="button" href="selectUser?id=${device.id}">MOVE
+								TO</a></td>
 					</tr>
 				</c:forEach>
 

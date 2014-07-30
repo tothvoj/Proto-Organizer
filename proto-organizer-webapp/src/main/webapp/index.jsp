@@ -1,1 +1,1 @@
-<%response.sendRedirect("getList");%>  
+<%response.sendRedirect("getListAdmin");%>  

@@ -65,7 +65,7 @@ table, th, td {
 }
 
 #main_table {
-	display: inline-block;
+	display: block;
 }
 
 
@@ -74,12 +74,12 @@ table, th, td {
 }
 
 #nav {
-	display: inline-block;
+	width: 950px;
+	display: block;
 	background-color: #222;
 }
 
 #nav_wrapper {
-	width: 950px;
 	margin: 0 auto;
 	text-align: left;
 }
@@ -139,7 +139,7 @@ table, th, td {
 	border-bottom-left-radius: 5px 5px;
 }
 
-.tfbutton {
+.tfbutton {	
 	width: 24px;
 	height: 20px;
 	margin: 0;

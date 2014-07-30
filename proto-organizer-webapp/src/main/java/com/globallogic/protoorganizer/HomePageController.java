@@ -29,6 +29,22 @@ public class HomePageController {
 	@Autowired
 	UsersDAO usersDAO;
 
+	@RequestMapping("/getListAdmin")
+	public ModelAndView getDevicesListAdmin(@RequestParam(value="q", required=false) String searchText, @RequestParam(value="sort", required=false) Integer sortingParam) {
+		List<Device> devicesList = devicesDAO.getDevicesList(searchText);
+		if (sortingParam != null){
+			devicesDAO.sort(devicesList, sortingParam);
+		}
+		
+		List<Device> removedDevicesList = devicesDAO.getRemovedDevicesList();
+		
+		ModelAndView mav  = new ModelAndView("getListAdmin");
+		mav.addObject("devicesList", devicesList);
+		mav.addObject("removedDevicesList", removedDevicesList);
+		
+		return mav;
+	}
+	
 	@RequestMapping("/getList")
 	public ModelAndView getDevicesList(@RequestParam(value="q", required=false) String searchText, @RequestParam(value="sort", required=false) Integer sortingParam) {
 		List<Device> devicesList = devicesDAO.getDevicesList(searchText);
