@@ -7,5 +7,6 @@ public interface UsersColumns {
     String EMAIL = "email";
     String BAR_CODE = "bar_code";
     String SPECIAL_RIGHTS = "special_rights";
+    String PASSWORD = "password";
     
 }

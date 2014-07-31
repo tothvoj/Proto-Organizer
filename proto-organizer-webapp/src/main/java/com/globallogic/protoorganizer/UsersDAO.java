@@ -15,5 +15,7 @@ public interface UsersDAO {
 	public void updateUser(User user);
 
 	public void deleteBatch(final List<Long> ids);
+	
+	public User getUserByEmail(String email);
 
 }

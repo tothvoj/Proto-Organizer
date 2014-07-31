@@ -14,6 +14,10 @@
 
 <body>
 
+<a href="logout">LOGOUT</a>
+
+<a href="changePassword">CHANGE PASSWORD</a>
+
 	<center>
 
 		<div id="nav">

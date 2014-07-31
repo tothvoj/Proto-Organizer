@@ -15,6 +15,7 @@ public class User
     private String barcode;
     private boolean rights;
     private long id;
+    private String password;
     
     /**
      * Construct.
@@ -34,14 +35,14 @@ public class User
     }
     
     
-    public User(long id, String name, String email, String barcode, boolean rights)
+    public User(long id, String name, String email, String barcode, boolean rights, String password)
     {
     	this.id = id;
         this.name = name;
         this.rights = rights;
         this.barcode = barcode;
         this.email = email;
-       
+        this.password = password;       
     }
 
     /**
@@ -142,6 +143,18 @@ public class User
         //System.out.println(this.name + this.email + this.barcode + this.rights);
     }
 	
+	
+	
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
 	@Override
 	public String toString() {
 		return name;

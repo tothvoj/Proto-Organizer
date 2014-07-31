@@ -14,6 +14,8 @@
 
 <body>
 
+<a href="logout">LOGOUT</a>
+
 	<center>
 
 		<div id="nav">

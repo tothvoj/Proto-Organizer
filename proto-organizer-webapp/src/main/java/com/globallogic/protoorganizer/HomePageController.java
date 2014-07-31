@@ -1,21 +1,30 @@
 package com.globallogic.protoorganizer;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.MessagingException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.globallogic.protoorganizer.model.Helper;
 import com.globallogic.protoorganizer.model.Device;
+import com.globallogic.protoorganizer.model.Helper;
 import com.globallogic.protoorganizer.model.Project;
 import com.globallogic.protoorganizer.model.User;
 
@@ -29,6 +38,22 @@ public class HomePageController {
 	@Autowired
 	UsersDAO usersDAO;
 
+	
+	 @RequestMapping(value = "/login", method = RequestMethod.GET)
+	 public String getLoginPage(@RequestParam(value="error", required=false) boolean error, 
+	   ModelMap model) {
+	  	 	  
+	  if (error == true) {
+	   // Assign an error message
+	   model.put("error", "You have entered an invalid username or password!");
+	  } else {
+	   model.put("error", "");
+	  }
+	   
+	  // This will resolve to /WEB-INF/jsp/loginpage.jsp
+	  return "loginpage";
+	 }
+	 
 	@RequestMapping("/getListAdmin")
 	public ModelAndView getDevicesListAdmin(@RequestParam(value="q", required=false) String searchText, @RequestParam(value="sort", required=false) Integer sortingParam) {
 		List<Device> devicesList = devicesDAO.getDevicesList(searchText);
@@ -193,6 +218,30 @@ public class HomePageController {
 	public String moveTo(@ModelAttribute Helper helper, @RequestParam Long deviceID) {
 		devicesDAO.changeOwner(deviceID, helper.getUserID());
 		return "redirect:/getList";
+
+	}
+	
+	@RequestMapping("/changePassword")
+	public String changePassword() {
+		Properties props = new Properties();
+        Session session = Session.getDefaultInstance(props, null);
+
+        String msgBody = "...";
+
+        try {
+            Message msg = new MimeMessage(session);
+            msg.setFrom(new InternetAddress("admin@example.com", "Example.com Admin"));
+            msg.addRecipient(Message.RecipientType.TO,
+                             new InternetAddress("vojtech.toth@globallogic.com", "Mr. User"));
+            msg.setSubject("Your Example.com account has been activated");
+            msg.setText(msgBody);
+            Transport.send(msg);
+
+        } catch (Exception e){
+        	
+        }
+        
+        return "redirect:/getList";
 
 	}
 }

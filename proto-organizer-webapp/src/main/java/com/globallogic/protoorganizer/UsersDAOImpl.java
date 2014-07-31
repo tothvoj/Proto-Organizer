@@ -1,5 +1,6 @@
 package com.globallogic.protoorganizer;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 
+import com.globallogic.protoorganizer.database.DevicesColumns;
 import com.globallogic.protoorganizer.database.ProjectsColumns;
 import com.globallogic.protoorganizer.database.TableNames;
 import com.globallogic.protoorganizer.database.UsersColumns;
@@ -88,6 +91,37 @@ public class UsersDAOImpl implements UsersDAO {
 			return ids.size();
 		}
 	  });
+	}
+
+	public User getUserByEmail(final String email) {
+		
+		List<User> users = new ArrayList<User>();
+		
+		
+		PreparedStatementCreator creator = new PreparedStatementCreator() {
+
+			public java.sql.PreparedStatement createPreparedStatement(
+					Connection con) throws SQLException {
+
+				String sql = "select * from " + TableNames.USERS + " where "
+						+ UsersColumns.EMAIL + "=?";
+				java.sql.PreparedStatement preparedStatement = con
+						.prepareStatement(sql);
+				preparedStatement.setString(1, email);
+
+				return preparedStatement;
+			}
+		};
+
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		users = jdbcTemplate.query(creator, new UserRowMapper());
+				
+		if (users.size() == 1){
+			return users.get(0);
+		}
+		
+		return null;
 	}
 
 }
