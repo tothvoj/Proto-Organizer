@@ -16,7 +16,7 @@ td {
 	font-size: 18px;
 	color: white;
 	font: bold;
-	background-color: orange;
+	background-color: #f16e36;
 }
 
 table {
@@ -77,6 +77,28 @@ table, th, td {
 	width: 950px;
 	display: block;
 	background-color: #222;
+}
+
+#header {
+	width: 950px;
+	height: 250px;
+	display: block;
+	background: #ffffff url("gl_logo.jpg") no-repeat center;
+}
+
+#settings {
+	width: 130px;
+	float: right;
+}
+
+#settings a {	
+	display: block;	
+	text-decoration: none;
+	color: white;	
+}
+
+#settings a:hover {	
+	color: #699;
 }
 
 #nav_wrapper {

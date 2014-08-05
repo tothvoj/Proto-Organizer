@@ -37,7 +37,7 @@ public class UsersDAOImpl implements UsersDAO {
 		return users;
 	}
 
-	public void insertUser(User user) {
+	public boolean insertUser(User user) {
 		String sql = "INSERT INTO " + TableNames.USERS + " ("
 				+ UsersColumns.NAME + ", " + UsersColumns.EMAIL + ", "
 				+ UsersColumns.BAR_CODE + ", " + UsersColumns.SPECIAL_RIGHTS
@@ -45,9 +45,13 @@ public class UsersDAOImpl implements UsersDAO {
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-		jdbcTemplate.update(sql, new Object[] { user.getName(),
-				user.getEmail(), user.getBarcode(), user.getRights() });
+		int rows = jdbcTemplate.update(sql, new Object[] { user.getName(),
+				user.getEmail(), user.getBarcode(), user.getRights() });		
+		if (rows == 1){
+			return true;
+		}
 
+		return false;
 	}
 
 	public void deleteUser(long id) {
@@ -122,6 +126,16 @@ public class UsersDAOImpl implements UsersDAO {
 		}
 		
 		return null;
+	}
+	
+	public void changePassword(String username, String password){
+		String sql = "UPDATE " + TableNames.USERS + " set " +  UsersColumns.PASSWORD
+				+ " = ?" + " where " + UsersColumns.EMAIL + " = ?";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+		jdbcTemplate.update(
+				sql,
+				new Object[] { password, username });
 	}
 
 }

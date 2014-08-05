@@ -8,7 +8,7 @@ public interface UsersDAO {
 
 	public List<User> getUsersList();
 
-	public void insertUser(User user);
+	public boolean insertUser(User user);
 
 	public void deleteUser(long id);
 
@@ -17,5 +17,7 @@ public interface UsersDAO {
 	public void deleteBatch(final List<Long> ids);
 	
 	public User getUserByEmail(String email);
+	
+	public void changePassword(String username, String password);
 
 }

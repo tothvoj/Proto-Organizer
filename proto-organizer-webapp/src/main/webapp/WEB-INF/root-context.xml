@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p" 
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
  http://www.springframework.org/schema/mvc
@@ -17,7 +15,7 @@
 	<!-- declaring base package -->
 	<context:component-scan base-package="com.globallogic.protoorganizer" />
 
-	
+
 
 	<!-- adding view resolver to show jsp's on browser -->
 
@@ -46,17 +44,30 @@
 		<property name="username" value="root" />
 		<property name="password" value="231987" />
 	</bean>
-	
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp-ua.synapse.com" />
+		<property name="port" value="25" />
+		
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">false</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+
+
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:annotation-driven />
-	
+
 	<mvc:interceptors>
-    <bean id="webContentInterceptor" 
-          class="org.springframework.web.servlet.mvc.WebContentInterceptor">
-        <property name="cacheSeconds" value="0"/>
-        <property name="useExpiresHeader" value="true"/>
-        <property name="useCacheControlHeader" value="true"/>
-        <property name="useCacheControlNoStore" value="true"/>
-    </bean>
-</mvc:interceptors>
+		<bean id="webContentInterceptor"
+			class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+			<property name="cacheSeconds" value="0" />
+			<property name="useExpiresHeader" value="true" />
+			<property name="useCacheControlHeader" value="true" />
+			<property name="useCacheControlNoStore" value="true" />
+		</bean>
+	</mvc:interceptors>
 </beans>

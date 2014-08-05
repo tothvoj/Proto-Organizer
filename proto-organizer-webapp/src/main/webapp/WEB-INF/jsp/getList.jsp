@@ -14,9 +14,16 @@
 
 <body>
 
-<a href="logout">LOGOUT</a>
 
 	<center>
+
+
+		<div id="header">
+
+			<div id="settings">
+				<a href="changePassword">CHANGE PASSWORD</a> <a href="logout">LOGOUT</a>
+			</div>
+		</div>
 
 		<div id="nav">
 			<div id="nav_wrapper">

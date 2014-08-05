@@ -6,6 +6,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+<script src="<c:url value="/resources/jquery.js" />"></script>
+<script src="<c:url value="/resources/jquery-ui.js" />"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/jquery-ui.css'/>" />
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/main.css'/>" />
 <title>Ko¹ice Devices GlobalLogic</title>
@@ -14,11 +19,20 @@
 
 <body>
 
-<a href="logout">LOGOUT</a>
-
-<a href="changePassword">CHANGE PASSWORD</a>
 
 	<center>
+
+		<div id="dialog" title="" style="display: none;">
+			
+		</div>
+
+
+		<div id="header">
+
+			<div id="settings">
+				<a href="changePassword">CHANGE PASSWORD</a> <a href="logout">LOGOUT</a>
+			</div>
+		</div>
 
 		<div id="nav">
 			<div id="nav_wrapper">
@@ -27,16 +41,16 @@
 					<li><a href="#">ADD</a>
 
 						<ul>
-							<li><a href="addDevice">NEW DEVICE</a></li>
-							<li><a href="addProject">NEW PROJECT</a></li>
-							<li><a href="addUser">NEW USER</a></li>
+							<li><a href="addDevice" class="dialog">NEW DEVICE</a></li>
+							<li><a href="addProject" class="dialog">NEW PROJECT</a></li>
+							<li><a href="addUser" class="dialog">NEW USER</a></li>
 						</ul></li>
 					<li><a href="#">REMOVE</a>
 
 						<ul>
-							<li><a href="deleteDevice">REMOVE DEVICE</a></li>
-							<li><a href="deleteProject">REMOVE PROJECT</a></li>
-							<li><a href="deleteUser">REMOVE USER</a></li>
+							<li><a href="deleteDevice" class="dialog">REMOVE DEVICE</a></li>
+							<li><a href="deleteProject" class="dialog">REMOVE PROJECT</a></li>
+							<li><a href="deleteUser" class="dialog">REMOVE USER</a></li>
 						</ul></li>
 					<li><a href="#">EDIT</a></li>
 					<li><a href="#" onclick='javascript:window.print()'>PRINT</a>
@@ -133,15 +147,12 @@
 
 	</center>
 
-	
+
 
 	<center>
-	
-	<br />
-	<br />
-	<a class="button" onclick="showRemovedDevices()">REMOVED DEVICES</a>
-	<br />
-	<br />
+
+		<br /> <br /> <a class="button" onclick="showRemovedDevices()">REMOVED
+			DEVICES</a> <br /> <br />
 		<div id="removed_devices_table">
 			<table border="1">
 
@@ -166,25 +177,45 @@
 	</center>
 
 
+	<script>
+		$(document).ready(function() {
+			$(".dialog").click(function(e) {
+				e.preventDefault();
+				$("#dialog").load($(this).attr("href"));
+				var theDialog = $("#dialog").dialog({
+					width : 'auto',
+					height : 'auto',
+					resizable: false,
+					draggable: false,
+					modal : true,
+					close : function() {
+						$("#thedialog").attr('src', "about:blank");
+					}
+				});
+				
+				setTimeout(function(){ theDialog.dialog('open') }, 100);;	
+				return false;
+			});
+		});
+	</script>
+
 	<script type="text/javascript">
-		function openDialog(form) {
-			var result = window.showModalDialog(
-					"/proto-organizer-webapp/addDevice", form,
-					"dialogWidth:400px; dialogHeight:400px; center:yes");
+		function loadPage() {
+			$("#loaderPage").load("hello.jsp");
+			$("#loaderPage").dialog({
+				height : 600,
+				width : 600,
+				modal : true
+			});
+			return false;
 		}
 	</script>
-	
+
 	<script type="text/javascript">
 		function showRemovedDevices() {
 			document.getElementById('removed_devices_table').style.display = "block";
 		}
 	</script>
-
-
-	<form name="sample" action="#">
-
-		<input type="hidden" value="Send to Dialog"
-			onclick="openDialog(this.form)" />
-	</form>
+	
 </body>
 </html>
