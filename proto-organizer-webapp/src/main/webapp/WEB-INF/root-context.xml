@@ -42,7 +42,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://172.17.114.13:3306/test" />
 		<property name="username" value="root" />
-		<property name="password" value="231987" />
+		<property name="password" value="GlobalLogic2" />
 	</bean>
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
