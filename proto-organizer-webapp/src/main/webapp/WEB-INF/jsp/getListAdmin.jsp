@@ -4,6 +4,7 @@
 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <script src="<c:url value="/resources/jquery.js" />"></script>
@@ -38,21 +39,21 @@
 			<div id="nav_wrapper">
 				<ul>
 
-					<li><a href="#">ADD</a>
+					<li><a href="#" class="bold">ADD</a>
 
 						<ul>
 							<li><a href="addDevice" class="dialog">NEW DEVICE</a></li>
 							<li><a href="addProject" class="dialog">NEW PROJECT</a></li>
 							<li><a href="addUser" class="dialog">NEW USER</a></li>
 						</ul></li>
-					<li><a href="#">REMOVE</a>
+					<li><a href="#" class="bold">REMOVE</a>
 
 						<ul>
 							<li><a href="deleteDevice" class="dialog">REMOVE DEVICE</a></li>
 							<li><a href="deleteProject" class="dialog">REMOVE PROJECT</a></li>
 							<li><a href="deleteUser" class="dialog">REMOVE USER</a></li>
 						</ul></li>
-					<li><a href="#">EDIT</a></li>
+					<li><a href="#" class="bold">EDIT</a></li>
 					<li><a href="#" onclick='javascript:window.print()'>PRINT</a>
 					</li>
 					<li><a href="downloadExcel">EXPORT</a></li>
@@ -73,7 +74,7 @@
 
 		<div id="main_table">
 			<table border="1">
-				<tr>
+				<tr style="border-bottom: 2px solid orange;">
 					<td class="heading">DEVICE
 						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=1"></a> <a
@@ -129,11 +130,27 @@
 						<td>${device.device}</td>
 						<td>${device.platform}</td>
 						<td>${device.imei}</td>
-						<td>${device.status}</td>
+						<td>
+							<c:choose>
+						      	<c:when test="${device.status == 'in'}">
+						      		<img src="resources/images/Vault-24.png" />
+						      	</c:when>
+								<c:when test="${device.status == 'out'}">
+						      		<img src="resources/images/user1.png" />
+						      	</c:when>
+						      	<c:otherwise>
+							      	-
+						      	</c:otherwise>
+							</c:choose>
+						</td>
 						<td>${device.project}</td>
 						<td>${device.owner}</td>
 						<td>${device.last_modified}</td>
-						<td>${device.date}</td>
+						<td>
+							<fmt:formatDate pattern="yy MMM dd" value="${device.date}" />
+							<br/>
+							<span style="color:gray;"><fmt:formatDate pattern="HH:mm" value="${device.date}" /></span>
+						</td>
 						<td><a class="button" href="selectUser?id=${device.id}">MOVE
 								TO</a></td>
 					</tr>

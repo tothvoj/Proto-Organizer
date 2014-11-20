@@ -15,16 +15,17 @@ public class DeviceExtractor implements ResultSetExtractor<Device> {
 			DataAccessException {
 
 		Device device = new Device(
-				rs.getLong(rs.findColumn(DevicesColumns.ID)), rs.getString(rs
-						.findColumn(DevicesColumns.DEVICE)), rs.getString(rs
-						.findColumn(DevicesColumns.PLATFORM)), rs.getString(rs
-						.findColumn(DevicesColumns.IMEI)), rs.getString(rs
-						.findColumn(DevicesColumns.STATUS)), rs.getString(rs
-						.findColumn(DevicesColumns.PROJECT)), rs.getString(rs
-						.findColumn(DevicesColumns.OWNER)), rs.getString(rs
-						.findColumn(DevicesColumns.REASON)), rs.getString(rs
-						.findColumn(DevicesColumns.LAST_MODIFIED)),
-				rs.getTimestamp(rs.findColumn(DevicesColumns.DATE)));
+				rs.getLong(rs.findColumn(DevicesColumns.ID)), 
+				rs.getString(rs.findColumn(DevicesColumns.DEVICE)), 
+				rs.getString(rs.findColumn(DevicesColumns.PLATFORM)), 
+				rs.getString(rs.findColumn(DevicesColumns.IMEI)), 
+				rs.getString(rs.findColumn(DevicesColumns.STATUS)), 
+				rs.getString(rs.findColumn(DevicesColumns.PROJECT)), 
+				rs.getString(rs.findColumn(DevicesColumns.OWNER)), 
+				rs.getString(rs.findColumn(DevicesColumns.REASON)), 
+				rs.getString(rs.findColumn(DevicesColumns.LAST_MODIFIED)),
+				rs.getTimestamp(rs.findColumn(DevicesColumns.DATE)),
+				rs.getString(rs.findColumn(DevicesColumns.ORIGIN)));
 
 		return device;
 	}

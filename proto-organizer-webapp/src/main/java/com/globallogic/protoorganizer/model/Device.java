@@ -24,6 +24,7 @@ public class Device {
 	private String email;
 	private long id;
 	private Timestamp date;
+	private String origin;
 
 	/**
 	 * Construct.
@@ -40,10 +41,12 @@ public class Device {
 	 *            owner
 	 * @param reason
 	 *            reason
+	 * @param origin
+	 *            origin
 	 */
 	public Device(long id, String device, String platform, String imei,
 			String status, String project, String owner, String reason,
-			String last_modified, Timestamp date) {
+			String last_modified, Timestamp date, String origin) {
 		this.id = id;
 		this.platform = platform;
 		this.device = device;
@@ -54,6 +57,7 @@ public class Device {
 		this.reason = reason;
 		this.last_modified = last_modified;
 		this.date = date;
+		this.origin = origin;
 	}
 
 	public Device() {
@@ -191,6 +195,10 @@ public class Device {
 
 	public Timestamp getDate() {
 		return date;
+	}
+	
+	public String getOrigin() {
+		return origin;
 	}
 
 	@Override
@@ -340,6 +348,22 @@ public class Device {
 			         o1.date==null ?
 			         (o2.date==null ? 0 : Integer.MIN_VALUE) :
 			         (o2.date==null ? Integer.MAX_VALUE : o2.date.compareTo(o1.date));
+		}
+
+	};
+	
+	public static Comparator<Device> OriginASC = new Comparator<Device>() {
+
+		public int compare(Device o1, Device o2) {
+			return cp(o1.owner, o2.owner);
+		}
+
+	};
+	
+	public static Comparator<Device> OriginDESC = new Comparator<Device>() {
+
+		public int compare(Device o1, Device o2) {
+			return cp(o2.owner, o1.owner);
 		}
 
 	};

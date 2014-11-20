@@ -12,5 +12,5 @@ public interface DevicesColumns {
     String EMAIL = "email";
     String PLATFORM = "platform";
     String DATE = "date";
-    
+    String ORIGIN = "origin";    
 }

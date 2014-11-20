@@ -41,6 +41,10 @@
 					<td><form:select path="owner" items="${map.usersList}" /></td>
 				</tr>
 				<tr>
+					<td>Originally purchased by :</td>
+					<td><form:input path="origin" /></td>
+				</tr>
+				<tr>
 					<td> </td>
 					<td><input type="submit" value="Save" /></td>
 				</tr>
