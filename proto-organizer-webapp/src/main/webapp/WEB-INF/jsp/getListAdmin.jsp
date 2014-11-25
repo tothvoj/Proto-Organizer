@@ -128,7 +128,10 @@
 				<c:forEach var="device" items="${devicesList}">
 					<tr>
 						<td>${device.device}</td>
-						<td>${device.platform}</td>
+						<td>
+							<input type="hidden" value="${device.platformId}" />
+							<span class="hideEnabled" >${device.platformName}</span>
+						</td>
 						<td>${device.imei}</td>
 						<td>
 							<c:choose>
@@ -143,9 +146,9 @@
 						      	</c:otherwise>
 							</c:choose>
 						</td>
-						<td>${device.project}</td>
-						<td>${device.owner}</td>
-						<td>${device.last_modified}</td>
+						<td>${device.projectId}</td>
+						<td>${device.ownerId}</td>
+						<td>${device.lastModifiedBy}</td>
 						<td>
 							<fmt:formatDate pattern="yy MMM dd" value="${device.date}" />
 							<br/>
@@ -176,12 +179,12 @@
 				<c:forEach var="device" items="${removedDevicesList}">
 					<tr>
 						<td>${device.device}</td>
-						<td>${device.platform}</td>
+						<td>${device.platformId}</td>
 						<td>${device.imei}</td>
 						<td>${device.status}</td>
-						<td>${device.project}</td>
-						<td>${device.owner}</td>
-						<td>${device.last_modified}</td>
+						<td>${device.projectId}</td>
+						<td>${device.ownerId}</td>
+						<td>${device.lastModifiedBy}</td>
 						<td>${device.date}</td>
 						<td></td>
 					</tr>
