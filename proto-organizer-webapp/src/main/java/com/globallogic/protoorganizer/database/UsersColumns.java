@@ -3,7 +3,8 @@ package com.globallogic.protoorganizer.database;
 public interface UsersColumns {
 	
 	String ID = "id";
-    String NAME = "name";
+    String FIRST_NAME = "first_name";
+    String LAST_NAME = "last_name";
     String EMAIL = "email";
     String BAR_CODE = "bar_code";
     String SPECIAL_RIGHTS = "special_rights";
