@@ -93,12 +93,12 @@
 								class="arrow-down" href="getListAdmin?sort=6"></a>
 						</div>
 					</td>
-					<td class="heading">STATUS
+					<!-- <td class="heading">STATUS
 						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=7"></a> <a
 								class="arrow-down" href="getListAdmin?sort=8"></a>
 						</div>
-					</td>
+					</td> -->
 					<td class="heading">PROJECT
 						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=9"></a> <a
@@ -123,17 +123,19 @@
 								class="arrow-down" href="getListAdmin?sort=16"></a>
 						</div>
 					</td>
-					<td class="heading">CHANGE OWNER</td>
+					<td class="heading">REASSIGN</td>
 				</tr>
 				<c:forEach var="device" items="${devicesList}">
 					<tr>
 						<td>${device.device}</td>
 						<td>
 							<input type="hidden" value="${device.platformId}" />
-							<span class="hideEnabled" >${device.platformName}</span>
+							<span class="hideEnabled platformName" >${device.platformName}</span>
+							&nbsp;
+ 							<span class="hideEnabled firstName" >${device.platformVersion}</span>
 						</td>
 						<td>${device.imei}</td>
-						<td>
+						<!-- <td>
 							<c:choose>
 						      	<c:when test="${device.status == 'in'}">
 						      		<img src="resources/images/Vault-24.png" />
@@ -145,10 +147,19 @@
 							      	-
 						      	</c:otherwise>
 							</c:choose>
+						</td> -->
+						<td>
+							<input type="hidden" value="${device.projectId}" />
+ 							<span class="hideEnabled lastName" >${device.projectName}</span>
 						</td>
-						<td>${device.projectId}</td>
-						<td>${device.ownerId}</td>
-						<td>${device.lastModifiedBy}</td>
+						<td>
+							<input type="hidden" value="${device.ownerId}" />
+ 							<span class="hideEnabled lastName" >${device.getOwnerFullName()}</span>
+						</td>
+						<td>
+							<input type="hidden" value="${device.lastModifiedBy}" />
+ 							<span class="hideEnabled lastName" >${device.getModifierFullName()}</span>
+						</td>
 						<td>
 							<fmt:formatDate pattern="yy MMM dd" value="${device.date}" />
 							<br/>
