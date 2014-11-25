@@ -11,10 +11,10 @@ public class Project {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getProject_name() {
+	public String getProjectName() {
 		return project_name;
 	}
-	public void setProject_name(String project_name) {
+	public void setProjectName(String project_name) {
 		this.project_name = project_name;
 	}   
     

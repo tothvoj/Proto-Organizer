@@ -10,7 +10,8 @@ package com.globallogic.protoorganizer.model;
  */
 public class User
 {
-    private String name;
+    private String firstName;
+    private String lastName;
     private String email;       
     private String barcode;
     private boolean rights;
@@ -20,8 +21,10 @@ public class User
     /**
      * Construct.
      * 
-     * @param name
-     *            name
+     * @param firstName
+     *            firstName
+     * @param lastName
+     *            lastName
      * @param email
      *            email
      * @param barcode
@@ -35,10 +38,11 @@ public class User
     }
     
     
-    public User(long id, String name, String email, String barcode, boolean rights, String password)
+    public User(long id, String firstName, String lastName, String email, String barcode, boolean rights, String password)
     {
     	this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.rights = rights;
         this.barcode = barcode;
         this.email = email;
@@ -46,24 +50,43 @@ public class User
     }
 
     /**
-     * Gets the name.
+     * Gets the first name.
      * 
-     * @return name
+     * @return firstName
      */
-    public String getName()
+    public String getFirstName()
     {
-        return name;
+        return firstName;
     }
 
     /**
-     * Sets the name.
+     * Sets the first name.
      * 
-     * @param name
-     *            name
+     * @param firstName
      */
-    public void setName(String name)
+    public void setFirstName(String firstName)
     {
-        this.name = name;
+        this.firstName = firstName;
+    }
+    
+    /**
+     * Gets the last name.
+     * 
+     * @return name
+     */
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    /**
+     * Sets the last name.
+     * 
+     * @param lastName
+     */
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
     }
 
     /**
@@ -101,7 +124,6 @@ public class User
      * Sets the barcode.
      * 
      * @param barcode
-     *            barcode
      */
     public void setBarcode(String barcode)
     {
@@ -122,18 +144,11 @@ public class User
      * Sets the rights.
      * 
      * @param rights
-     *            rights
      */
     public void setRights(boolean rights)
     {
         this.rights = rights;
     }
-    /**
-     * Gets the rights.
-     * 
-     * @return rights
-     */
-       
        
     public long getId() {
 		return id;
@@ -143,7 +158,10 @@ public class User
         //System.out.println(this.name + this.email + this.barcode + this.rights);
     }
 	
-	
+	public String GetFullName()
+	{
+		return this.toString();
+	}
 	
 	public String getPassword() {
 		return password;
@@ -157,7 +175,7 @@ public class User
 
 	@Override
 	public String toString() {
-		return name;
+		return lastName + " " + firstName;
 	}
 
 }

@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 
 import com.globallogic.protoorganizer.database.DevicesColumns;
 import com.globallogic.protoorganizer.model.Device;
+import com.globallogic.protoorganizer.model.DeviceView;
 
 public class DeviceExtractor implements ResultSetExtractor<Device> {
 
@@ -17,17 +18,16 @@ public class DeviceExtractor implements ResultSetExtractor<Device> {
 		Device device = new Device(
 				rs.getLong(rs.findColumn(DevicesColumns.ID)), 
 				rs.getString(rs.findColumn(DevicesColumns.DEVICE)), 
-				rs.getString(rs.findColumn(DevicesColumns.PLATFORM)), 
+				rs.getInt(rs.findColumn(DevicesColumns.PLATFORM_ID)), 
 				rs.getString(rs.findColumn(DevicesColumns.IMEI)), 
 				rs.getString(rs.findColumn(DevicesColumns.STATUS)), 
-				rs.getString(rs.findColumn(DevicesColumns.PROJECT)), 
-				rs.getString(rs.findColumn(DevicesColumns.OWNER)), 
+				rs.getInt(rs.findColumn(DevicesColumns.PROJECT_ID)), 
+				rs.getInt(rs.findColumn(DevicesColumns.OWNER_ID)), 
 				rs.getString(rs.findColumn(DevicesColumns.REASON)), 
-				rs.getString(rs.findColumn(DevicesColumns.LAST_MODIFIED)),
+				rs.getInt(rs.findColumn(DevicesColumns.LAST_MODIFIED_BY)),
 				rs.getTimestamp(rs.findColumn(DevicesColumns.DATE)),
 				rs.getString(rs.findColumn(DevicesColumns.ORIGIN)));
 
 		return device;
 	}
-
 }

@@ -13,18 +13,18 @@ import java.util.Comparator;
  */
 public class Device {
 
-	private String device;
-	private String imei;
-	private String platform;
-	private String status;
-	private String project;
-	private String owner;
-	private String reason;
-	private String last_modified;
-	private String email;
-	private long id;
-	private Timestamp date;
-	private String origin;
+	protected String device;
+	protected String imei;
+	protected int platformId;
+	protected String status;
+	protected int projectId;
+	protected int ownerId;
+	protected String reason;
+	protected int lastModifiedBy;
+	protected String email;
+	protected long id;
+	protected Timestamp date;
+	protected String origin;
 
 	/**
 	 * Construct.
@@ -35,8 +35,8 @@ public class Device {
 	 *            imei
 	 * @param status
 	 *            status
-	 * @param project
-	 *            project
+	 * @param projectId
+	 *            projectId
 	 * @param owner
 	 *            owner
 	 * @param reason
@@ -44,18 +44,18 @@ public class Device {
 	 * @param origin
 	 *            origin
 	 */
-	public Device(long id, String device, String platform, String imei,
-			String status, String project, String owner, String reason,
-			String last_modified, Timestamp date, String origin) {
+	public Device(long id, String device, int platformId, String imei,
+			String status, int projectId, int ownerId, String reason,
+			int lastModifiedBy, Timestamp date, String origin) {
 		this.id = id;
-		this.platform = platform;
+		this.platformId = platformId;
 		this.device = device;
 		this.imei = imei;
 		this.status = status;
-		this.project = project;
-		this.owner = owner;
+		this.projectId = projectId;
+		this.ownerId = ownerId;
 		this.reason = reason;
-		this.last_modified = last_modified;
+		this.lastModifiedBy = lastModifiedBy;
 		this.date = date;
 		this.origin = origin;
 	}
@@ -126,8 +126,8 @@ public class Device {
 	 * 
 	 * @return project
 	 */
-	public String getProject() {
-		return project;
+	public int getProjectId() {
+		return projectId;
 	}
 
 	/**
@@ -136,8 +136,8 @@ public class Device {
 	 * @param project
 	 *            project
 	 */
-	public void setProject(String project) {
-		this.project = project;
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
 	}
 
 	/**
@@ -145,8 +145,8 @@ public class Device {
 	 * 
 	 * @return owner
 	 */
-	public String getOwner() {
-		return owner;
+	public int getOwnerId() {
+		return ownerId;
 	}
 
 	/**
@@ -155,8 +155,8 @@ public class Device {
 	 * @param owner
 	 *            owner
 	 */
-	public void setOwner(String owner) {
-		this.owner = owner;
+	public void setOwner(int ownerId) {
+		this.ownerId = ownerId;
 	}
 
 	public String getReason() {
@@ -173,8 +173,8 @@ public class Device {
 		this.reason = reason;
 	}
 
-	public String getLast_modified() {
-		return last_modified;
+	public int getLastModifiedBy() {
+		return lastModifiedBy;
 	}
 
 	public String getEmail() {
@@ -185,12 +185,12 @@ public class Device {
 		return id;
 	}
 
-	public void setPlatform(String platform) {
-		this.platform = platform;
+	public void setPlatformId(int platformId) {
+		this.platformId = platformId;
 	}
 
-	public String getPlatform() {
-		return platform;
+	public int getPlatformId() {
+		return platformId;
 	}
 
 	public Timestamp getDate() {
@@ -234,22 +234,6 @@ public class Device {
 
 	};
 	
-	public static Comparator<Device> PlatformASC = new Comparator<Device>() {
-
-		public int compare(Device o1, Device o2) {
-			return cp(o1.platform, o2.platform);
-		}
-
-	};
-	
-	public static Comparator<Device> PlatformDESC = new Comparator<Device>() {
-
-		public int compare(Device o1, Device o2) {
-			return cp(o2.platform, o1.platform);
-		}
-
-	};
-	
 	public static Comparator<Device> ImeiASC = new Comparator<Device>() {
 
 		public int compare(Device o1, Device o2) {
@@ -282,54 +266,6 @@ public class Device {
 
 	};
 	
-	public static Comparator<Device> ProjectASC = new Comparator<Device>() {
-
-		public int compare(Device o1, Device o2) {
-			return cp(o1.project, o2.project);
-		}
-
-	};
-	
-	public static Comparator<Device> ProjectDESC = new Comparator<Device>() {
-
-		public int compare(Device o1, Device o2) {
-			return cp(o2.project, o1.project);
-		}
-
-	};
-	
-	public static Comparator<Device> OwnerASC = new Comparator<Device>() {
-
-		public int compare(Device o1, Device o2) {
-			return cp(o1.owner, o2.owner);
-		}
-
-	};
-	
-	public static Comparator<Device> OwnerDESC = new Comparator<Device>() {
-
-		public int compare(Device o1, Device o2) {
-			return cp(o2.owner, o1.owner);
-		}
-
-	};
-	
-	public static Comparator<Device> LastModifiedASC = new Comparator<Device>() {
-
-		public int compare(Device o1, Device o2) {
-			return cp(o1.last_modified, o2.last_modified);
-		}
-
-	};
-	
-	public static Comparator<Device> LastModifiedDESC = new Comparator<Device>() {
-
-		public int compare(Device o1, Device o2) {
-			return cp(o2.last_modified, o1.last_modified);
-		}
-
-	};
-	
 	public static Comparator<Device> DateASC = new Comparator<Device>() {
 
 		public int compare(Device o1, Device o2) {
@@ -355,7 +291,7 @@ public class Device {
 	public static Comparator<Device> OriginASC = new Comparator<Device>() {
 
 		public int compare(Device o1, Device o2) {
-			return cp(o1.owner, o2.owner);
+			return cp(o1.ownerId, o2.ownerId);
 		}
 
 	};
@@ -363,7 +299,7 @@ public class Device {
 	public static Comparator<Device> OriginDESC = new Comparator<Device>() {
 
 		public int compare(Device o1, Device o2) {
-			return cp(o2.owner, o1.owner);
+			return cp(o2.ownerId, o1.ownerId);
 		}
 
 	};

@@ -17,10 +17,10 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 
 import com.globallogic.protoorganizer.database.DevicesColumns;
 import com.globallogic.protoorganizer.database.TableNames;
-import com.globallogic.protoorganizer.database.UsersColumns;
 import com.globallogic.protoorganizer.jdbc.DeviceRowMapper;
-import com.globallogic.protoorganizer.jdbc.UserRowMapper;
+import com.globallogic.protoorganizer.jdbc.DeviceViewRowMapper;
 import com.globallogic.protoorganizer.model.Device;
+import com.globallogic.protoorganizer.model.DeviceView;
 import com.globallogic.protoorganizer.model.User;
 
 public class DevicesDAOImpl implements DevicesDAO {
@@ -33,15 +33,32 @@ public class DevicesDAOImpl implements DevicesDAO {
 		String sql;
 
 		if (filter == null) {
-			sql = "select * from " + TableNames.DEVICES;
+			sql = "select * from " + TableNames.DEVICES_VIEW;
 		} else {
-			sql = "select * from " + TableNames.DEVICES + " where "
-					+ DevicesColumns.DEVICE + " like '%" + filter + "%' or "
-					+ DevicesColumns.PLATFORM + " like '%" + filter + "%'";
+			sql = "select * from " + TableNames.DEVICES_VIEW + " where "
+					+ DevicesColumns.DEVICE + " like '%" + filter + "%'	or " 
+					+ DevicesColumns.PLATFORM_NAME + " like '%" + filter + "%'";
 		}
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		devicesList = jdbcTemplate.query(sql, new DeviceRowMapper());
+		return devicesList;
+	}
+	
+	public List<DeviceView> getDevicesViewList(String filter) {
+		List<DeviceView> devicesList = new ArrayList<DeviceView>();
+		String sql;
+
+		if (filter == null) {
+			sql = "select * from " + TableNames.DEVICES_VIEW;
+		} else {
+			sql = "select * from " + TableNames.DEVICES_VIEW + " where "
+					+ DevicesColumns.DEVICE + " like '%" + filter + "%'	or " 
+					+ DevicesColumns.PLATFORM_NAME + " like '%" + filter + "%'";
+		}
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		devicesList = jdbcTemplate.query(sql, new DeviceViewRowMapper());
 		return devicesList;
 	}
 	
@@ -54,15 +71,25 @@ public class DevicesDAOImpl implements DevicesDAO {
 		devicesList = jdbcTemplate.query(sql, new DeviceRowMapper());
 		return devicesList;
 	}
+	
+	public List<DeviceView> getFullRemovedDevicesList() {
+		List<DeviceView> devicesList = new ArrayList<DeviceView>();
+		String sql = "select * from " + TableNames.REMOVED_DEVICES_VIEW;
+		
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		devicesList = jdbcTemplate.query(sql, new DeviceViewRowMapper());
+		return devicesList;
+	}
 
 	public void insertDevice(Device device) {
 
 		String sql = "INSERT INTO " + TableNames.DEVICES + " ("
 				+ DevicesColumns.DEVICE + ", " + DevicesColumns.IMEI + ", "
-				+ DevicesColumns.PLATFORM + ", " + DevicesColumns.DATE + ", "
-				+ DevicesColumns.STATUS + ", " + DevicesColumns.PROJECT + ", "
-				+ DevicesColumns.OWNER + ", " + DevicesColumns.REASON + ", "
-				+ DevicesColumns.LAST_MODIFIED + ", " + DevicesColumns.EMAIL
+				+ DevicesColumns.PLATFORM_ID + ", " + DevicesColumns.DATE + ", "
+				+ DevicesColumns.STATUS + ", " + DevicesColumns.PROJECT_ID + ", "
+				+ DevicesColumns.OWNER_ID + ", " + DevicesColumns.REASON + ", "
+				+ DevicesColumns.LAST_MODIFIED_BY + ", " + DevicesColumns.EMAIL
 				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -70,10 +97,10 @@ public class DevicesDAOImpl implements DevicesDAO {
 		jdbcTemplate.update(
 				sql,
 				new Object[] { device.getDevice(), device.getImei(),
-						device.getPlatform(), getCurrentTime(),
-						device.getStatus(), device.getProject(),
-						device.getOwner(), device.getReason(),
-						device.getLast_modified(), device.getEmail() });
+						device.getPlatformId(), getCurrentTime(),
+						device.getStatus(), device.getProjectId(),
+						device.getOwnerId(), device.getReason(),
+						device.getLastModifiedBy(), device.getEmail() });
 
 	}
 
@@ -90,18 +117,18 @@ public class DevicesDAOImpl implements DevicesDAO {
 		String sql = "UPDATE " + TableNames.DEVICES + " set "
 				+ DevicesColumns.DEVICE + " = ?," + DevicesColumns.IMEI
 				+ " = ?," + DevicesColumns.STATUS + " = ?,"
-				+ DevicesColumns.PROJECT + " = ?," + DevicesColumns.OWNER
+				+ DevicesColumns.PROJECT_ID + " = ?," + DevicesColumns.OWNER_ID
 				+ " = ?," + DevicesColumns.REASON + " = ?,"
-				+ DevicesColumns.LAST_MODIFIED + " = ?," + DevicesColumns.EMAIL
+				+ DevicesColumns.LAST_MODIFIED_BY + " = ?," + DevicesColumns.EMAIL
 				+ " = ?," + " where " + DevicesColumns.ID + " = ?";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 		jdbcTemplate.update(
 				sql,
 				new Object[] { device.getDevice(), device.getImei(),
-						device.getStatus(), device.getProject(),
-						device.getOwner(), device.getReason(),
-						device.getLast_modified(), device.getEmail(),
+						device.getStatus(), device.getProjectId(),
+						device.getOwnerId(), device.getReason(),
+						device.getLastModifiedBy(), device.getEmail(),
 						device.getId() });
 	}
 
@@ -139,21 +166,21 @@ public class DevicesDAOImpl implements DevicesDAO {
 
 		List<User> users = new ArrayList<User>();
 
-		String sql = "select * from " + TableNames.USERS + " where "
-				+ UsersColumns.ID + "=" + userID;
-		;
+//		String sql = "select * from " + TableNames.USERS + " where "
+//				+ UsersColumns.ID + "=" + userID;
+//		;
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		users = jdbcTemplate.query(sql, new UserRowMapper());
+//		users = jdbcTemplate.query(sql, new UserRowMapper());
 
 		if (users.size() > 0) {
 
 			String sql2 = "UPDATE " + TableNames.DEVICES + " set "
-					+ DevicesColumns.DATE + " = ?," + DevicesColumns.OWNER
+					+ DevicesColumns.DATE + " = ?," + DevicesColumns.OWNER_ID
 					+ " = ? " + " where " + DevicesColumns.ID + " = ?";
 
 			jdbcTemplate.update(sql2, new Object[] { getCurrentTime(),
-					users.get(0).getName(), deviceID });
+					userID, deviceID });
 		}
 	}
 
@@ -188,15 +215,15 @@ public class DevicesDAOImpl implements DevicesDAO {
 
 		String sql = "INSERT INTO " + TableNames.REMOVED_DEVICES + " ("
 				+ DevicesColumns.DEVICE + ", " + DevicesColumns.IMEI + ", "
-				+ DevicesColumns.PLATFORM + ", " + DevicesColumns.DATE + ", "
-				+ DevicesColumns.STATUS + ", " + DevicesColumns.PROJECT + ", "
-				+ DevicesColumns.OWNER + ", " + DevicesColumns.REASON + ", "
-				+ DevicesColumns.LAST_MODIFIED + ", " + DevicesColumns.EMAIL
+				+ DevicesColumns.PLATFORM_ID + ", " + DevicesColumns.DATE + ", "
+				+ DevicesColumns.STATUS + ", " + DevicesColumns.PROJECT_ID + ", "
+				+ DevicesColumns.OWNER_ID + ", " + DevicesColumns.REASON + ", "
+				+ DevicesColumns.LAST_MODIFIED_BY + ", " + DevicesColumns.EMAIL
 				+ ") SELECT " + DevicesColumns.DEVICE + ", " + DevicesColumns.IMEI + ", "
-				+ DevicesColumns.PLATFORM + ", " + DevicesColumns.DATE + ", "
-				+ DevicesColumns.STATUS + ", " + DevicesColumns.PROJECT + ", "
-				+ DevicesColumns.OWNER + ", " + DevicesColumns.REASON + ", "
-				+ DevicesColumns.LAST_MODIFIED + ", " + DevicesColumns.EMAIL
+				+ DevicesColumns.PLATFORM_ID + ", " + DevicesColumns.DATE + ", "
+				+ DevicesColumns.STATUS + ", " + DevicesColumns.PROJECT_ID + ", "
+				+ DevicesColumns.OWNER_ID + ", " + DevicesColumns.REASON + ", "
+				+ DevicesColumns.LAST_MODIFIED_BY + ", " + DevicesColumns.EMAIL
 				+ " FROM " + TableNames.DEVICES + " WHERE " + TableNames.DEVICES + ".id=?";
 
 		jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
@@ -226,14 +253,6 @@ public class DevicesDAOImpl implements DevicesDAO {
 			comparator = Device.DeviceDESC;
 			break;
 
-		case 3:
-			comparator = Device.PlatformASC;
-			break;
-
-		case 4:
-			comparator = Device.PlatformDESC;
-			break;
-
 		case 5:
 			comparator = Device.ImeiASC;
 			break;
@@ -248,30 +267,6 @@ public class DevicesDAOImpl implements DevicesDAO {
 
 		case 8:
 			comparator = Device.StatusDESC;
-			break;
-
-		case 9:
-			comparator = Device.ProjectASC;
-			break;
-
-		case 10:
-			comparator = Device.ProjectDESC;
-			break;
-
-		case 11:
-			comparator = Device.OwnerASC;
-			break;
-
-		case 12:
-			comparator = Device.OwnerDESC;
-			break;
-
-		case 13:
-			comparator = Device.LastModifiedASC;
-			break;
-
-		case 14:
-			comparator = Device.LastModifiedDESC;
 			break;
 
 		case 15:
@@ -290,4 +285,79 @@ public class DevicesDAOImpl implements DevicesDAO {
 		Collections.sort(deviceList, comparator);
 	}
 
+	public void sortInView(List<DeviceView> deviceList, int sortingParam) {
+
+		Comparator<DeviceView> comparator = null;
+		switch (sortingParam) {
+		case 1:
+			comparator = DeviceView.DeviceASC;
+			break;
+
+		case 2:
+			comparator = DeviceView.DeviceDESC;
+			break;
+
+		case 3:
+			comparator = DeviceView.PlatformASC;
+			break;
+
+		case 4:
+			comparator = DeviceView.PlatformDESC;
+			break;
+
+		case 5:
+			comparator = DeviceView.ImeiASC;
+			break;
+
+		case 6:
+			comparator = DeviceView.ImeiDESC;
+			break;
+
+		case 7:
+			comparator = DeviceView.StatusASC;
+			break;
+
+		case 8:
+			comparator = DeviceView.StatusDESC;
+			break;
+
+		case 9:
+			comparator = DeviceView.ProjectASC;
+			break;
+
+		case 10:
+			comparator = DeviceView.ProjectDESC;
+			break;
+
+		case 11:
+			comparator = DeviceView.OwnerASC;
+			break;
+
+		case 12:
+			comparator = DeviceView.OwnerDESC;
+			break;
+
+		case 13:
+			comparator = DeviceView.LastModifiedASC;
+			break;
+
+		case 14:
+			comparator = DeviceView.LastModifiedDESC;
+			break;
+
+		case 15:
+			comparator = DeviceView.DateASC;
+			break;
+
+		case 16:
+			comparator = DeviceView.DateDESC;
+			break;
+
+		default:
+			comparator = DeviceView.DeviceASC;
+			break;
+		}
+
+		Collections.sort(deviceList, comparator);
+	}
 }

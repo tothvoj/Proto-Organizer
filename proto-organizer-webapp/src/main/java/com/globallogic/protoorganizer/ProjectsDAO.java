@@ -8,6 +8,7 @@ public interface ProjectsDAO {
 	
 	public List<Project> getProjectsList();	
 	public void insertProject(String project);
+	public void updateProject(Project project);
 	public void deleteProject(long id);
 	public void deleteBatch(final List<Long> ids);
 	

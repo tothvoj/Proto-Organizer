@@ -39,14 +39,21 @@ public class UsersDAOImpl implements UsersDAO {
 
 	public boolean insertUser(User user) {
 		String sql = "INSERT INTO " + TableNames.USERS + " ("
-				+ UsersColumns.NAME + ", " + UsersColumns.EMAIL + ", "
-				+ UsersColumns.BAR_CODE + ", " + UsersColumns.SPECIAL_RIGHTS
+				+ UsersColumns.FIRST_NAME + ", " 
+				+ UsersColumns.LAST_NAME + ", " 
+				+ UsersColumns.EMAIL + ", "
+				+ UsersColumns.BAR_CODE + ", " 
+				+ UsersColumns.SPECIAL_RIGHTS
 				+ ") VALUES (?, ?, ?, ?)";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-		int rows = jdbcTemplate.update(sql, new Object[] { user.getName(),
-				user.getEmail(), user.getBarcode(), user.getRights() });		
+		int rows = jdbcTemplate.update(sql, new Object[] { 
+				user.getFirstName(),
+				user.getLastName(),
+				user.getEmail(), 
+				user.getBarcode(), 
+				user.getRights() });		
 		if (rows == 1){
 			return true;
 		}
@@ -63,16 +70,24 @@ public class UsersDAOImpl implements UsersDAO {
 	}
 
 	public void updateUser(User user) {
-		String sql = "UPDATE " + TableNames.USERS + " set " + UsersColumns.NAME
-				+ " = ?," + UsersColumns.EMAIL + " = ?,"
-				+ UsersColumns.BAR_CODE + " = ?," + UsersColumns.SPECIAL_RIGHTS
-				+ " = ?," + " where " + UsersColumns.ID + " = ?";
+		String sql = "UPDATE " + TableNames.USERS + " set " 
+				+ UsersColumns.FIRST_NAME + " = ?," 
+				+ UsersColumns.LAST_NAME + " = ?,"
+				+ UsersColumns.EMAIL + " = ?,"
+				+ UsersColumns.BAR_CODE + " = ?," 
+				+ UsersColumns.SPECIAL_RIGHTS
+				+ " = ?, " + " where " + UsersColumns.ID + " = ?";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 		jdbcTemplate.update(
 				sql,
-				new Object[] { user.getName(), user.getEmail(),
-						user.getBarcode(), user.getRights(), user.getId() });
+				new Object[] { 
+						user.getFirstName(), 
+						user.getLastName(),
+						user.getEmail(),
+						user.getBarcode(), 
+						user.getRights(), 
+						user.getId() });
 
 	}
 	

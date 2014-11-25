@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.globallogic.protoorganizer.database.DevicesColumns;
 import com.globallogic.protoorganizer.database.ProjectsColumns;
 import com.globallogic.protoorganizer.database.TableNames;
 import com.globallogic.protoorganizer.jdbc.ProjectRowMapper;
@@ -39,6 +38,17 @@ public class ProjectsDAOImpl implements ProjectsDAO {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 		jdbcTemplate.update(sql, new Object[] { project });
+	}
+	
+	public void updateProject(Project project) {
+		String sql = "UPDATE " + TableNames.PROJECTS + " set "
+				+ ProjectsColumns.PROJECT_NAME + " = ? where " + 
+				ProjectsColumns.ID + " = ?";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+		jdbcTemplate.update(
+				sql,
+				new Object[] { project.getProjectName(), project.getId() });
 	}
 
 	public void deleteProject(long id) {

@@ -10,6 +10,9 @@ public class Helper {
 	private String currentPassword;
 	private String newPassword;
 	private String newPasswordRepeat;
+	
+	// caching EnumDeviceUsage
+	private static DeviceUsageActionEnum[] DeviceUsage = DeviceUsageActionEnum.values();
 
 	public List<Long> getIds() {
 		return ids;
@@ -59,6 +62,11 @@ public class Helper {
 	public void setNewPasswordRepeat(String newPasswordRepeat) {
 		this.newPasswordRepeat = newPasswordRepeat;
 	}	
+	
+	public static DeviceUsageActionEnum getActionEnum(int action)
+	{
+		return DeviceUsage[action];
+	}
 	
 		
 }

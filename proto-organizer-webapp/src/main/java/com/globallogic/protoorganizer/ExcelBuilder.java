@@ -18,6 +18,7 @@ import org.apache.poi.ss.usermodel.Font;
 import org.springframework.web.servlet.view.document.AbstractExcelView;
 
 import com.globallogic.protoorganizer.model.Device;
+import com.globallogic.protoorganizer.model.DeviceView;
 
 public class ExcelBuilder extends AbstractExcelView{
 
@@ -70,7 +71,7 @@ public class ExcelBuilder extends AbstractExcelView{
         
         response.setHeader("Content-Disposition", "attachment; filename=\"" + "devices.xls" + "\"");
         
-        List<Device> deviceList = (List<Device>) model.get("devicesList");
+        List<DeviceView> deviceList = (List<DeviceView>) model.get("devicesList");
         
         
         CellStyle dateCellStyle = workbook.createCellStyle();
@@ -78,15 +79,15 @@ public class ExcelBuilder extends AbstractExcelView{
      // create data rows
         int rowCount = 1;
          
-        for (Device device : deviceList) {
+        for (DeviceView device : deviceList) {
             HSSFRow aRow = sheet.createRow(rowCount++);
             aRow.createCell(0).setCellValue(device.getDevice());
-            aRow.createCell(1).setCellValue(device.getPlatform());
+            aRow.createCell(1).setCellValue(device.getPlatformName());
             aRow.createCell(2).setCellValue(device.getImei());
             aRow.createCell(3).setCellValue(device.getStatus());
-            aRow.createCell(4).setCellValue(device.getProject());
-            aRow.createCell(5).setCellValue(device.getOwner());
-            aRow.createCell(6).setCellValue(device.getLast_modified());
+            aRow.createCell(4).setCellValue(device.getProjectName());
+            aRow.createCell(5).setCellValue(device.getOwnerFullName());
+            aRow.createCell(6).setCellValue(device.getLastModifiedBy());
             if (device.getDate() != null){
             	aRow.createCell(7).setCellValue(device.getDate());
             	aRow.getCell(7).setCellStyle(dateCellStyle);

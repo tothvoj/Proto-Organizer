@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.globallogic.protoorganizer.model.Device;
+import com.globallogic.protoorganizer.model.DeviceView;
 import com.globallogic.protoorganizer.model.Helper;
 import com.globallogic.protoorganizer.model.Project;
 import com.globallogic.protoorganizer.model.User;
@@ -32,6 +33,8 @@ public class HomePageController {
 	DevicesDAO devicesDAO;
 	@Autowired
 	ProjectsDAO projectsDAO;
+	@Autowired
+	PlatformsDAO platformsDAO;
 	@Autowired
 	UsersDAO usersDAO;
 	@Autowired
@@ -58,9 +61,9 @@ public class HomePageController {
 	public ModelAndView getDevicesListAdmin(
 			@RequestParam(value = "q", required = false) String searchText,
 			@RequestParam(value = "sort", required = false) Integer sortingParam) {
-		List<Device> devicesList = devicesDAO.getDevicesList(searchText);
+		List<DeviceView> devicesList = devicesDAO.getDevicesViewList(searchText);
 		if (sortingParam != null) {
-			devicesDAO.sort(devicesList, sortingParam);
+			devicesDAO.sortInView(devicesList, sortingParam);
 		}
 
 		List<Device> removedDevicesList = devicesDAO.getRemovedDevicesList();
@@ -162,7 +165,7 @@ public class HomePageController {
 
 	@RequestMapping("/addProjectToDB")
 	public String addProjectToDB(@ModelAttribute Project project) {
-		projectsDAO.insertProject(project.getProject_name());
+		projectsDAO.insertProject(project.getProjectName());
 
 		return "redirect:/getListAdmin";
 	}

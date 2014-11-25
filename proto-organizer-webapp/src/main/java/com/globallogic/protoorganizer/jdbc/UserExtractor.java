@@ -14,7 +14,8 @@ public class UserExtractor implements ResultSetExtractor<User> {
 	public User extractData(ResultSet rs) throws SQLException,
 			DataAccessException {
 		User user = new User(rs.getLong(rs.findColumn(UsersColumns.ID)),
-				rs.getString(rs.findColumn(UsersColumns.NAME)),
+				rs.getString(rs.findColumn(UsersColumns.FIRST_NAME)),
+				rs.getString(rs.findColumn(UsersColumns.LAST_NAME)),
 				rs.getString(rs.findColumn(UsersColumns.EMAIL)),
 				rs.getString(rs.findColumn(UsersColumns.BAR_CODE)),
 				rs.getBoolean(rs.findColumn(UsersColumns.SPECIAL_RIGHTS)),

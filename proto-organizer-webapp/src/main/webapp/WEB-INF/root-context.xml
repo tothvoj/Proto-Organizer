@@ -34,6 +34,7 @@
 	<!-- declare beans -->
 	<bean id="devicesDao" class="com.globallogic.protoorganizer.DevicesDAOImpl" />
 	<bean id="projectsDao" class="com.globallogic.protoorganizer.ProjectsDAOImpl" />
+	<bean id="platformsDao" class="com.globallogic.protoorganizer.PlatformsDAOImpl" />
 	<bean id="userssDao" class="com.globallogic.protoorganizer.UsersDAOImpl" />
 
 	<!-- declare datasource bean -->
