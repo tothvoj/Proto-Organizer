@@ -40,7 +40,7 @@ td {
 				User :
 					<form:select path="userID">
 				<c:forEach var="userInHelper" items="${usersList}">
-					<form:option value="${userInHelper.id}" label="${userInHelper.name}" />
+					<form:option value="${userInHelper.id}" label="${userInHelper.getFullName()}" />
 				</c:forEach>
 			</form:select>
 

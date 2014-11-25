@@ -165,7 +165,7 @@
 							<br/>
 							<span style="color:gray;"><fmt:formatDate pattern="HH:mm" value="${device.date}" /></span>
 						</td>
-						<td><a class="button" href="selectUser?id=${device.id}">MOVE
+						<td><a class="button dialog" href="selectUser?id=${device.id}">MOVE
 								TO</a></td>
 					</tr>
 				</c:forEach>

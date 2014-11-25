@@ -173,15 +173,13 @@ public class DevicesDAOImpl implements DevicesDAO {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 //		users = jdbcTemplate.query(sql, new UserRowMapper());
 
-		if (users.size() > 0) {
+		
+		String sql2 = "UPDATE " + TableNames.DEVICES + " set "
+				+ DevicesColumns.DATE + " = ?," + DevicesColumns.OWNER_ID
+				+ " = ? " + " where " + DevicesColumns.ID + " = ?";
 
-			String sql2 = "UPDATE " + TableNames.DEVICES + " set "
-					+ DevicesColumns.DATE + " = ?," + DevicesColumns.OWNER_ID
-					+ " = ? " + " where " + DevicesColumns.ID + " = ?";
-
-			jdbcTemplate.update(sql2, new Object[] { getCurrentTime(),
-					userID, deviceID });
-		}
+		jdbcTemplate.update(sql2, new Object[] { getCurrentTime(),
+				userID, deviceID });
 	}
 
 	private List<Device> selectDevices(JdbcTemplate jdbcTemplate, final List<Long> ids) {

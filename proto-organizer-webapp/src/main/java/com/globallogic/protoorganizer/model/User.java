@@ -158,7 +158,7 @@ public class User
         //System.out.println(this.name + this.email + this.barcode + this.rights);
     }
 	
-	public String GetFullName()
+	public String getFullName()
 	{
 		return this.toString();
 	}
