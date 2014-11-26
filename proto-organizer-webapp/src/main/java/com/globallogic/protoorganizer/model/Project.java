@@ -14,8 +14,8 @@ public class Project {
 	public String getProjectName() {
 		return projectName;
 	}
-	public void setProjectName(String project_name) {
-		this.projectName = project_name;
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}   
     
 	

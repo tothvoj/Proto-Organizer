@@ -141,7 +141,7 @@
 						<td>
 							<input type="hidden" value="${device.projectId}" />
  							<span class="hideEnabled lastName" >${device.projectName}</span>
-<%--  							<form:select path="projects" class="showEnabled" items="${devicesViewWrapper.projects}" multiple="false"/> --%>
+  							<form:select path="devicesList[${status.index}].projectId" class="showEnabled" items="${devicesViewWrapper.projects}" multiple="false" itemValue="id" itemLabel="projectName"/>
 						</td>
 						<td>
 							<input type="hidden" value="${device.ownerId}" />
