@@ -3,7 +3,7 @@ package com.globallogic.protoorganizer.model;
 public class Project {
 	
 	private long id;
-    private String project_name;
+    private String projectName;
     
 	public long getId() {
 		return id;
@@ -12,16 +12,16 @@ public class Project {
 		this.id = id;
 	}
 	public String getProjectName() {
-		return project_name;
+		return projectName;
 	}
 	public void setProjectName(String project_name) {
-		this.project_name = project_name;
+		this.projectName = project_name;
 	}   
     
 	
 	@Override
 	public String toString() {
-		return project_name;
+		return projectName;
 	}
     
 

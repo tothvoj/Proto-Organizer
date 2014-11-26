@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.globallogic.protoorganizer.model.Device;
 import com.globallogic.protoorganizer.model.DeviceView;
+import com.globallogic.protoorganizer.model.DevicesViewWrapper;
 import com.globallogic.protoorganizer.model.Helper;
 import com.globallogic.protoorganizer.model.Project;
 import com.globallogic.protoorganizer.model.User;
@@ -62,15 +63,16 @@ public class HomePageController {
 			@RequestParam(value = "q", required = false) String searchText,
 			@RequestParam(value = "sort", required = false) Integer sortingParam) {
 		List<DeviceView> devicesList = devicesDAO.getDevicesViewList(searchText);
+		
 		if (sortingParam != null) {
 			devicesDAO.sortInView(devicesList, sortingParam);
 		}
 
 		List<Device> removedDevicesList = devicesDAO.getRemovedDevicesList();
+		List<Project> projects = projectsDAO.getProjectsList();
 
 		ModelAndView mav = new ModelAndView("getListAdmin");
-		mav.addObject("devicesList", devicesList);
-		mav.addObject("removedDevicesList", removedDevicesList);
+		mav.addObject("devicesViewWrapper", new DevicesViewWrapper(devicesList, removedDevicesList, projects));
 
 		return mav;
 	}
@@ -272,6 +274,16 @@ public class HomePageController {
 		
 		return "redirect:/changePassword?messagecode=0";
 	}
+	
+	
+	@RequestMapping(value = "/updateDevicesView", method = RequestMethod.POST)
+	public String updateDevicesView(@ModelAttribute DevicesViewWrapper devicesViewWrapper)
+	{
+		
+		
+		return "redirect:/getListAdmin";
+	}
+	 
 
 	private void sendWelcomeMail(String to) {
 		SimpleMailMessage msg = new SimpleMailMessage();

@@ -246,3 +246,11 @@ table, th, td {
 	overflow: hidden;
 }
 
+.showEnabled
+{
+	display:none;
+}
+.hideEnabled
+{
+	display:block;
+}
