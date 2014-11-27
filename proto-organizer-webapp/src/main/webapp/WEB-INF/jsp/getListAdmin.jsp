@@ -113,9 +113,7 @@
 				<c:forEach var="device" items="${devicesViewWrapper.devicesList}" varStatus="status">
 					<tr>
 						<td>
-							<%--<form:hidden path="devicesList[${status.index}].id"/>--%>
-							<form:hidden path="devicesList[${status.index}].id"/>
- 							<%--<input name="devicesList[${status.index}].id" value="${device.id}" type="hidden" /> --%>
+							<input name="devicesList[${status.index}].id" value="${device.id}"/>
 							<span class="hideEnabled">${device.device}</span>
 							<input class="showEnabled" name="devicesList[${status.index}].device" value="${device.device}"/>
 						</td>

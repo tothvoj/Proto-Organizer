@@ -291,7 +291,7 @@ public class HomePageController {
 	@RequestMapping(value = "/updateDevicesView", method = RequestMethod.POST)
 	public String updateDevicesView(@ModelAttribute DevicesViewWrapper devicesViewWrapper)
 	{
-		
+		devicesDAO.updateDevicePartially(devicesViewWrapper.getDevicesList());
 		
 		return "redirect:/getListAdmin";
 	}

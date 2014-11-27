@@ -22,6 +22,7 @@ import com.globallogic.protoorganizer.jdbc.DeviceViewRowMapper;
 import com.globallogic.protoorganizer.model.Device;
 import com.globallogic.protoorganizer.model.DeviceView;
 import com.globallogic.protoorganizer.model.User;
+import com.mysql.jdbc.PreparedStatement;
 
 public class DevicesDAOImpl implements DevicesDAO {
 
@@ -130,6 +131,52 @@ public class DevicesDAOImpl implements DevicesDAO {
 						device.getOwnerId(), device.getReason(),
 						device.getLastModifiedBy(), device.getEmail(),
 						device.getId() });
+	}
+	
+	public void updateDevicePartially(List<DeviceView> devices) {
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Connection connection;
+		
+		try {
+			connection = dataSource.getConnection();
+			connection.setAutoCommit(false);
+
+			String sql = "UPDATE " + TableNames.DEVICES + " set "
+					+ DevicesColumns.DEVICE + " = ?," 
+					+ DevicesColumns.IMEI + " = ?," 
+					+ DevicesColumns.PROJECT_ID + " = ?,"
+					+ DevicesColumns.PLATFORM_ID + " = ?,"
+					+ " = ?," + " where " + DevicesColumns.ID + " = ?";
+			
+			PreparedStatement ps = (PreparedStatement) connection.prepareStatement(sql);
+			final int batchSize = 1000;
+			int count = 0;
+			
+			for (Device device: devices) {
+
+			    ps.setString(1, device.getDevice());
+			    ps.setString(2, device.getImei());
+			    ps.setInt(3, device.getProjectId());
+			    ps.setInt(4, device.getPlatformId());
+			    ps.setLong(5, device.getId());
+			    ps.addBatch();
+
+			    if(++count % batchSize == 0) {
+			        ps.executeBatch();
+			        ps.clearBatch(); 
+			    }
+			}
+			
+			ps.executeBatch();
+			ps.clearBatch(); 
+			connection.commit();
+			ps.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private Timestamp getCurrentTime() {
