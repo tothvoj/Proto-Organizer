@@ -113,7 +113,7 @@
 				<c:forEach var="device" items="${devicesViewWrapper.devicesList}" varStatus="status">
 					<tr>
 						<td>
-							<input name="devicesList[${status.index}].id" value="${device.id}"/>
+							<input name="devicesList[${status.index}].id" value="${device.id}" type="hidden"/>
 							<span class="hideEnabled">${device.device}</span>
 							<input class="showEnabled" name="devicesList[${status.index}].device" value="${device.device}"/>
 						</td>

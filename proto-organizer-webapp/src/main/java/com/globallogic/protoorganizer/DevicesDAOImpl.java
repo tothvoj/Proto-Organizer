@@ -146,8 +146,8 @@ public class DevicesDAOImpl implements DevicesDAO {
 					+ DevicesColumns.DEVICE + " = ?," 
 					+ DevicesColumns.IMEI + " = ?," 
 					+ DevicesColumns.PROJECT_ID + " = ?,"
-					+ DevicesColumns.PLATFORM_ID + " = ?,"
-					+ " = ?," + " where " + DevicesColumns.ID + " = ?";
+					+ DevicesColumns.PLATFORM_ID + " = ? "
+					+ " where " + DevicesColumns.ID + " = ?";
 			
 			PreparedStatement ps = (PreparedStatement) connection.prepareStatement(sql);
 			final int batchSize = 1000;
