@@ -207,7 +207,7 @@ table, th, td {
 	display: block;
 	border-bottom: 5px solid orange;
 	position: relative;
-	margin-bottom: 5px;	
+	margin-bottom: 2px;	
 }
 
 .arrow-up:HOVER {
@@ -218,7 +218,7 @@ table, th, td {
 	display: block;
 	border-bottom: 5px solid #808080;
 	position: relative;
-	margin-bottom: 5px;	
+	margin-bottom: 2px;	
 }
 
 .arrow-down {
@@ -244,6 +244,9 @@ table, th, td {
 #arrows {
 	display: inline-block;
 	overflow: hidden;
+	float: right;
+	margin-top: 3px;
+	margin-right: 2px;
 }
 
 .showEnabled

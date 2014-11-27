@@ -255,7 +255,7 @@ public class DeviceView extends Device {
 	public static Comparator<DeviceView> OriginASC = new Comparator<DeviceView>() {
 
 		public int compare(DeviceView o1, DeviceView o2) {
-			return cp(o1.ownerId, o2.ownerId);
+			return cp(o1.origin, o2.origin);
 		}
 
 	};
@@ -263,7 +263,7 @@ public class DeviceView extends Device {
 	public static Comparator<DeviceView> OriginDESC = new Comparator<DeviceView>() {
 
 		public int compare(DeviceView o1, DeviceView o2) {
-			return cp(o2.ownerId, o1.ownerId);
+			return cp(o2.origin, o1.origin);
 		}
 
 	};

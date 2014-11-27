@@ -399,6 +399,14 @@ public class DevicesDAOImpl implements DevicesDAO {
 		case 16:
 			comparator = DeviceView.DateDESC;
 			break;
+			
+		case 17:
+			comparator = DeviceView.OriginASC;
+			break;
+
+		case 18:
+			comparator = DeviceView.OriginDESC;
+			break;
 
 		default:
 			comparator = DeviceView.DeviceASC;

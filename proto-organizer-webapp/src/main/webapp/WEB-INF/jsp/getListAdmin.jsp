@@ -92,8 +92,8 @@
 					</td>
 					<td class="heading">ORIGIN
 						<div id="arrows">
-							<a class="arrow-up" href="getListAdmin?sort=9"></a> 
-							<a class="arrow-down" href="getListAdmin?sort=10"></a>
+							<a class="arrow-up" href="getListAdmin?sort=17"></a> 
+							<a class="arrow-down" href="getListAdmin?sort=18"></a>
 						</div>
 					</td>
 					<td class="heading">OWNER
@@ -162,7 +162,7 @@
 							<input type="hidden" value="${device.lastModifiedBy}" />
  							<span class="hideDisabled" >${device.getModifierFullName()}</span>
 						</td>
-						<td>
+						<td class="hideDisabled">
 							<fmt:formatDate pattern="yy MMM dd" value="${device.date}" />
 							<br/>
 							<span style="color:gray;"><fmt:formatDate pattern="HH:mm" value="${device.date}" /></span>
