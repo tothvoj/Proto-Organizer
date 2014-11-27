@@ -113,18 +113,21 @@
 				<c:forEach var="device" items="${devicesViewWrapper.devicesList}" varStatus="status">
 					<tr>
 						<td>
-							<input name="devicesList[${status.index}].id" value="${device.id}" type="hidden" />
+							<%--<form:hidden path="devicesList[${status.index}].id"/>--%>
+							<form:hidden path="devicesList[${status.index}].id"/>
+ 							<%--<input name="devicesList[${status.index}].id" value="${device.id}" type="hidden" /> --%>
 							<span class="hideEnabled">${device.device}</span>
-<%-- 							<input class="showEnabled" name="${device.device}" value="${device.device}" style="display:none;" /> --%>
-							<input class="showEnabled" name="devicesList[${status.index}].device" value="${device.device}" style="display:none;" />
+							<input class="showEnabled" name="devicesList[${status.index}].device" value="${device.device}"/>
 						</td>
 						<td>
 							<input type="hidden" value="${device.platformId}" />
-							<span class="hideEnabled platformName" >${device.platformName}</span>
-							&nbsp;
- 							<span class="hideEnabled firstName" >${device.platformVersion}</span>
+							<span class="hideEnabled" >${device.platformName} ${device.platformVersion}</span>
+							<form:select path="devicesList[${status.index}].platformId" class="showEnabled" items="${devicesViewWrapper.platforms}" multiple="false" itemValue="id" itemLabel="fullName"/>
 						</td>
-						<td>${device.imei}</td>
+						<td>
+							<span class="hideEnabled">${device.imei}</span>
+							<input class="showEnabled" name="devicesList[${status.index}].imei" value="${device.imei}"/>
+						</td>
 						<!-- <td>
 							<c:choose>
 						      	<c:when test="${device.status == 'in'}">
@@ -140,44 +143,37 @@
 						</td> -->
 						<td>
 							<input type="hidden" value="${device.projectId}" />
- 							<span class="hideEnabled lastName" >${device.projectName}</span>
+ 							<span class="hideEnabled" >${device.projectName}</span>
   							<form:select path="devicesList[${status.index}].projectId" class="showEnabled" items="${devicesViewWrapper.projects}" multiple="false" itemValue="id" itemLabel="projectName"/>
 						</td>
 						<td>
 							<input type="hidden" value="${device.ownerId}" />
- 							<span class="hideEnabled lastName" >${device.getOwnerFullName()}</span>
+ 							<span class="hideDisabled" >${device.getOwnerFullName()}</span>
 						</td>
 						<td>
 							<input type="hidden" value="${device.lastModifiedBy}" />
- 							<span class="hideEnabled lastName" >${device.getModifierFullName()}</span>
+ 							<span class="hideDisabled" >${device.getModifierFullName()}</span>
 						</td>
 						<td>
 							<fmt:formatDate pattern="yy MMM dd" value="${device.date}" />
 							<br/>
 							<span style="color:gray;"><fmt:formatDate pattern="HH:mm" value="${device.date}" /></span>
 						</td>
-						<td><a class="button dialog" href="selectUser?id=${device.id}">MOVE
+						<td><a class="button dialog hideEnabled" href="selectUser?id=${device.id}">MOVE
 								TO</a></td>
 					</tr>
 				</c:forEach>
 
 			</table>
-
 		</div>
-		<input type="submit" class="showEnabled" value="Save" style="display:none;" />
-</form:form>
-
+		<input type="submit" class="showEnabled" value="Save"/>
+	</form:form>
 	</center>
-
-
-
 	<center>
-
 		<br /> <br /> <a class="button" onclick="showRemovedDevices()">REMOVED
 			DEVICES</a> <br /> <br />
 		<div id="removed_devices_table">
 			<table border="1">
-
 				<c:forEach var="device" items="${devicesViewWrapper.removedDevicesList}">
 					<tr>
 						<td>${device.device}</td>
@@ -191,14 +187,9 @@
 						<td></td>
 					</tr>
 				</c:forEach>
-
 			</table>
-
 		</div>
-
 	</center>
-
-
 	<script>
 		$(document).ready(function() {
 			$(".dialog").click(function(e) {
@@ -226,16 +217,17 @@
 						{
 							$(".hideEnabled").css("display", "block");
 							$(".showEnabled").css("display", "none");
+							$(".hideDisabled").css("color", "white");
 						}
 					else
 						{
 							$(".hideEnabled").css("display", "none");
 							$(".showEnabled").css("display", "block");
+							$(".hideDisabled").css("color", "gray");
 						}
 				});
 		});
 	</script>
-
 	<script type="text/javascript">
 		function loadPage() {
 			$("#loaderPage").load("hello.jsp");
@@ -247,12 +239,10 @@
 			return false;
 		}
 	</script>
-
 	<script type="text/javascript">
 		function showRemovedDevices() {
 			document.getElementById('removed_devices_table').style.display = "block";
 		}
 	</script>
-	
 </body>
 </html>

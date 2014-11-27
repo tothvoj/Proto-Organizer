@@ -8,6 +8,8 @@ public class Platform {
 	private String version;
 	private String comment;
 	
+	private String fullName;
+	
 	
 	public Platform(long id, String name, int masterPlatform, String version,
 			String comment) {
@@ -16,6 +18,8 @@ public class Platform {
 		this.masterPlatform = masterPlatform;
 		this.version = version;
 		this.comment = comment;
+		
+		setFullName(name + " " + version);
 	}
 	public long getId() {
 		return id;
@@ -50,7 +54,10 @@ public class Platform {
 	
 	public String getFullName()
 	{
-		return name + " " + version;
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 	
 }

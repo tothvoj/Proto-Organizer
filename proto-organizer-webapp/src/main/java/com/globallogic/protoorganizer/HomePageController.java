@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -24,6 +25,7 @@ import com.globallogic.protoorganizer.model.Device;
 import com.globallogic.protoorganizer.model.DeviceView;
 import com.globallogic.protoorganizer.model.DevicesViewWrapper;
 import com.globallogic.protoorganizer.model.Helper;
+import com.globallogic.protoorganizer.model.Platform;
 import com.globallogic.protoorganizer.model.Project;
 import com.globallogic.protoorganizer.model.User;
 
@@ -70,9 +72,19 @@ public class HomePageController {
 
 		List<Device> removedDevicesList = devicesDAO.getRemovedDevicesList();
 		List<Project> projects = projectsDAO.getProjectsList();
-
+		List<Platform> platforms = new ArrayList<Platform>();
+		
+		for(Platform platform : platformsDAO.getPlatformsList())
+		{
+			if(platform.getMasterPlatform() > 0)
+			{
+				platforms.add(platform);
+			}
+		}
+		
 		ModelAndView mav = new ModelAndView("getListAdmin");
-		mav.addObject("devicesViewWrapper", new DevicesViewWrapper(devicesList, removedDevicesList, projects));
+		mav.addObject("devicesViewWrapper", 
+				new DevicesViewWrapper(devicesList, removedDevicesList, projects, platforms));
 
 		return mav;
 	}
