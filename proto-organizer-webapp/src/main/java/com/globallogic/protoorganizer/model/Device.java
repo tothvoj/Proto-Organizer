@@ -204,6 +204,10 @@ public class Device {
 	public String getOrigin() {
 		return origin;
 	}
+	
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
 
 	@Override
 	public String toString() {

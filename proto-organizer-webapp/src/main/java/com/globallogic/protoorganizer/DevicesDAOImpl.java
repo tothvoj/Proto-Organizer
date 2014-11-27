@@ -146,7 +146,8 @@ public class DevicesDAOImpl implements DevicesDAO {
 					+ DevicesColumns.DEVICE + " = ?," 
 					+ DevicesColumns.IMEI + " = ?," 
 					+ DevicesColumns.PROJECT_ID + " = ?,"
-					+ DevicesColumns.PLATFORM_ID + " = ? "
+					+ DevicesColumns.PLATFORM_ID + " = ?, "
+					+ DevicesColumns.ORIGIN + " = ? "
 					+ " where " + DevicesColumns.ID + " = ?";
 			
 			PreparedStatement ps = (PreparedStatement) connection.prepareStatement(sql);
@@ -159,7 +160,8 @@ public class DevicesDAOImpl implements DevicesDAO {
 			    ps.setString(2, device.getImei());
 			    ps.setInt(3, device.getProjectId());
 			    ps.setInt(4, device.getPlatformId());
-			    ps.setLong(5, device.getId());
+			    ps.setString(5, device.getOrigin());
+			    ps.setLong(6, device.getId());
 			    ps.addBatch();
 
 			    if(++count % batchSize == 0) {

@@ -90,6 +90,12 @@
 							<a class="arrow-down" href="getListAdmin?sort=10"></a>
 						</div>
 					</td>
+					<td class="heading">ORIGIN
+						<div id="arrows">
+							<a class="arrow-up" href="getListAdmin?sort=9"></a> 
+							<a class="arrow-down" href="getListAdmin?sort=10"></a>
+						</div>
+					</td>
 					<td class="heading">OWNER
 						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=11"></a> 
@@ -143,6 +149,10 @@
 							<input type="hidden" value="${device.projectId}" />
  							<span class="hideEnabled" >${device.projectName}</span>
   							<form:select path="devicesList[${status.index}].projectId" class="showEnabled" items="${devicesViewWrapper.projects}" multiple="false" itemValue="id" itemLabel="projectName"/>
+						</td>
+						<td>
+							<span class="hideEnabled">${device.origin}</span>
+							<input class="showEnabled" name="devicesList[${status.index}].origin" value="${device.origin}"/>
 						</td>
 						<td>
 							<input type="hidden" value="${device.ownerId}" />
