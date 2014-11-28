@@ -19,26 +19,25 @@
 				</tr>
 				<tr>
 					<td>Platform :</td>
-					<td><form:input path="platform" /></td>
+					<td>
+						<form:select path="platformId" items="${map.platformsList}" />
+					</td>
 				</tr>
 				<tr>
 					<td>IMEI/SN :</td>
 					<td><form:input path="imei" /></td>
 				</tr>
 				<tr>
-					<td>Status :</td>
-					<td><form:radiobuttons path="status" items="${map.statusList}" /></td>
-				</tr>
-				<tr>
 					<td>Project :</td>
-					<td><form:select path="project">
-							<form:option value="NONE" label="--- Select ---" />
-							<form:options items="${map.projectsList}" />
-						</form:select></td>
+					<td>
+						<form:select path="projectId" items="${map.projectsList}" />
+					</td>
 				</tr>
 				<tr>
 					<td>Owner :</td>
-					<td><form:select path="owner" items="${map.usersList}" /></td>
+					<td>
+						<form:select path="ownerId" items="${map.usersList}" />
+					</td>
 				</tr>
 				<tr>
 					<td>Originally purchased by :</td>

@@ -110,16 +110,13 @@ public class HomePageController {
 	@RequestMapping("/addDevice")
 	public ModelAndView addDevice() {
 
-		List<String> statusList = new ArrayList<String>();
-		statusList.add("in");
-		statusList.add("out");
-
 		List<User> usersList = usersDAO.getUsersList();
 		List<Project> projectsList = projectsDAO.getProjectsList();
+		List<Platform> platformsList = platformsDAO.getPlatformsList();
 
 		Map<String, List> map = new HashMap<String, List>();
-		map.put("statusList", statusList);
 		map.put("projectsList", projectsList);
+		map.put("platformsList", platformsList);
 		map.put("usersList", usersList);
 
 		ModelAndView mav = new ModelAndView("addDevice");
