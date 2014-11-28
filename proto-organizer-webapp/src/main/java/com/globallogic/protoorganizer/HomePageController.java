@@ -72,15 +72,7 @@ public class HomePageController {
 
 		List<Device> removedDevicesList = devicesDAO.getRemovedDevicesList();
 		List<Project> projects = projectsDAO.getProjectsList();
-		List<Platform> platforms = new ArrayList<Platform>();
-		
-		for(Platform platform : platformsDAO.getPlatformsList())
-		{
-			if(platform.getMasterPlatform() > 0)
-			{
-				platforms.add(platform);
-			}
-		}
+		List<Platform> platforms = platformsDAO.getChildPlatforms();
 		
 		ModelAndView mav = new ModelAndView("getListAdmin");
 		mav.addObject("devicesViewWrapper", 
@@ -132,6 +124,14 @@ public class HomePageController {
 		}
 		return "redirect:/getListAdmin";
 	}
+	
+	@RequestMapping("/addPlatformToDB")
+	public String addPlatformToDB(@ModelAttribute Platform platform) {
+		if (platform != null) {
+			platformsDAO.insertPlatform(platform);
+		}
+		return "redirect:/getListAdmin";
+	}
 
 	@RequestMapping("/deleteDevice")
 	public ModelAndView deleteDevice() {
@@ -155,6 +155,16 @@ public class HomePageController {
 
 		ModelAndView mav = new ModelAndView("addProject");
 		mav.addObject("project", new Project());
+		return mav;
+	}
+	
+	@RequestMapping("/addPlatform")
+	public ModelAndView addPlatform() {
+
+		ModelAndView mav = new ModelAndView("addPlatform");
+		mav.addObject("platform", new Platform());
+		mav.addObject("masterPlatforms", platformsDAO.getMasterPlatforms());
+		
 		return mav;
 	}
 

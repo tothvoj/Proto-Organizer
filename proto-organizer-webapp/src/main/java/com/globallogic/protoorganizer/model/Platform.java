@@ -21,6 +21,9 @@ public class Platform {
 		
 		setFullName(name + " " + version);
 	}
+	public Platform() {
+		// TODO Auto-generated constructor stub
+	}
 	public long getId() {
 		return id;
 	}

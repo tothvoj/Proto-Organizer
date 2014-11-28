@@ -14,8 +14,12 @@
 		<form:form method="post" action="addUserToDB" modelAttribute="user">
 			<table>
 				<tr>
-					<td>Name :</td>
-					<td><form:input path="name" /></td>
+					<td>Last name :</td>
+					<td><form:input path="lastName" /></td>
+				</tr>
+				<tr>
+					<td>First name :</td>
+					<td><form:input path="firstName" /></td>
 				</tr>
 				<tr>
 					<td>Email :</td>

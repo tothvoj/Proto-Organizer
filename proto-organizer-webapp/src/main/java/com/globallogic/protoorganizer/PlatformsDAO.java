@@ -11,5 +11,7 @@ public interface PlatformsDAO {
 	public void updatePlatform(Platform platform);
 	public void deletePlatform(long id);
 	public void deleteBatch(final List<Long> ids);
+	public List<Platform> getChildPlatforms();
+	public List<Platform> getMasterPlatforms();
 		
 }

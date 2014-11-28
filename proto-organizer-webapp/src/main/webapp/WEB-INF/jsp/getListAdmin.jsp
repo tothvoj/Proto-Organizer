@@ -31,8 +31,9 @@
 					<li><a href="#" class="bold">ADD</a>
 						<ul>
 							<li><a href="addDevice" class="dialog">NEW DEVICE</a></li>
-							<li><a href="addProject" class="dialog">NEW PROJECT</a></li>
 							<li><a href="addUser" class="dialog">NEW USER</a></li>
+							<li><a href="addProject" class="dialog">NEW PROJECT</a></li>
+							<li><a href="addPlatform" class="dialog">NEW PLATFORM</a></li>
 						</ul></li>
 					<li><a href="#" class="bold">REMOVE</a>
 

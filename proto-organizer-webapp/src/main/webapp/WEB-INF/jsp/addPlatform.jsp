@@ -6,17 +6,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>ADD NEW PROJECT</title>
+<title>ADD NEW PLATFORM</title>
 </head>
 <body>
 
 	<div>
-		<form:form method="post" action="addProjectToDB"
-			modelAttribute="project">
+		<form:form method="post" action="addPlatformToDB" modelAttribute="platform">
 			<table>
 				<tr>
-					<td>Project :</td>
-					<td><form:input path="projectName" /></td>
+					<td>Platform name :</td>
+					<td><form:input path="name" /></td>
+				</tr>
+				<tr>
+					<td>Master platform :</td>
+					<td>
+						<form:select path="masterPlatform" items="${map.masterPlatforms}" />
+					</td>
 				</tr>
 				<tr>
 					<td> </td>

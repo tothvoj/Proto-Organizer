@@ -30,6 +30,28 @@ public class PlatformsDAOImpl implements PlatformsDAO {
 
 		return platforms;
 	}
+	
+	public List<Platform> getMasterPlatforms() {
+		List<Platform> platforms = new ArrayList<Platform>();
+
+		String sql = "select * from " + TableNames.PLATFORMS + " where master_platform IS NULL";
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		platforms = jdbcTemplate.query(sql, new PlatformRowMapper());
+
+		return platforms;
+	}
+	
+	public List<Platform> getChildPlatforms() {
+		List<Platform> platforms = new ArrayList<Platform>();
+
+		String sql = "select * from " + TableNames.PLATFORMS + " where master_platform IS NOT NULL";
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		platforms = jdbcTemplate.query(sql, new PlatformRowMapper());
+
+		return platforms;
+	}
 
 	public void insertPlatform(Platform platform) {
 		String sql = "INSERT INTO " + TableNames.PLATFORMS + " ("
@@ -92,5 +114,4 @@ public class PlatformsDAOImpl implements PlatformsDAO {
 		}
 	  });
 	}
-
 }
