@@ -74,9 +74,13 @@ public class HomePageController {
 		List<Project> projects = projectsDAO.getProjectsList();
 		List<Platform> platforms = platformsDAO.getChildPlatforms();
 		
+		org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User dbUser = usersDAO.getUserByEmail(user.getUsername());
+		
 		ModelAndView mav = new ModelAndView("getListAdmin");
 		mav.addObject("devicesViewWrapper", 
 				new DevicesViewWrapper(devicesList, removedDevicesList, projects, platforms));
+		mav.addObject("username", dbUser.getFullName());
 
 		return mav;
 	}

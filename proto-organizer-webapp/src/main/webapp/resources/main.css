@@ -231,21 +231,30 @@ input, textarea, select, #tfnewsearch {
 }
 #footer span
 {
-	margin: 7px 7px 0px 0px;
+	margin: 10px 7px 0px 0px;
 	/* position: fixed; */
 	float: right;
 	color: white;
+	font-size: 14px;
 }
-
 #settings {
-	width: 130px;
-	float: right;
+	width: 950px; 
+	/* float: right; */
 }
-
 #settings a {	
-	display: block;	
 	text-decoration: none;
 	color: white;	
+	display: inline-block;
+	float:right;
+	margin: 0px 10px 0px 10px;
+	border-right: 1px White solid;
+	padding-right: 20px;
+	margin-top: 15px;
+	font-size: 14px;
+}
+#settings a:first-child {	
+	margin-right: 0px;
+	border-right: 0px;
 }
 
 #settings a:hover {	
@@ -310,6 +319,7 @@ input, textarea, select, #tfnewsearch {
 	border-right: 0px;
 	border-top-left-radius: 5px 5px;
 	border-bottom-left-radius: 5px 5px; */
+	background-color: #292929;
 }
 
 .tftextinput:focus
