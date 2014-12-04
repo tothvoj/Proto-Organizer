@@ -14,7 +14,7 @@
 		href="<c:url value='/resources/jquery-ui.css'/>" />
 	<link rel="stylesheet" type="text/css"
 		href="<c:url value='/resources/main.css'/>" />
-	<title>Ko�ice Devices GlobalLogic</title>
+	<title>Košice Devices GlobalLogic</title>
 </head>
 <body>
 	<center>
@@ -200,6 +200,9 @@
 			</table>
 		</div>
 	</center>
+	<div id="footer" >
+		<span>Copyright © 2014 Košice</span>
+	</div>
 	<script>
 		$(document).ready(function() {
 			$(".dialog").click(function(e) {

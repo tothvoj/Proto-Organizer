@@ -9,32 +9,30 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/jquery-ui.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/main.css'/>" />
 <title>Login</title>
 </head>
 <body>
 	<center>
-
-		<h1>Login</h1>
+		<div id="header"></div>
 		<div id="login-error">${error}</div>
 		<form action="<c:url value="/j_spring_security_check"></c:url>" method="post" role="form">
-
-
-
 			<p>
-
-
-				<label for="j_username">Email</label> <input id="j_username"
-					name="j_username" type="text" />
+				<!-- <label for="j_username">Email</label> -->
+				<input id="j_username" name="j_username" type="text" placeholder="Email" />
 			</p>
 			<p>
-
-
-				<label for="j_password">Password</label> <input id="j_password"
-					name="j_password" type="password" />
+				<!-- <label for="j_password">Password</label> --> 
+				<input id="j_password" name="j_password" type="password" placeholder="Password" />
 			</p>
-			<input type="submit" value="Login" />
-
+			<p>
+				<input type="submit" name="login" value="Login" />
+			</p>
 		</form>
 	</center>
+	<div id="footer" >
+		<span>Copyright © 2014 Košice</span>
+	</div>
 </body>
 </html>

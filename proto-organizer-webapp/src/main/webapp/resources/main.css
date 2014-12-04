@@ -214,10 +214,27 @@ input, textarea, select, #tfnewsearch {
 }
 
 #header {
-	width: 950px;
+	/* width: 950px; */
 	height: 335px;
 	display: block;
 	background: #ffffff url("gl_logo.png") no-repeat center;
+	background-color: #131313;
+}
+#footer
+{
+	background-color: #101010;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	height: 40px;
+}
+#footer span
+{
+	margin: 7px 7px 0px 0px;
+	/* position: fixed; */
+	float: right;
+	color: white;
 }
 
 #settings {
@@ -415,6 +432,45 @@ input, textarea, select, #tfnewsearch {
 #main_table tr td:nth-child(5) input
 {
 	max-width: 75px;
+}
+#j_username, #j_password, input[name="login"]
+{
+	width: 250px;
+	background-color: #292929;
+	color: white;
+	height: 30px;
+	font-size: 20px;
+	padding: 5px;
+	box-sizing: content-box;
+}
+#j_username
+{
+	margin-top: 50px;
+}
+input[name="login"]
+{
+	background-color: #8dc63f;
+}
+input#j_username:-webkit-autofill,
+input#j_password:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #292929 inset;
+    -webkit-text-fill-color: white !important;
+}
+/* styling placeholder text color */
+::-webkit-input-placeholder {
+   color: #4a4a4a;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #4a4a4a;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #4a4a4a;  
+}
+
+:-ms-input-placeholder {  
+   color: #4a4a4a;  
 }
 
 
