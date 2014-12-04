@@ -44,7 +44,7 @@ public class UsersDAOImpl implements UsersDAO {
 				+ UsersColumns.EMAIL + ", "
 				+ UsersColumns.BAR_CODE + ", " 
 				+ UsersColumns.SPECIAL_RIGHTS
-				+ ") VALUES (?, ?, ?, ?)";
+				+ ") VALUES (?, ?, ?, ?, ?)";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 

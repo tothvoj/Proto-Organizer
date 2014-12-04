@@ -19,7 +19,10 @@ public class Platform {
 		this.version = version;
 		this.comment = comment;
 		
-		setFullName(name + " " + version);
+		if(version != null && version != "")
+			setFullName(name + " " + version);
+		else 
+			setFullName(name);
 	}
 	public Platform() {
 		// TODO Auto-generated constructor stub

@@ -44,8 +44,7 @@
 	</security:http>
 
 	<!-- Declare an authentication-manager to use a custom userDetailsService -->
-	<security:authentication-manager
-		erase-credentials="false">
+	<security:authentication-manager erase-credentials="false">
 		<security:authentication-provider
 			user-service-ref="customUserDetailsService">
 			<security:password-encoder ref="passwordEncoder" />

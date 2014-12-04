@@ -6,34 +6,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Ko¹ice Devices GlobalLogic</title>
-<style>
-body {
-	font-size: 20px;
-	color: teal;
-	font-family: Calibri;
-}
-
-td {
-	font-size: 15px;
-	color: black;
-	width: 100px;
-	height: 22px;
-	text-align: center;
-}
-
-.heading {
-	font-size: 18px;
-	color: white;
-	font: bold;
-	background-color: orange;
-	border: thick;
-}
-</style>
+<title>CHANGE OWNER</title>
 </head>
 <body>
 	<center>
-
 		<form:form method="post" action="moveTo?deviceID=${helper.selectedDeviceID}" commandName="helper">
 
 			

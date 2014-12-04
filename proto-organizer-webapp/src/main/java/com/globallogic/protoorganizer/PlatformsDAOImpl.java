@@ -58,12 +58,12 @@ public class PlatformsDAOImpl implements PlatformsDAO {
 				+ PlatformsColumns.NAME + ", "
 				+ PlatformsColumns.MASTER_PLATFORM + ", "
 				+ PlatformsColumns.VERSION + ", "
-				+ PlatformsColumns.COMMENT + ") VALUES (?)";
+				+ PlatformsColumns.COMMENT + ") VALUES (?, ?, ?, ?)";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 		jdbcTemplate.update(sql, new Object[] { 
-				platform.getFullName(),
+				platform.getName(),
 				platform.getMasterPlatform(), 
 				platform.getVersion(), 
 				platform.getComment()});

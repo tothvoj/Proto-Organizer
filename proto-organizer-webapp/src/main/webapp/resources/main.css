@@ -3,21 +3,29 @@ body {
 	color: teal;
 	font-family: Calibri;
 	background-color: #303030;
+	margin: 0px;
 }
 
 td {
 	font-size: 15px;
-	color: black;
+	color: white;
 	/* width: 100px; */
 	height: 22px;
 	text-align: center;
+	
+	/* http://stackoverflow.com/questions/4062001/css3-border-opacity */
+	border-left: 1px solid rgba(128, 128, 128, 0.3);
+	border-top: 1px solid rgba(255, 165, 0, 0.3);
+	/* border-right: 1px solid rgba(128, 128, 128, 0.5);
+	border-bottom: 1px solid rgba(255, 165, 0, 0.5); */
+	-webkit-background-clip: padding-box; /* for Safari */
+    background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
 }
 
 .heading {
 	font-size: 18px;
 	color: #8dc63f !important;
 	font: bold;
-	background-color: #f16e36;
 }
 
 .bold 
@@ -28,20 +36,112 @@ td {
 table {
 	width: 950px;
 	border-collapse: collapse;
+	background-color: #1d1d1d;
 }
 
 table, th, td {
-	border: 1px solid black;
+	/* border: 1px solid black; */
 }
 
-#main_table table, #main_table td
+#main_table table tr:first-child td
 {
-	background-color: black;
-	color:white;
-	border-left: 1px solid gray;
-	border-top: 1px solid orange;
-	border-right: 1px solid gray;
-	border-bottom: 1px solid orange;
+	border-top: none;
+}
+
+#main_table table tr td:first-child
+{
+	border-left: none;
+}
+
+#main_table table tr td:last-child
+{
+	border-right: none;
+}
+
+#main_table table tr:last-child td
+{
+	border-bottom: none;
+}
+
+#dialog table
+{
+	width:auto;
+	border: none;
+	min-width: 500px;
+	min-height: 150px;
+}
+#dialog form, #dialog table
+{
+	background-color: #3b3b3b;
+}
+
+#dialog #addUserTable label
+{
+	vertical-align: super;
+}
+
+#dialog td
+{
+	border: none;
+}
+
+#dialog td:nth-child(1)
+{
+	text-align: right;
+}
+
+#dialog td[colspan="2"]
+{
+	text-align: center;
+}
+
+#dialog select, #dialog input, #devicesViewWrapper input[type=submit]
+{
+	min-width: 200px;
+}
+
+#dialog input[type="radio"]
+{
+	min-width: 0px;
+}
+
+input, textarea, select, #tfnewsearch {
+  background-color : #515151; 
+  border: 0;
+  padding: 0;
+  color:#fff;
+}
+
+#tfnewsearch
+{
+	display:table; 
+}
+
+#dialog input, #dialog select, #devicesViewWrapper input[type=submit]
+{
+	height: 25px;
+	margin-top: 5px;
+}
+
+#dialog input[type=submit], #devicesViewWrapper input[type=submit]
+{
+	background-color: #8dc63f;
+	margin-bottom: 20px;
+	margin-bottom: 10px;
+}
+
+.ui-icon-closethick
+{
+	border: 1px gray solid;
+	border-radius: 11px;
+	width:20px;
+	height:20px;
+}
+
+.ui-dialog-titlebar-close
+{
+	background: none !important;
+	border: none !important;
 }
 
 .button {
@@ -69,6 +169,23 @@ table, th, td {
 	vertical-align: middle;
 }
 
+.newButton
+{
+	cursor: pointer;	
+	padding: 3px 7px;
+	background-color: #8dc63f;
+	-webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+	-moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+	box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+	text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
+	color: #131313;
+	font-size: 11px;
+	text-decoration: none;
+	vertical-align: middle;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
 .button:hover {
 	border-top-color: #28597a;
 	background: #28597a;
@@ -92,14 +209,15 @@ table, th, td {
 #nav {
 	width: 950px;
 	display: block;
-	background-color: #222;
+	/* background-color: #222; */
+	margin-top: -54px;
 }
 
 #header {
 	width: 950px;
-	height: 250px;
+	height: 335px;
 	display: block;
-	background: #ffffff url("gl_logo.jpg") no-repeat center;
+	background: #ffffff url("gl_logo.png") no-repeat center;
 }
 
 #settings {
@@ -166,28 +284,36 @@ table, th, td {
 }
 
 .tftextinput {
-	height: 17px;
+	height: 20px;
 	margin: 0;
 	padding: 0px 3px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
-	border: 1px solid #0076a3;
+	/* border: 1px solid #0076a3;
 	border-right: 0px;
 	border-top-left-radius: 5px 5px;
-	border-bottom-left-radius: 5px 5px;
+	border-bottom-left-radius: 5px 5px; */
+}
+
+.tftextinput:focus
+{
+	outline: 0;
 }
 
 .tfbutton {	
-	width: 24px;
+	width: 20px;
 	height: 20px;
 	margin: 0;
 	outline: none;
 	cursor: pointer;	
-	border: solid 1px #0076a3;
-	border-right: 0px;
-	background: url('searchbutton3.gif') no-repeat;	
-	border-top-right-radius: 5px 5px;
-	border-bottom-right-radius: 5px 5px;
+	background: url('searchicon.png') no-repeat;
+	background-size: 20px 20px;	
+	float:right;
+}
+
+#tfheader
+{
+	display: inline-table;
 }
 
 /* Fixes submit button height problem in Firefox */
@@ -257,3 +383,39 @@ table, th, td {
 {
 	display:block;
 }
+
+/* limiting editing inputs and selects in main table Edit mode */
+#main_table tr td input
+{
+	height:15px;
+	padding: 3px;
+	margin: 2px;
+}
+#main_table tr td select
+{
+	height: 21px;
+	margin: 2px;
+}
+#main_table tr td:nth-child(1) input
+{
+	max-width: 150px;
+}
+#main_table tr td:nth-child(2) select
+{
+	max-width: 105px;
+}
+#main_table tr td:nth-child(3) input
+{
+	max-width: 100px;
+}
+#main_table tr td:nth-child(4) select
+{
+	max-width: 85px;
+}
+#main_table tr td:nth-child(5) input
+{
+	max-width: 75px;
+}
+
+
+

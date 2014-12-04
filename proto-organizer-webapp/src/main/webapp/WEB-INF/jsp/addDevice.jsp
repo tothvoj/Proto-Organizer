@@ -14,38 +14,37 @@
 		<form:form method="post" action="addDeviceToDB" modelAttribute="device">
 			<table>
 				<tr>
-					<td>Device :</td>
+					<td>Device</td>
 					<td><form:input path="device" /></td>
 				</tr>
 				<tr>
-					<td>Platform :</td>
+					<td>Platform</td>
 					<td>
-						<form:select path="platformId" items="${map.platformsList}" />
+						<form:select path="platformId" items="${map.platformsList}" itemLabel="fullName" itemValue="id" />
 					</td>
 				</tr>
 				<tr>
-					<td>IMEI/SN :</td>
+					<td>IMEI/SN</td>
 					<td><form:input path="imei" /></td>
 				</tr>
 				<tr>
-					<td>Project :</td>
+					<td>Project</td>
 					<td>
-						<form:select path="projectId" items="${map.projectsList}" />
+						<form:select path="projectId" items="${map.projectsList}" itemValue="id"/>
 					</td>
 				</tr>
 				<tr>
-					<td>Owner :</td>
+					<td>Owner</td>
 					<td>
-						<form:select path="ownerId" items="${map.usersList}" />
+						<form:select path="ownerId" items="${map.usersList}" itemValue="id" />
 					</td>
 				</tr>
 				<tr>
-					<td>Originally purchased by :</td>
+					<td>Originally purchased by</td>
 					<td><form:input path="origin" /></td>
 				</tr>
 				<tr>
-					<td> </td>
-					<td><input type="submit" value="Save" /></td>
+					<td colspan="2"><input type="submit" value="Save" /></td>
 				</tr>
 
 			</table>

@@ -104,7 +104,7 @@ public class HomePageController {
 
 		List<User> usersList = usersDAO.getUsersList();
 		List<Project> projectsList = projectsDAO.getProjectsList();
-		List<Platform> platformsList = platformsDAO.getPlatformsList();
+		List<Platform> platformsList = platformsDAO.getChildPlatforms();
 
 		Map<String, List> map = new HashMap<String, List>();
 		map.put("projectsList", projectsList);
@@ -120,6 +120,21 @@ public class HomePageController {
 	@RequestMapping("/addDeviceToDB")
 	public String addDeviceToDB(@ModelAttribute Device device) {
 		if (device != null) {
+			
+			org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			User dbUser = null;
+			
+			if(device.getOwnerId() < 1)
+			{
+				dbUser = usersDAO.getUserByEmail(user.getUsername());
+				device.setOwnerId((int) dbUser.getId());
+			}
+			if(device.getLastModifiedBy() < 1)
+			{
+				if(dbUser == null) dbUser = usersDAO.getUserByEmail(user.getUsername());
+				device.setLastModifiedBy((int) dbUser.getId());
+			}
+			
 			devicesDAO.insertDevice(device);
 		}
 		return "redirect:/getListAdmin";
@@ -136,7 +151,7 @@ public class HomePageController {
 	@RequestMapping("/deleteDevice")
 	public ModelAndView deleteDevice() {
 
-		List<Device> devicesList = devicesDAO.getDevicesList(null);
+		List<DeviceView> devicesList = devicesDAO.getDevicesViewList(null);
 		ModelAndView mav = new ModelAndView("deleteDevice");
 		mav.addObject("devicesList", devicesList);
 		mav.addObject("helper", new Helper());
@@ -163,7 +178,8 @@ public class HomePageController {
 
 		ModelAndView mav = new ModelAndView("addPlatform");
 		mav.addObject("platform", new Platform());
-		mav.addObject("masterPlatforms", platformsDAO.getMasterPlatforms());
+		ArrayList<Platform> platforms = (ArrayList<Platform>) platformsDAO.getMasterPlatforms();
+		mav.addObject("masterPlatforms", platforms);
 		
 		return mav;
 	}
@@ -181,6 +197,22 @@ public class HomePageController {
 	@RequestMapping("/deleteProjectsFromDB")
 	public String deleteProjectsFromDB(@ModelAttribute Helper helper) {
 		projectsDAO.deleteBatch(helper.getIds());
+		return "redirect:/getListAdmin";
+	}
+	
+	@RequestMapping("/deletePlatform")
+	public ModelAndView deletePlatform() {
+
+		List<Platform> projectList = platformsDAO.getChildPlatforms();
+		ModelAndView mav = new ModelAndView("deletePlatform");
+		mav.addObject("platformsList", projectList);
+		mav.addObject("helper", new Helper());
+		return mav;
+	}
+
+	@RequestMapping("/deletePlatformsFromDB")
+	public String deletePlatformsFromDB(@ModelAttribute Helper helper) {
+		platformsDAO.deleteBatch(helper.getIds());
 		return "redirect:/getListAdmin";
 	}
 

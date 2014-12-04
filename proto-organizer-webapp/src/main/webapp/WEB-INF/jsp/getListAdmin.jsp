@@ -39,8 +39,9 @@
 
 						<ul>
 							<li><a href="deleteDevice" class="dialog">REMOVE DEVICE</a></li>
-							<li><a href="deleteProject" class="dialog">REMOVE PROJECT</a></li>
 							<li><a href="deleteUser" class="dialog">REMOVE USER</a></li>
+							<li><a href="deleteProject" class="dialog">REMOVE PROJECT</a></li>
+							<li><a href="deletePlatform" class="dialog">REMOVE PLATFORM</a></li>
 						</ul></li>
 					<li><a href="#" class="bold toggleEdit">EDIT</a></li>
 					<li><a href="#" onclick='javascript:window.print()'>PRINT</a>
@@ -50,7 +51,7 @@
 					<li><div id="tfheader">
 							<form id="tfnewsearch" method="post" action="getListAdmin">
 								<input type="text" class="tftextinput" name="q" size="13"
-									maxlength="120"> <input type="submit" value=" "
+									maxlength="120" placeholder="Search here..." required> <input type="submit" value=" "
 									class="tfbutton">
 							</form>
 							<div class="tfclear"></div>
@@ -66,7 +67,7 @@
 
 		<div id="main_table">
 			<table border="1">
-				<tr style="border-bottom: 2px solid orange;">
+				<tr >
 					<td class="heading">DEVICE
 						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=1"></a> 
@@ -103,7 +104,7 @@
 							<a class="arrow-down" href="getListAdmin?sort=12"></a>
 						</div>
 					</td>
-					<td class="heading">LAST MODIFIED
+					<td class="heading">LAST EDIT
 						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=13"></a> 
 							<a class="arrow-down" href="getListAdmin?sort=14"></a>
@@ -168,7 +169,7 @@
 							<br/>
 							<span style="color:gray;"><fmt:formatDate pattern="HH:mm" value="${device.date}" /></span>
 						</td>
-						<td><a class="button dialog hideEnabled" href="selectUser?id=${device.id}">MOVE
+						<td><a class="newButton dialog hideEnabled" href="selectUser?id=${device.id}">MOVE
 								TO</a></td>
 					</tr>
 				</c:forEach>
@@ -203,19 +204,27 @@
 		$(document).ready(function() {
 			$(".dialog").click(function(e) {
 				e.preventDefault();
-				$("#dialog").load($(this).attr("href"));
-				var theDialog = $("#dialog").dialog({
-					width : 'auto',
-					height : 'auto',
-					resizable: false,
-					draggable: false,
-					modal : true,
-					close : function() {
-						$("#thedialog").attr('src', "about:blank");
-					}
-				});
+				$("#dialog").load($(this).attr("href"), 
+					function()
+					{
+						var theDialog = $("#dialog").dialog({
+							width : 'auto',
+							height : 'auto',
+							modal: true,
+							resizable: false,
+							draggable: true,
+							modal : true,
+							open: function() {
+								$(".ui-dialog-title").text($("#dialog").find("title").text());
+						     },
+							close : function() {
+								$("#thedialog").attr('src', "about:blank");
+							}
+						});
+						
+						setTimeout(function(){ theDialog.dialog('open') }, 100);
+					});
 				
-				setTimeout(function(){ theDialog.dialog('open') }, 100);;	
 				return false;
 			});
 			
@@ -236,19 +245,6 @@
 						}
 				});
 		});
-	</script>
-	<script type="text/javascript">
-		function loadPage() {
-			$("#loaderPage").load("hello.jsp");
-			$("#loaderPage").dialog({
-				height : 600,
-				width : 600,
-				modal : true
-			});
-			return false;
-		}
-	</script>
-	<script type="text/javascript">
 		function showRemovedDevices() {
 			document.getElementById('removed_devices_table').style.display = "block";
 		}

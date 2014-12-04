@@ -14,14 +14,22 @@
 		<form:form method="post" action="addPlatformToDB" modelAttribute="platform">
 			<table>
 				<tr>
-					<td>Platform name :</td>
+					<td>Platform name</td>
 					<td><form:input path="name" /></td>
 				</tr>
 				<tr>
-					<td>Master platform :</td>
+					<td>Master platform</td>
 					<td>
-						<form:select path="masterPlatform" items="${map.masterPlatforms}" />
+						<form:select path="masterPlatform" items="${masterPlatforms}" itemLabel="name" itemValue="id" />
 					</td>
+				</tr>
+				<tr>
+					<td>Platform version</td>
+					<td><form:input path="version" /></td>
+				</tr>
+				<tr>
+					<td>Comment</td>
+					<td><form:input path="comment" /></td>
 				</tr>
 				<tr>
 					<td> </td>

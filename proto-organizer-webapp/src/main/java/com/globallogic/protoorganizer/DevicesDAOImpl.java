@@ -88,7 +88,7 @@ public class DevicesDAOImpl implements DevicesDAO {
 		String sql = "INSERT INTO " + TableNames.DEVICES + " ("
 				+ DevicesColumns.DEVICE + ", " + DevicesColumns.IMEI + ", "
 				+ DevicesColumns.PLATFORM_ID + ", " + DevicesColumns.DATE + ", "
-				+ DevicesColumns.STATUS + ", " + DevicesColumns.PROJECT_ID + ", "
+				+ DevicesColumns.ORIGIN + ", " + DevicesColumns.PROJECT_ID + ", "
 				+ DevicesColumns.OWNER_ID + ", " + DevicesColumns.REASON + ", "
 				+ DevicesColumns.LAST_MODIFIED_BY + ", " + DevicesColumns.EMAIL
 				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -99,7 +99,7 @@ public class DevicesDAOImpl implements DevicesDAO {
 				sql,
 				new Object[] { device.getDevice(), device.getImei(),
 						device.getPlatformId(), getCurrentTime(),
-						device.getStatus(), device.getProjectId(),
+						device.getOrigin(), device.getProjectId(),
 						device.getOwnerId(), device.getReason(),
 						device.getLastModifiedBy(), device.getEmail() });
 

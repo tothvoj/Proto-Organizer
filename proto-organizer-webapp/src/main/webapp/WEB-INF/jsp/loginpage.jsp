@@ -23,7 +23,7 @@
 			<p>
 
 
-				<label for="j_username">Username</label> <input id="j_username"
+				<label for="j_username">Email</label> <input id="j_username"
 					name="j_username" type="text" />
 			</p>
 			<p>

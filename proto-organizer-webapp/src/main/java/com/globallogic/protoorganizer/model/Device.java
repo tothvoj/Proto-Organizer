@@ -155,8 +155,8 @@ public class Device {
 	 * @param owner
 	 *            owner
 	 */
-	public void setOwner(int ownerId) {
-		this.ownerId = ownerId;
+	public void setOwnerId(int l) {
+		this.ownerId = l;
 	}
 
 	public String getReason() {
@@ -175,6 +175,10 @@ public class Device {
 
 	public int getLastModifiedBy() {
 		return lastModifiedBy;
+	}
+	
+	public void setLastModifiedBy(int lastModifiedById) {
+		this.lastModifiedBy = lastModifiedById;
 	}
 
 	public String getEmail() {

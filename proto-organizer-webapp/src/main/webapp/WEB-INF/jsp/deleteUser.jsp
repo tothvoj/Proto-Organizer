@@ -6,30 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Košice Devices GlobalLogic</title>
-<style>
-body {
-	font-size: 20px;
-	color: teal;
-	font-family: Calibri;
-}
-
-td {
-	font-size: 15px;
-	color: black;
-	width: 100px;
-	height: 22px;
-	text-align: center;
-}
-
-.heading {
-	font-size: 18px;
-	color: white;
-	font: bold;
-	background-color: orange;
-	border: thick;
-}
-</style>
+<title>REMOVE USER</title>
 </head>
 <body>
 	<center>
@@ -39,7 +16,8 @@ td {
 
 			<table border="1">
 				<tr>
-					<td class="heading">NAME</td>
+					<td class="heading">FIRST NAME</td>
+					<td class="heading">LAST NAME</td>
 					<td class="heading">EMAIL</td>
 					<td class="heading">BARCODE</td>
 					<td class="heading">SPECIAL RIGHTS</td>
@@ -47,7 +25,8 @@ td {
 				</tr>
 				<c:forEach var="user" items="${usersList}">
 					<tr>
-						<td>${user.name}</td>
+						<td>${user.firstName}</td>
+						<td>${user.lastName}</td>
 						<td>${user.email}</td>
 						<td>${user.barcode}</td>
 						<td>${user.rights}</td>

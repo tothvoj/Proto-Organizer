@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>DELETE PROJECT</title>
+<title>REMOVE PROJECT</title>
 </head>
 <body>
 	<center>
