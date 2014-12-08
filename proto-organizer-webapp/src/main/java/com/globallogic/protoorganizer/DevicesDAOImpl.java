@@ -73,7 +73,7 @@ public class DevicesDAOImpl implements DevicesDAO {
 		return devicesList;
 	}
 	
-	public List<DeviceView> getFullRemovedDevicesList() {
+	public List<DeviceView> getRemovedDevicesViewList() {
 		List<DeviceView> devicesList = new ArrayList<DeviceView>();
 		String sql = "select * from " + TableNames.REMOVED_DEVICES_VIEW;
 		

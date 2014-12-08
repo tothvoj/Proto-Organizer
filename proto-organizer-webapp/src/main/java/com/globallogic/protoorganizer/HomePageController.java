@@ -70,7 +70,7 @@ public class HomePageController {
 			devicesDAO.sortInView(devicesList, sortingParam);
 		}
 
-		List<Device> removedDevicesList = devicesDAO.getRemovedDevicesList();
+		List<DeviceView> removedDevicesList = devicesDAO.getRemovedDevicesViewList();
 		List<Project> projects = projectsDAO.getProjectsList();
 		List<Platform> platforms = platformsDAO.getChildPlatforms();
 		
@@ -81,6 +81,7 @@ public class HomePageController {
 		mav.addObject("devicesViewWrapper", 
 				new DevicesViewWrapper(devicesList, removedDevicesList, projects, platforms));
 		mav.addObject("username", dbUser.getFullName());
+		mav.addObject("q", searchText);
 
 		return mav;
 	}

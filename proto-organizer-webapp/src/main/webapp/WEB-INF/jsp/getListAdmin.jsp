@@ -50,10 +50,13 @@
 					</li>
 					<li><a href="downloadExcel">EXPORT</a></li>
 
-					<li><div id="tfheader">
+					<li>
+						<div id="tfheader">
 							<form id="tfnewsearch" method="post" action="getListAdmin">
 								<input type="text" class="tftextinput" name="q" size="13"
-									maxlength="120" placeholder="Search here..." required> <input type="submit" value=" "
+									maxlength="120" placeholder="Search here..." required value="${q}">
+								<a id="clearSearch" href="getListAdmin">x</a>
+								<input type="submit" value=" "
 									class="tfbutton">
 							</form>
 							<div class="tfclear"></div>
@@ -69,6 +72,7 @@
 
 		<div id="main_table">
 			<table border="1">
+			<thead>
 				<tr >
 					<td class="heading">DEVICE
 						<div id="arrows">
@@ -120,6 +124,7 @@
 					</td>
 					<td class="heading">REASSIGN</td>
 				</tr>
+				</thead>
 				<c:forEach var="device" items="${devicesViewWrapper.devicesList}" varStatus="status">
 					<tr>
 						<td>
@@ -182,27 +187,83 @@
 	</form:form>
 	</center>
 	<center>
-		<br /> <br /> <a class="button" onclick="showRemovedDevices()">REMOVED
-			DEVICES</a> <br /> <br />
 		<div id="removed_devices_table">
 			<table border="1">
+			<thead>
+				<tr >
+					<td class="heading">DEVICE
+						<div id="arrows">
+							<a class="arrow-up" href="getListAdmin?show=removed&sort=1"></a> 
+							<a class="arrow-down" href="getListAdmin?show=removed&sort=2"></a>
+						</div>
+					</td>
+					<td class="heading">PLATFORM
+						<div id="arrows">
+							<a class="arrow-up" href="getListAdmin?show=removed&sort=3"></a> 
+							<a class="arrow-down" href="getListAdmin?show=removed&sort=4"></a>
+						</div>
+					</td>
+					<td class="heading">IMEI/SN
+						<div id="arrows">
+							<a class="arrow-up" href="getListAdmin?show=removed&sort=5"></a> 
+							<a class="arrow-down" href="getListAdmin?show=removed&sort=6"></a>
+						</div>
+					</td>
+					<td class="heading">PROJECT
+						<div id="arrows">
+							<a class="arrow-up" href="getListAdmin?show=removed&sort=9"></a> 
+							<a class="arrow-down" href="getListAdmin?show=removed&sort=10"></a>
+						</div>
+					</td>
+					<td class="heading">ORIGIN
+						<div id="arrows">
+							<a class="arrow-up" href="getListAdmin?show=removed&sort=17"></a> 
+							<a class="arrow-down" href="getListAdmin?show=removed&sort=18"></a>
+						</div>
+					</td>
+					<td class="heading">OWNER
+						<div id="arrows">
+							<a class="arrow-up" href="getListAdmin?show=removed&sort=11"></a> 
+							<a class="arrow-down" href="getListAdmin?show=removed&sort=12"></a>
+						</div>
+					</td>
+					<td class="heading">LAST EDIT
+						<div id="arrows">
+							<a class="arrow-up" href="getListAdmin?show=removed&sort=13"></a> 
+							<a class="arrow-down" href="getListAdmin?show=removed&sort=14"></a>
+						</div>
+					</td>
+					<td class="heading">DATE
+						<div id="arrows">
+							<a class="arrow-up" href="getListAdmin?show=removed&sort=15"></a> 
+							<a class="arrow-down" href="getListAdmin?show=removed&sort=16"></a>
+						</div>
+					</td>
+				</tr>
+				</thead>
 				<c:forEach var="device" items="${devicesViewWrapper.removedDevicesList}">
 					<tr>
 						<td>${device.device}</td>
-						<td>${device.platformId}</td>
+						<td>${device.platformName}</td>
 						<td>${device.imei}</td>
-						<td>${device.status}</td>
-						<td>${device.projectId}</td>
-						<td>${device.ownerId}</td>
-						<td>${device.lastModifiedBy}</td>
-						<td>${device.date}</td>
-						<td></td>
+						<td>${device.projectName}</td>
+						<td>${device.origin}</td>
+						<td>${device.getOwnerFullName()}</td>
+						<td>${device.getModifierFullName()}</td>
+						<td>
+							<fmt:formatDate pattern="yy MMM dd" value="${device.date}" />
+							<br/>
+							<span style="color:gray;">
+								<fmt:formatDate pattern="HH:mm" value="${device.date}" />
+							</span>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
 	</center>
 	<div id="footer" >
+		<a onclick="showRemovedDevices()">REMOVED DEVICES</a>
 		<span>Copyright © 2014 Košice</span>
 	</div>
 	<script>
@@ -251,7 +312,16 @@
 				});
 		});
 		function showRemovedDevices() {
-			document.getElementById('removed_devices_table').style.display = "block";
+			if($("#removed_devices_table").css("display") == "none") {
+				$("#main_table").toggle(600, function() {
+						$("#removed_devices_table").toggle(600);
+					});
+				}
+			else {
+				$("#removed_devices_table").toggle(600, function() {
+					$("#main_table").toggle(600);
+				});
+			}
 		}
 	</script>
 </body>

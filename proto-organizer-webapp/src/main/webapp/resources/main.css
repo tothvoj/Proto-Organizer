@@ -105,6 +105,19 @@ table, th, td {
 	min-width: 0px;
 }
 
+#dialog li
+{
+	text-align: left;
+	color: Black;
+	list-style-type: none;
+	margin-right: 20px;
+}
+
+#dialog li:first-child
+{
+	margin-top: 20px;
+}
+
 input, textarea, select, #tfnewsearch {
   background-color : #515151; 
   border: 0;
@@ -228,6 +241,7 @@ input, textarea, select, #tfnewsearch {
 	left: 0;
 	bottom: 0;
 	height: 40px;
+	text-align: center;
 }
 #footer span
 {
@@ -236,6 +250,18 @@ input, textarea, select, #tfnewsearch {
 	float: right;
 	color: white;
 	font-size: 14px;
+}
+#footer a
+{
+	text-align: center;
+	display: inline-block;
+	margin-top: 10px;
+	background-color: #8dc63f;
+	color:Black;
+	font-family: Calibri;
+	cursor: pointer;
+	font-size: 11px;
+	padding: 5px 20px;
 }
 #settings {
 	width: 950px; 
@@ -336,6 +362,17 @@ input, textarea, select, #tfnewsearch {
 	background: url('searchicon.png') no-repeat;
 	background-size: 20px 20px;	
 	float:right;
+}
+
+#clearSearch
+{
+	padding: 0 !important;
+	margin: 0;
+	display: inline-block !important;
+	margin-left: -15px;
+	margin-top: 0px;
+	color: white !important;
+	font-weight: 400;
 }
 
 #tfheader

@@ -28,6 +28,6 @@ public interface DevicesDAO {
 	public void sortInView(List<DeviceView> deviceList, int sortingParam);
 	
 	public List<Device> getRemovedDevicesList();
-
-
+	
+	public List<DeviceView> getRemovedDevicesViewList();
 }
