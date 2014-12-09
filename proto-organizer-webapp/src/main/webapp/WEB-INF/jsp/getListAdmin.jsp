@@ -263,7 +263,7 @@
 		</div>
 	</center>
 	<div id="footer" >
-		<a onclick="showRemovedDevices()">REMOVED DEVICES</a>
+		<a id="toggleRemovedDevices" onclick="showRemovedDevices()">REMOVED DEVICES</a>
 		<span>Copyright © 2014 Košice</span>
 	</div>
 	<script>
@@ -316,11 +316,13 @@
 				$("#main_table").toggle(600, function() {
 						$("#removed_devices_table").toggle(600);
 					});
+				$("#toggleRemovedDevices").text("ACTIVE DEVICES");
 				}
 			else {
 				$("#removed_devices_table").toggle(600, function() {
 					$("#main_table").toggle(600);
 				});
+				$("#toggleRemovedDevices").text("REMOVED DEVICES");
 			}
 		}
 	</script>
