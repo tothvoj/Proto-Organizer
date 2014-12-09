@@ -43,7 +43,7 @@ table, th, td {
 	/* border: 1px solid black; */
 }
 
-#main_table table tr:first-child td
+#main_table table thead tr:first-child td
 {
 	border-top: none;
 }
@@ -58,7 +58,7 @@ table, th, td {
 	border-right: none;
 }
 
-#main_table table tr:last-child td
+#main_table table tbody tr:last-child td
 {
 	border-bottom: none;
 }
@@ -446,6 +446,15 @@ input, textarea, select, #tfnewsearch {
 .hideEnabled
 {
 	display:block;
+}
+.optionHeader
+{
+	color:#8dc63f;
+}
+input[type=submit]:disabled
+{
+	background-color: LightGray !important;
+	color:Gray;
 }
 
 /* limiting editing inputs and selects in main table Edit mode */

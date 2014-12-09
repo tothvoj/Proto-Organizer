@@ -310,11 +310,12 @@ public class HomePageController {
 
 	@RequestMapping("/selectUser")
 	public ModelAndView selecUser(@RequestParam Long id) {
-		List<User> usersList = usersDAO.getUsersList();
+		List<User> usersList = usersDAO.getUsersList(true);
 		ModelAndView mav = new ModelAndView("changeOwner");
 		Helper helper = new Helper();
 		helper.setSelectedDeviceID(id);
 		mav.addObject("usersList", usersList);
+		mav.addObject("vaultsList", usersDAO.getUsersList(false));
 		mav.addObject("helper", helper);
 		return mav;
 	}
