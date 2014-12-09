@@ -73,7 +73,7 @@
 <form:form method="post" action="updateDevicesView" modelAttribute="devicesViewWrapper">
 
 		<div id="main_table">
-			<table border="1">
+			<table border="0">
 			<thead>
 				<tr >
 					<td class="heading">DEVICE
@@ -190,7 +190,7 @@
 	</center>
 	<center>
 		<div id="removed_devices_table">
-			<table border="1">
+			<table border="0">
 			<thead>
 				<tr >
 					<td class="heading">DEVICE

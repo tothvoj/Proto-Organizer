@@ -43,22 +43,22 @@ table, th, td {
 	/* border: 1px solid black; */
 }
 
-#main_table table thead tr:first-child td
+table thead tr:first-child td
 {
 	border-top: none;
 }
 
-#main_table table tr td:first-child
+table tr td:first-child
 {
 	border-left: none;
 }
 
-#main_table table tr td:last-child
+table tr td:last-child
 {
 	border-right: none;
 }
 
-#main_table table tbody tr:last-child td
+table tbody tr:last-child td
 {
 	border-bottom: none;
 }
@@ -217,6 +217,10 @@ input, textarea, select, #tfnewsearch {
 
 #removed_devices_table {
 	display: none;
+}
+#removed_devices_table table
+{
+	background-color: rgba(255, 0, 0, 0.1);
 }
 
 #nav {
