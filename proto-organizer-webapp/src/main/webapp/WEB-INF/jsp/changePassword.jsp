@@ -14,10 +14,6 @@
 <body>
 	<center>
 
-		<h1>Change password</h1>
-		<div style="color: #0000FF" id="password-error">${messagecode}</div>
-		<br />
-
 		<form:form method="post" action="changePasswordInDB"
 			modelAttribute="helper">
 			<table>
@@ -35,11 +31,9 @@
 				</tr>
 
 				<tr>
-					<td> </td>
-					<td><input type="submit" value="Change" /> <a
-						href="getListAdmin"> <input type="button"
-							value="Back" />
-					</a></td>
+					<td colspan="2">
+						<input type="submit" value="Change" /> 
+					</td>
 				</tr>
 
 			</table>

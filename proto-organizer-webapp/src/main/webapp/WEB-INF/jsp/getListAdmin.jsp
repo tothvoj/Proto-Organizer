@@ -22,7 +22,7 @@
 
 			<div id="settings">
 				<a href="logout">LOGOUT</a>
-				<a href="changePassword">CHANGE PASSWORD</a>
+				<a href="changePassword" class="dialog">CHANGE PASSWORD</a>
 				<a href="userProfile">${username}</a>
 				 
 			</div>

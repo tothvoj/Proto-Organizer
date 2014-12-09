@@ -35,6 +35,8 @@ public class HomePageController {
 	@Autowired
 	DevicesDAO devicesDAO;
 	@Autowired
+	DevicesUsageLogDAO devicesUsageLogDao;
+	@Autowired
 	ProjectsDAO projectsDAO;
 	@Autowired
 	PlatformsDAO platformsDAO;
@@ -141,6 +143,7 @@ public class HomePageController {
 			}
 			
 			devicesDAO.insertDevice(device);
+			// TRIGGER IN DB AUTOMATICALLY CREATED ACTION IN DevicesUsageLog TABLE WITH ADDED ACTION
 		}
 		return "redirect:/getListAdmin";
 	}
@@ -324,6 +327,7 @@ public class HomePageController {
 	public String moveTo(@ModelAttribute Helper helper,
 			@RequestParam Long deviceID) {
 		devicesDAO.changeOwner(deviceID, helper.getUserID());
+		
 		return "redirect:/getListAdmin";
 
 	}
@@ -365,7 +369,7 @@ public class HomePageController {
 		
 		usersDAO.changePassword(user.getUsername(), encoder.encodePassword(newPassword, null));
 		
-		return "redirect:/changePassword?messagecode=0";
+		return "redirect:/getListAdmin";
 	}
 	
 	
