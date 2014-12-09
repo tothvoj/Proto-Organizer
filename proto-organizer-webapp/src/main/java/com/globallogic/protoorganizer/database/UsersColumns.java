@@ -9,5 +9,6 @@ public interface UsersColumns {
     String BAR_CODE = "bar_code";
     String SPECIAL_RIGHTS = "special_rights";
     String PASSWORD = "password";
+    String IS_PERSON = "is_person";
     
 }

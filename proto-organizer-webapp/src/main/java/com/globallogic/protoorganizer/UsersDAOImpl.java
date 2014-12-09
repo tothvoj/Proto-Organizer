@@ -29,7 +29,19 @@ public class UsersDAOImpl implements UsersDAO {
 	public List<User> getUsersList() {
 		List<User> users = new ArrayList<User>();
 
-		String sql = "select * from " + TableNames.USERS;
+		String sql = "select * from " + TableNames.USERS ;
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		users = jdbcTemplate.query(sql, new UserRowMapper());
+
+		return users;
+	}
+	
+	public List<User> getUsersList(boolean isPerson) {
+		List<User> users = new ArrayList<User>();
+
+		String sql = "select * from " + TableNames.USERS + " where " 
+				+ UsersColumns.IS_PERSON + " = " + (isPerson ? "1" : "0"); 
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		users = jdbcTemplate.query(sql, new UserRowMapper());
@@ -43,8 +55,9 @@ public class UsersDAOImpl implements UsersDAO {
 				+ UsersColumns.LAST_NAME + ", " 
 				+ UsersColumns.EMAIL + ", "
 				+ UsersColumns.BAR_CODE + ", " 
-				+ UsersColumns.SPECIAL_RIGHTS
-				+ ") VALUES (?, ?, ?, ?, ?)";
+				+ UsersColumns.SPECIAL_RIGHTS + ", "
+				+ UsersColumns.IS_PERSON 
+				+ ") VALUES (?, ?, ?, ?, ?, ?)";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -53,7 +66,8 @@ public class UsersDAOImpl implements UsersDAO {
 				user.getLastName(),
 				user.getEmail(), 
 				user.getBarcode(), 
-				user.getRights() });		
+				user.getRights(),
+				user.getIsPerson()});		
 		if (rows == 1){
 			return true;
 		}
@@ -75,7 +89,8 @@ public class UsersDAOImpl implements UsersDAO {
 				+ UsersColumns.LAST_NAME + " = ?,"
 				+ UsersColumns.EMAIL + " = ?,"
 				+ UsersColumns.BAR_CODE + " = ?," 
-				+ UsersColumns.SPECIAL_RIGHTS
+				+ UsersColumns.SPECIAL_RIGHTS + " = ?,"
+				+ UsersColumns.IS_PERSON
 				+ " = ?, " + " where " + UsersColumns.ID + " = ?";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -86,7 +101,8 @@ public class UsersDAOImpl implements UsersDAO {
 						user.getLastName(),
 						user.getEmail(),
 						user.getBarcode(), 
-						user.getRights(), 
+						user.getRights(),
+						user.getIsPerson(),
 						user.getId() });
 
 	}
@@ -131,7 +147,6 @@ public class UsersDAOImpl implements UsersDAO {
 				return preparedStatement;
 			}
 		};
-
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		users = jdbcTemplate.query(creator, new UserRowMapper());

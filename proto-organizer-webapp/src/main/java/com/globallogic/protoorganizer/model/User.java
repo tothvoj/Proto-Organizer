@@ -17,6 +17,7 @@ public class User
     private boolean rights;
     private long id;
     private String password;
+    private boolean isPerson;
     
     /**
      * Construct.
@@ -31,6 +32,8 @@ public class User
      *            barcode
      * @param rights
      *            rights
+     * @param isPerson
+     *            isPerson
      */
     
     public User(){
@@ -38,7 +41,7 @@ public class User
     }
     
     
-    public User(long id, String firstName, String lastName, String email, String barcode, boolean rights, String password)
+    public User(long id, String firstName, String lastName, String email, String barcode, boolean rights, String password, boolean isPerson)
     {
     	this.id = id;
         this.firstName = firstName;
@@ -46,7 +49,8 @@ public class User
         this.rights = rights;
         this.barcode = barcode;
         this.email = email;
-        this.password = password;       
+        this.password = password;
+        this.isPerson = isPerson;
     }
 
     /**
@@ -148,6 +152,26 @@ public class User
     public void setRights(boolean rights)
     {
         this.rights = rights;
+    }
+    
+    /**
+     * Gets isPerson.
+     * 
+     * @return isPerson
+     */
+    public boolean getIsPerson()
+    {
+        return isPerson;
+    }
+
+    /**
+     * Sets the isPerson.
+     * 
+     * @param isPerson
+     */
+    public void setIsPerson(boolean isPerson)
+    {
+        this.isPerson = isPerson;
     }
        
     public long getId() {

@@ -19,7 +19,8 @@ public class UserExtractor implements ResultSetExtractor<User> {
 				rs.getString(rs.findColumn(UsersColumns.EMAIL)),
 				rs.getString(rs.findColumn(UsersColumns.BAR_CODE)),
 				rs.getBoolean(rs.findColumn(UsersColumns.SPECIAL_RIGHTS)),
-				rs.getString(rs.findColumn(UsersColumns.PASSWORD)));
+				rs.getString(rs.findColumn(UsersColumns.PASSWORD)),
+				rs.getBoolean(rs.findColumn(UsersColumns.IS_PERSON)));
 		return user;
 	}
 

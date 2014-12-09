@@ -228,14 +228,16 @@ public class HomePageController {
 		return "redirect:/getListAdmin";
 	}
 
-	@RequestMapping("/addUser")
+	@RequestMapping( "/addUser" )
 	public ModelAndView addUser() {
 
 		ModelAndView mav = new ModelAndView("addUser");
-		mav.addObject("user", new User());
+		User user = new User();
+		user.setIsPerson(true);
+		mav.addObject("user", user);
 		return mav;
 	}
-
+	
 	@RequestMapping("/addUserToDB")
 	public String addUserToDB(@ModelAttribute User user) {
 		boolean result = usersDAO.insertUser(user);
@@ -246,11 +248,28 @@ public class HomePageController {
 
 		return "redirect:/getListAdmin";
 	}
+	
+	@RequestMapping( "/addVault" )
+	public ModelAndView addVault() {
+		
+		ModelAndView mav = new ModelAndView("addVault");
+		User user = new User();
+		user.setIsPerson(true);
+		mav.addObject("user", user);
+		return mav;
+	}
+	
+	@RequestMapping("/addVaultToDB")
+	public String addVaultToDB(@ModelAttribute User user) {
+		boolean result = usersDAO.insertUser(user);
 
+				return "redirect:/getListAdmin";
+	}
+	
 	@RequestMapping("/deleteUser")
 	public ModelAndView deleteUser() {
 
-		List<User> usersList = usersDAO.getUsersList();
+		List<User> usersList = usersDAO.getUsersList(true);
 		ModelAndView mav = new ModelAndView("deleteUser");
 		mav.addObject("usersList", usersList);
 		mav.addObject("helper", new Helper());
@@ -259,6 +278,23 @@ public class HomePageController {
 
 	@RequestMapping("/deleteUsersFromDB")
 	public String deleteUsersFromDB(@ModelAttribute Helper helper) {
+		usersDAO.deleteBatch(helper.getIds());
+		return "redirect:/getListAdmin";
+
+	}
+	
+	@RequestMapping("/deleteVault")
+	public ModelAndView deleteVault() {
+
+		List<User> usersList = usersDAO.getUsersList(false);
+		ModelAndView mav = new ModelAndView("deleteVault");
+		mav.addObject("usersList", usersList);
+		mav.addObject("helper", new Helper());
+		return mav;
+	}
+
+	@RequestMapping("/deleteVaultFromDB")
+	public String deleteVaultFromDB(@ModelAttribute Helper helper) {
 		usersDAO.deleteBatch(helper.getIds());
 		return "redirect:/getListAdmin";
 

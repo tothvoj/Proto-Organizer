@@ -36,6 +36,7 @@
 							<li><a href="addUser" class="dialog">NEW USER</a></li>
 							<li><a href="addProject" class="dialog">NEW PROJECT</a></li>
 							<li><a href="addPlatform" class="dialog">NEW PLATFORM</a></li>
+							<li><a href="addVault" class="dialog">NEW VAULT</a></li>
 						</ul></li>
 					<li><a href="#" class="bold">REMOVE</a>
 
@@ -44,6 +45,7 @@
 							<li><a href="deleteUser" class="dialog">REMOVE USER</a></li>
 							<li><a href="deleteProject" class="dialog">REMOVE PROJECT</a></li>
 							<li><a href="deletePlatform" class="dialog">REMOVE PLATFORM</a></li>
+							<li><a href="deleteVault" class="dialog">REMOVE VAULT</a></li>
 						</ul></li>
 					<li><a href="#" class="bold toggleEdit">EDIT</a></li>
 					<li><a href="#" onclick='javascript:window.print()'>PRINT</a>

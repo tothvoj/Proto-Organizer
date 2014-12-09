@@ -6,42 +6,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ADD NEW USER</title>
+<title>ADD NEW VAULT</title>
 </head>
 <body>
 	<div>
-		<form:form method="post" action="addUserToDB" modelAttribute="user">
+		<form:form method="post" action="addVaultToDB" modelAttribute="user">
 			<table id="addUserTable">
 				<tr>
-					<td>Last name</td>
-					<td><form:input path="lastName" /></td>
-				</tr>
-				<tr>
-					<td>First name</td>
-					<td><form:input path="firstName" /></td>
-				</tr>
-				<tr>
-					<td>Email</td>
-					<td><form:input path="email" /></td>
+					<td>Name</td>
+					<td>
+						<form:input path="lastName" />
+						<input type="hidden" value="false" name="isPerson" />
+					</td>
 				</tr>
 				<tr>
 					<td>Barcode</td>
 					<td><form:input path="barcode" /></td>
 				</tr>
-				<tr>
-					<td>Special rights</td>
-					<td>
-						<form:radiobutton path="rights" value="true" label="yes" />
-						<form:radiobutton path="rights" value="false" label="no" />
-					</td>
-				</tr>
-				<!-- <tr>
-					<td>User is</td>
-					<td>
-						<form:radiobutton path="isPerson" value="true" label="Person" />
-						<form:radiobutton path="isPerson" value="false" label="Vault" />
-					</td>
-				</tr>  -->
 				<tr>
 					<td colspan="2"><input type="submit" value="Save" /></td>
 				</tr>

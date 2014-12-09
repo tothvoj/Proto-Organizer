@@ -7,6 +7,8 @@ import com.globallogic.protoorganizer.model.User;
 public interface UsersDAO {
 
 	public List<User> getUsersList();
+	
+	public List<User> getUsersList(boolean isPerson);
 
 	public boolean insertUser(User user);
 
