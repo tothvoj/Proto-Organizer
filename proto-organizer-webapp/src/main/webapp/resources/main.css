@@ -162,9 +162,11 @@ input, textarea, select, #tfnewsearch, .chosen-single {
 .ui-icon-closethick
 {
 	border: 1px gray solid;
-	border-radius: 11px;
-	width:20px;
-	height:20px;
+	-moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+	border-radius: 50%;
+	width:17px;
+	height:17px;
 }
 
 .ui-dialog-titlebar-close

@@ -391,9 +391,6 @@ public class HomePageController {
 		List<DeviceUsageView> deviceUsage = devicesUsageLogDao.getDeviceUsageViewList(deviceId);
 		Device device = devicesDAO.getDevice(deviceId);
 		
-		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-		String reportDate = df.format(deviceUsage.get(0).getDate());
-		
 		mav.addObject("deviceUsage", deviceUsage);
 		mav.addObject("device", device);
 		
