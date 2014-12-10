@@ -3,6 +3,8 @@ package com.globallogic.protoorganizer.model;
 import java.sql.Timestamp;
 import java.util.Comparator;
 
+import com.mysql.jdbc.StringUtils;
+
 public class DeviceView extends Device {
 
 	private String projectName;
@@ -101,12 +103,20 @@ public class DeviceView extends Device {
 
 	public String getOwnerFullName()
 	{
-		return ownerLastName + " " + ownerFirstName;
+		String result =  
+				( StringUtils.isNullOrEmpty(ownerLastName) ? "" : ownerLastName + " " ) +
+				( StringUtils.isNullOrEmpty(ownerFirstName) ? "" : ownerFirstName);
+		
+		return StringUtils.isNullOrEmpty(result) ? "-" : result;
 	}
 	
 	public String getModifierFullName()
 	{
-		return modifierLastName + " " + modifierFirstName;
+		String result =   
+			( StringUtils.isNullOrEmpty(modifierLastName) ? "" : modifierLastName + " " ) +
+			( StringUtils.isNullOrEmpty(modifierFirstName) ? "" : modifierFirstName);
+		
+		return StringUtils.isNullOrEmpty(result) ? "-" : result;
 	}
 	
 	public static Comparator<DeviceView> PlatformASC = new Comparator<DeviceView>() {

@@ -4,6 +4,8 @@
  */
 package com.globallogic.protoorganizer.model;
 
+import com.mysql.jdbc.StringUtils;
+
 /**
  *
  * @author magyapa
@@ -199,7 +201,11 @@ public class User
 
 	@Override
 	public String toString() {
-		return lastName + " " + firstName;
+		String result =
+			( StringUtils.isNullOrEmpty(lastName) ? "" : lastName + " " ) +
+			( StringUtils.isNullOrEmpty(firstName) ? "" : firstName);
+		
+		return StringUtils.isNullOrEmpty(result) ? "-" : result;
 	}
 
 }
