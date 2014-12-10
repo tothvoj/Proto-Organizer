@@ -63,6 +63,12 @@ table tbody tr:last-child td
 	border-bottom: none;
 }
 
+table a
+{
+	color: white;
+	text-decoration: none;
+}
+
 #dialog table
 {
 	width:auto;
@@ -118,11 +124,21 @@ table tbody tr:last-child td
 	margin-top: 20px;
 }
 
-input, textarea, select, #tfnewsearch {
+#dialog .chosen-drop .group-result
+{
+	color: black;
+}
+
+#dialog .chosen-drop .group-option
+{
+	color: white;
+}
+
+input, textarea, select, #tfnewsearch, .chosen-single {
   background-color : #515151; 
   border: 0;
   padding: 0;
-  color:#fff;
+  color:#fff !important;
 }
 
 #tfnewsearch
