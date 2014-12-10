@@ -21,11 +21,11 @@ public class DeviceUsageLog {
 		this.userId = userId;
 	}
 
-	public Date getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 
@@ -46,7 +46,7 @@ public class DeviceUsageLog {
 	}
 
 	private int userId;
-	private Date date;
+	private Timestamp date;
 	private int deviceId;
 	private DeviceUsageActionEnum action;
 	
@@ -54,7 +54,7 @@ public class DeviceUsageLog {
 		
 	}
 	
-	public DeviceUsageLog(long id, int userId, Date date, int deviceId, short action) {
+	public DeviceUsageLog(long id, int userId, Timestamp date, int deviceId, short action) {
 		this.id = id;
 		this.userId = userId;
 		this.date = date;

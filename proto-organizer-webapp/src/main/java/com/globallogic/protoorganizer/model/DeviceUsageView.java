@@ -1,6 +1,7 @@
 package com.globallogic.protoorganizer.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class DeviceUsageView extends DeviceUsageLog {
 
@@ -19,7 +20,7 @@ public class DeviceUsageView extends DeviceUsageLog {
 	public DeviceUsageView()
 	{}
 	
-	public DeviceUsageView(long id, int userId, Date date, int deviceId,
+	public DeviceUsageView(long id, int userId, Timestamp date, int deviceId,
 			short action, String lastName, String firstName, String device) {
 
 		this.setId(id);

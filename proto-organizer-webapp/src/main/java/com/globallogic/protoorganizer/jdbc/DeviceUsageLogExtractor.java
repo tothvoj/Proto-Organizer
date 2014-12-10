@@ -17,7 +17,7 @@ public class DeviceUsageLogExtractor implements ResultSetExtractor<DeviceUsageLo
 		DeviceUsageLog deviceUsageLog = new DeviceUsageLog(
 				rs.getLong(rs.findColumn(DevicesUsageLogColumns.ID)), 
 				rs.getInt(rs.findColumn(DevicesUsageLogColumns.USER_ID)), 
-				rs.getDate(rs.findColumn(DevicesUsageLogColumns.DATE)), 
+				rs.getTimestamp(rs.findColumn(DevicesUsageLogColumns.DATE)), 
 				rs.getInt(rs.findColumn(DevicesUsageLogColumns.DEVICE_ID)), 
 				rs.getShort(rs.findColumn(DevicesUsageLogColumns.ACTION))); 
 				

@@ -65,16 +65,16 @@ public class DevicesUsageLogDAOImpl implements DevicesUsageLogDAO {
 		org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User dbUser = usersDAO.getUserByEmail(user.getUsername());
 		
-		insertDeviceUsageLog((int)dbUser.getId(), new Date(System.currentTimeMillis()), 
+		insertDeviceUsageLog((int)dbUser.getId(), new Timestamp(System.currentTimeMillis()), 
 				deviceId, action);
 	}
 	
 	public void insertDeviceUsageLog(int userId, int deviceId, DeviceUsageActionEnum action) {
-		insertDeviceUsageLog(userId, new Date(System.currentTimeMillis()), 
+		insertDeviceUsageLog(userId, new Timestamp(System.currentTimeMillis()), 
 				deviceId, action);
 	}
 	
-	public void insertDeviceUsageLog(int userId, Date date, int deviceId, DeviceUsageActionEnum action) {
+	public void insertDeviceUsageLog(int userId, Timestamp date, int deviceId, DeviceUsageActionEnum action) {
 		String sql = "INSERT INTO " + TableNames.DEVICES_USAGE_LOG + " ("
 				+ DevicesUsageLogColumns.USER_ID + ", " 
 				+ DevicesUsageLogColumns.DATE + ", "
