@@ -8,11 +8,11 @@
 <head>
 	<script src="<c:url value="/resources/jquery.js" />"></script>
 	<script src="<c:url value="/resources/jquery-ui.js" />"></script>
+	<script src="<c:url value="/resources/chosen.jquery.js" />"></script>
 	
-	<link rel="stylesheet" type="text/css"
-		href="<c:url value='/resources/jquery-ui.css'/>" />
-	<link rel="stylesheet" type="text/css"
-		href="<c:url value='/resources/main.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/jquery-ui.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/main.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/chosen.css'/>" />
 	<title>Košice Devices GlobalLogic</title>
 </head>
 <body>
