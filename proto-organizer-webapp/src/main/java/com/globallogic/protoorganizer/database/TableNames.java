@@ -11,5 +11,6 @@ public interface TableNames {
 	
 	String DEVICES_VIEW = "DevicesView";
 	String REMOVED_DEVICES_VIEW = "RemovedDevicesView";
-	
+	String DEVICE_USAGE_VIEW = "DevicesUsageView";
+	String REMOVED_DEVICES_USAGE_VIEW = "RemovedDevicesUsageView";
 }

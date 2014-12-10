@@ -131,7 +131,7 @@
 					<tr>
 						<td>
 							<input name="devicesList[${status.index}].id" value="${device.id}" type="hidden"/>
-							<span class="hideEnabled">${device.device}</span>
+							<a href="deviceHistory?id=${device.id}" class="dialog"><span class="hideEnabled">${device.device}</span></a>
 							<input class="showEnabled" name="devicesList[${status.index}].device" value="${device.device}"/>
 						</td>
 						<td>

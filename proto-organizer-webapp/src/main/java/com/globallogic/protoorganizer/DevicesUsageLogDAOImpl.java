@@ -20,8 +20,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import com.globallogic.protoorganizer.database.DevicesUsageLogColumns;
 import com.globallogic.protoorganizer.database.TableNames;
 import com.globallogic.protoorganizer.jdbc.DeviceUsageLogRowMapper;
+import com.globallogic.protoorganizer.jdbc.DeviceUsageViewRowMapper;
 import com.globallogic.protoorganizer.model.DeviceUsageActionEnum;
 import com.globallogic.protoorganizer.model.DeviceUsageLog;
+import com.globallogic.protoorganizer.model.DeviceUsageView;
 import com.globallogic.protoorganizer.model.User;
 
 public class DevicesUsageLogDAOImpl implements DevicesUsageLogDAO {
@@ -40,6 +42,18 @@ public class DevicesUsageLogDAOImpl implements DevicesUsageLogDAO {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		devicesUsageLogList = jdbcTemplate.query(sql, new DeviceUsageLogRowMapper());
 		return devicesUsageLogList;
+	}
+	
+	public List<DeviceUsageView> getDeviceUsageViewList(int deviceId) {
+		List<DeviceUsageView> devicesUsageViewList = new ArrayList<DeviceUsageView>();
+		String sql;
+
+		sql = "select * from " + TableNames.DEVICE_USAGE_VIEW 
+				+ " where " + DevicesUsageLogColumns.DEVICE_ID + " = " + deviceId;
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		devicesUsageViewList = jdbcTemplate.query(sql, new DeviceUsageViewRowMapper());
+		return devicesUsageViewList;
 	}
 
 	public void insertDeviceUsageLog(DeviceUsageLog deviceUsageLog) {

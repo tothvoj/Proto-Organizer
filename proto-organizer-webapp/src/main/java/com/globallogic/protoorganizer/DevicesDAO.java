@@ -9,6 +9,8 @@ public interface DevicesDAO {
 
 	public List<Device> getDevicesList(String filter);
 	
+	public Device getDevice(int deviceId);
+	
 	public List<DeviceView> getDevicesViewList(String filter);
 
 	public void insertDevice(Device device);

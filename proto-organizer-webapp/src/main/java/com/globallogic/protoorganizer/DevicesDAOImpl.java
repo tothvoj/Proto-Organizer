@@ -46,6 +46,16 @@ public class DevicesDAOImpl implements DevicesDAO {
 		return devicesList;
 	}
 	
+	public Device getDevice(int deviceId) {
+		Device device = new Device();
+		String sql = "select * from " + TableNames.DEVICES_VIEW + 
+				" where " + DevicesColumns.ID + " = " + deviceId;
+	
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		List<Device> devices = jdbcTemplate.query(sql, new DeviceRowMapper());
+		return devices.get(0);
+	}
+	
 	public List<DeviceView> getDevicesViewList(String filter) {
 		List<DeviceView> devicesList = new ArrayList<DeviceView>();
 		String sql;

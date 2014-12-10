@@ -1,5 +1,7 @@
 package com.globallogic.protoorganizer;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.globallogic.protoorganizer.model.Device;
+import com.globallogic.protoorganizer.model.DeviceUsageView;
 import com.globallogic.protoorganizer.model.DeviceView;
 import com.globallogic.protoorganizer.model.DevicesViewWrapper;
 import com.globallogic.protoorganizer.model.Helper;
@@ -381,7 +384,22 @@ public class HomePageController {
 		return "redirect:/getListAdmin";
 	}
 	 
-
+	@RequestMapping("/deviceHistory")
+	public ModelAndView deviceHistory(@RequestParam(value = "id", required = true) Integer deviceId) {
+		ModelAndView mav = new ModelAndView("deviceHistory");
+		
+		List<DeviceUsageView> deviceUsage = devicesUsageLogDao.getDeviceUsageViewList(deviceId);
+		Device device = devicesDAO.getDevice(deviceId);
+		
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		String reportDate = df.format(deviceUsage.get(0).getDate());
+		
+		mav.addObject("deviceUsage", deviceUsage);
+		mav.addObject("device", device);
+		
+		return mav;
+	}
+	
 	private void sendWelcomeMail(String to) {
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setTo(to);

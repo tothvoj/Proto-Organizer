@@ -70,7 +70,7 @@ table tbody tr:last-child td
 	min-width: 500px;
 	min-height: 150px;
 }
-#dialog form, #dialog table
+#dialog form, #dialog table, div#dialog
 {
 	background-color: #3b3b3b;
 }

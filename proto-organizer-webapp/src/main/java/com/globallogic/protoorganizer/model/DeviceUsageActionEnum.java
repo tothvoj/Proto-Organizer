@@ -11,13 +11,13 @@ public enum DeviceUsageActionEnum {
 	MovingToMe(4),
 	
 	TakenOffSite(5),
-	TakenHome,
+	TakenHome(6),
 	
-	ReturnedToCustomer(6),
+	ReturnedToCustomer(7),
 	
-	Lost(7),
-	Stolen(8),
-	LocationUnknown(9);
+	Lost(8),
+	Stolen(9),
+	LocationUnknown(10);
 	
 	private int numVal;
 	
