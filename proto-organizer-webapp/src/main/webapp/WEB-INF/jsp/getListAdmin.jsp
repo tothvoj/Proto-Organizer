@@ -9,6 +9,8 @@
 	<script src="<c:url value="/resources/jquery.js" />"></script>
 	<script src="<c:url value="/resources/jquery-ui.js" />"></script>
 	<script src="<c:url value="/resources/chosen.jquery.js" />"></script>
+	<script src="<c:url value="/resources/jquery.dataTables.min.js" />"></script>
+	<script src="<c:url value="/resources/dataTables.search-highlight.js" />"></script>
 	
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/jquery-ui.css'/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/main.css'/>" />
@@ -54,14 +56,7 @@
 
 					<li>
 						<div id="tfheader">
-							<form id="tfnewsearch" method="post" action="getListAdmin">
-								<input type="text" class="tftextinput" name="q" size="13"
-									maxlength="120" placeholder="Search here..." required value="${q}">
-								<a id="clearSearch" href="getListAdmin">x</a>
-								<input type="submit" value=" "
-									class="tfbutton">
-							</form>
-							<div class="tfclear"></div>
+							<input type="search" class="tftextinput" maxlength="120" placeholder="Search here...">
 						</div>
 					</li>
 				</ul>
@@ -72,57 +67,57 @@
 
 <form:form method="post" action="updateDevicesView" modelAttribute="devicesViewWrapper">
 
-		<div id="main_table">
-			<table border="0">
+		<div >
+			<table id="main_table" border="0">
 			<thead>
 				<tr >
 					<td class="heading">DEVICE
-						<div id="arrows">
-							<a class="arrow-up" href="getListAdmin?sort=1"></a> 
-							<a class="arrow-down" href="getListAdmin?sort=2"></a>
-						</div>
+<!-- 						<div id="arrows">
+								<a class="arrow-up" href="getListAdmin?sort=1"></a>
+	 							<a class="arrow-down" href="getListAdmin?sort=2"></a>
+							</div> -->
 					</td>
 					<td class="heading">PLATFORM
-						<div id="arrows">
+<!--						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=3"></a> 
 							<a class="arrow-down" href="getListAdmin?sort=4"></a>
-						</div>
+						</div> -->
 					</td>
 					<td class="heading">IMEI/SN
-						<div id="arrows">
+<!--						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=5"></a> 
 							<a class="arrow-down" href="getListAdmin?sort=6"></a>
-						</div>
+						</div> -->
 					</td>
-					<td class="heading">PROJECT
-						<div id="arrows">
+					<td class="heading" style="min-width: 100px;">PROJECT
+<!--						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=9"></a> 
 							<a class="arrow-down" href="getListAdmin?sort=10"></a>
-						</div>
+						</div> -->
 					</td>
-					<td class="heading">ORIGIN
-						<div id="arrows">
+					<td class="heading" style="min-width: 85px;">ORIGIN
+<!--						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=17"></a> 
 							<a class="arrow-down" href="getListAdmin?sort=18"></a>
-						</div>
+						</div> -->
 					</td>
 					<td class="heading">OWNER
-						<div id="arrows">
+<!--						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=11"></a> 
 							<a class="arrow-down" href="getListAdmin?sort=12"></a>
-						</div>
+						</div> -->
 					</td>
 					<td class="heading">LAST EDIT
-						<div id="arrows">
+<!--						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=13"></a> 
 							<a class="arrow-down" href="getListAdmin?sort=14"></a>
-						</div>
+						</div> -->
 					</td>
 					<td class="heading">DATE
-						<div id="arrows">
+<!--						<div id="arrows">
 							<a class="arrow-up" href="getListAdmin?sort=15"></a> 
 							<a class="arrow-down" href="getListAdmin?sort=16"></a>
-						</div>
+						</div> -->
 					</td>
 					<td class="heading">REASSIGN</td>
 				</tr>
@@ -312,6 +307,27 @@
 							$(".hideDisabled").css("color", "gray");
 						}
 				});
+			var oTable = $('#main_table').dataTable(
+					{
+						"paging": false,
+						"ordering": true,
+						"info" : false
+					});
+			oTable.fnSearchHighlighting();
+			
+			$("input.tftextinput").on( 'keyup click', function () {
+				/* $('#main_table').DataTable().search(
+			        $('input.tftextinput').val(), false, false
+				).draw(); */
+				var keywords = $(this).val().split(' '), filter ='';
+			       for (var i=0; i<keywords.length; i++) {
+			    	   if(keywords[i] != '') {
+			           		filter = (filter!='') ? filter+'|'+keywords[i] : keywords[i];
+			    	   }
+			       }  
+				
+				oTable.fnFilter(filter, null, true, false, true, true);
+		    });
 		});
 		function showRemovedDevices() {
 			if($("#removed_devices_table").css("display") == "none") {
