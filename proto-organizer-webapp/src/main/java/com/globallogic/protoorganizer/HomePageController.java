@@ -175,6 +175,21 @@ public class HomePageController {
 		return "redirect:/getListAdmin";
 
 	}
+	
+	@RequestMapping("/deleteSingleDevice")
+	public ModelAndView deleteSingleDevice(@RequestParam("id") long id) {
+		Device device = devicesDAO.getDevice((int) id);
+		ModelAndView mav = new ModelAndView("deleteSingleDevice");
+		
+		mav.addObject("device", device);
+		return mav;
+	}
+	
+	@RequestMapping("/deleteSingleDeviceFromDB")
+	public String deleteSingleDeviceFromDB(@ModelAttribute Device device) {
+		devicesDAO.deleteDevice(device.getId());
+		return "redirect:/getListAdmin";
+	}
 
 	@RequestMapping("/addProject")
 	public ModelAndView addProject() {

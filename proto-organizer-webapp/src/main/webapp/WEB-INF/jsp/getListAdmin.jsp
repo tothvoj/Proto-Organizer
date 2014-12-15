@@ -173,8 +173,10 @@
 							<br/>
 							<span style="color:gray;"><fmt:formatDate pattern="HH:mm" value="${device.date}" /></span>
 						</td>
-						<td><a class="newButton dialog hideEnabled" href="selectUser?id=${device.id}">MOVE
-								TO</a></td>
+						<td>
+							<a class="newButton dialog hideEnabled" href="selectUser?id=${device.id}">MOVE TO</a>
+							<a class="dialog showEnabled ui-icon ui-icon-trash ui-icon-green ui-icon-scale1-5" href="deleteSingleDevice?id=${device.id}" ></a>	
+						</td>
 					</tr>
 				</c:forEach>
 
@@ -304,6 +306,7 @@
 						{
 							$(".hideEnabled").css("display", "none");
 							$(".showEnabled").css("display", "block");
+							$(".showEnabled.ui-icon").css("display", "inline-block");
 							$(".hideDisabled").css("color", "gray");
 						}
 				});
@@ -316,9 +319,6 @@
 			oTable.fnSearchHighlighting();
 			
 			$("input.tftextinput").on( 'keyup click', function () {
-				/* $('#main_table').DataTable().search(
-			        $('input.tftextinput').val(), false, false
-				).draw(); */
 				var keywords = $(this).val().split(' '), filter ='';
 			       for (var i=0; i<keywords.length; i++) {
 			    	   if(keywords[i] != '') {

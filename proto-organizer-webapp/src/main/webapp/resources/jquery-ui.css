@@ -486,7 +486,8 @@ button.ui-button::-moz-focus-inner {
 	background-image: url("images/ui-icons_8dc63f_256x240.png");
 }
 .ui-state-hover .ui-icon,
-.ui-state-focus .ui-icon {
+.ui-state-focus .ui-icon, 
+.ui-icon-green {
 	background-image: url("images/ui-icons_8dc63f_256x240.png");
 }
 .ui-state-active .ui-icon {
