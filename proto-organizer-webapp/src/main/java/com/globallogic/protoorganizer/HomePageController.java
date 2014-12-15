@@ -185,7 +185,7 @@ public class HomePageController {
 		return mav;
 	}
 	
-	@RequestMapping("/deleteSingleDeviceFromDB")
+	@RequestMapping(value = "/deleteSingleDeviceFromDB", method = RequestMethod.POST)
 	public String deleteSingleDeviceFromDB(@ModelAttribute Device device) {
 		devicesDAO.deleteDevice(device.getId());
 		return "redirect:/getListAdmin";

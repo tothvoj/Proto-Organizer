@@ -45,10 +45,9 @@
 			</table>
 			
 			<br />
-			<input type="submit" value="Delete" />
+			<input id="deleteDevicesButton" type="button" value="Delete" />
 
 		</form:form>
-
 	</center>
 </body>
 </html>

@@ -11,10 +11,13 @@
 	<script src="<c:url value="/resources/chosen.jquery.js" />"></script>
 	<script src="<c:url value="/resources/jquery.dataTables.min.js" />"></script>
 	<script src="<c:url value="/resources/dataTables.search-highlight.js" />"></script>
+	<script src="<c:url value="/resources/jquery.toastmessage.js" />"></script>
+	<script src="<c:url value="/resources/main.js" />"></script>
 	
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/jquery-ui.css'/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/main.css'/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/chosen.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/jquery.toastmessage.css'/>" />
 	<title>Košice Devices GlobalLogic</title>
 </head>
 <body>
@@ -265,84 +268,5 @@
 		<a id="toggleRemovedDevices" onclick="showRemovedDevices()">REMOVED DEVICES</a>
 		<span>Copyright © 2014 Košice</span>
 	</div>
-	<script>
-		$(document).ready(function() {
-			$(".dialog").click(function(e) {
-				e.preventDefault();
-				$("#dialog").load($(this).attr("href"), 
-					function()
-					{
-						var theDialog = $("#dialog").dialog({
-							width : 'auto',
-							height : 'auto',
-							modal: true,
-							resizable: false,
-							draggable: true,
-							modal : true,
-							open: function() {
-								$(".ui-dialog-title").text($("#dialog").find("title").text());
-						     },
-							close : function() {
-								$("#thedialog").attr('src', "about:blank");
-							}
-						});
-						
-						setTimeout(function(){ theDialog.dialog('open') }, 100);
-					});
-				
-				return false;
-			});
-			
-			$(".toggleEdit").click(function(e)
-				{
-					e.preventDefault();
-					if( $(".hideEnabled:first").css("display") == 'none')
-						{
-							$(".hideEnabled").css("display", "block");
-							$(".showEnabled").css("display", "none");
-							$(".hideDisabled").css("color", "white");
-						}
-					else
-						{
-							$(".hideEnabled").css("display", "none");
-							$(".showEnabled").css("display", "block");
-							$(".showEnabled.ui-icon").css("display", "inline-block");
-							$(".hideDisabled").css("color", "gray");
-						}
-				});
-			var oTable = $('#main_table').dataTable(
-					{
-						"paging": false,
-						"ordering": true,
-						"info" : false
-					});
-			oTable.fnSearchHighlighting();
-			
-			$("input.tftextinput").on( 'keyup click', function () {
-				var keywords = $(this).val().split(' '), filter ='';
-			       for (var i=0; i<keywords.length; i++) {
-			    	   if(keywords[i] != '') {
-			           		filter = (filter!='') ? filter+'|'+keywords[i] : keywords[i];
-			    	   }
-			       }  
-				
-				oTable.fnFilter(filter, null, true, false, true, true);
-		    });
-		});
-		function showRemovedDevices() {
-			if($("#removed_devices_table").css("display") == "none") {
-				$("#main_table").toggle(600, function() {
-						$("#removed_devices_table").toggle(600);
-					});
-				$("#toggleRemovedDevices").text("ACTIVE DEVICES");
-				}
-			else {
-				$("#removed_devices_table").toggle(600, function() {
-					$("#main_table").toggle(600);
-				});
-				$("#toggleRemovedDevices").text("REMOVED DEVICES");
-			}
-		}
-	</script>
 </body>
 </html>

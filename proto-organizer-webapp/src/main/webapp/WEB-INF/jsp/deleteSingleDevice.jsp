@@ -13,16 +13,16 @@
 	<center>
 
 		<form:form method="post" action="deleteSingleDeviceFromDB" modelAttribute="device" commandName="device" >
-
 			Do you really want to delete </span> 
+			<br />
+			${device.device}
 			<br />
 			device ?
 			<br />
 			<br />
-			<input type="submit" value="Delete" />
-
+			<input id="deleteSingleDeviceSubmit" type="button" value="Delete" onclick="deleteSingleDevice()" />
+			<input type="hidden" value="device=${device.device}&id=${device.id}" id="deleteSingleDeviceInput" />
 		</form:form>
-
 	</center>
 </body>
 </html>
