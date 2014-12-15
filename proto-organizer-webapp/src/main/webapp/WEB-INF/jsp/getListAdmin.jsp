@@ -165,16 +165,20 @@
 						</td>
 						<td>
 							<input type="hidden" value="${device.ownerId}" />
- 							<span class="hideDisabled" >${device.getOwnerFullName()}</span>
+ 							<span class="hideDisabled" >${device.getOwnerLastName()}</span>
+ 							<br />
+ 							<span class="hideDisabled minor-text" >${device.getOwnerFirstName()}</span>
 						</td>
 						<td>
 							<input type="hidden" value="${device.lastModifiedBy}" />
- 							<span class="hideDisabled" >${device.getModifierFullName()}</span>
+ 							<span class="hideDisabled" >${device.getModifierLastName()}</span>
+ 							<br />
+ 							<span class="hideDisabled minor-text" >${device.getModifierFirstName()}</span>
 						</td>
 						<td class="hideDisabled">
 							<fmt:formatDate pattern="yy MMM dd" value="${device.date}" />
 							<br/>
-							<span style="color:gray;"><fmt:formatDate pattern="HH:mm" value="${device.date}" /></span>
+							<span class="minor-text"><fmt:formatDate pattern="HH:mm" value="${device.date}" /></span>
 						</td>
 						<td>
 							<a class="newButton dialog hideEnabled" href="selectUser?id=${device.id}">MOVE TO</a>

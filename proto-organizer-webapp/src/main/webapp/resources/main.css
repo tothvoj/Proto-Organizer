@@ -33,6 +33,11 @@ td {
 	font-weight:bold;
 }
 
+.minor-text
+{
+	color:gray;
+}
+
 table {
 	width: 950px;
 	border-collapse: collapse;
