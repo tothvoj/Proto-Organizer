@@ -336,7 +336,7 @@ public class HomePageController {
 		Helper helper = new Helper();
 		helper.setSelectedDeviceID(id);
 		mav.addObject("usersList", usersList);
-		mav.addObject("vaultsList", usersDAO.getUsersList(false));
+		//mav.addObject("vaultsList", usersDAO.getUsersList(false));
 		mav.addObject("helper", helper);
 		return mav;
 	}
