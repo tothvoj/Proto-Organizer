@@ -24,12 +24,18 @@
 	<center>
 		<div id="dialog" title="" style="display: none;"></div>
 		<div id="header">
-
 			<div id="settings">
-				<a href="logout">LOGOUT</a>
-				<a href="changePassword" class="dialog">CHANGE PASSWORD</a>
-				<a href="userProfile">${username}</a>
-				 
+				<div id="settings_wrapper">
+					<ul>
+						<li>
+							<a href="userProfile">${username}</a>
+							<ul>
+								<li><a href="changePassword" class="dialog">CHANGE PASSWORD</a></li>
+								<li><a href="logout">LOGOUT</a><li>
+							</ul>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<div id="nav">

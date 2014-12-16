@@ -39,7 +39,7 @@ td {
 }
 
 table {
-	width: 950px;
+	max-width: 950px;
 	border-collapse: collapse;
 	background-color: #1d1d1d;
 }
@@ -289,20 +289,29 @@ input, textarea, select, #tfnewsearch, .chosen-single {
 	font-size: 11px;
 	padding: 5px 20px;
 }
+#settings_wrapper
+{
+	width: 150px;
+	float: right;
+	height: 45px;
+}
 #settings {
 	width: 950px; 
 	/* float: right; */
 }
 #settings a {	
 	text-decoration: none;
-	color: white;	
-	display: inline-block;
-	float:right;
-	margin: 0px 10px 0px 10px;
+	color: white;
+	display: block;
+	/* float: right; */
+	/* margin: 0px 10px 0px 10px; */
 	border-right: 1px White solid;
-	padding-right: 20px;
-	margin-top: 15px;
+	/* padding-right: 20px; */
+	/* margin-top: 15px; */
 	font-size: 14px;
+	height: 45px;
+	vertical-align: middle;
+	line-height: 45px;
 }
 #settings a:first-child {	
 	margin-right: 0px;
@@ -318,7 +327,7 @@ input, textarea, select, #tfnewsearch, .chosen-single {
 	text-align: left;
 }
 
-#nav ul {
+#nav ul, #settings_wrapper ul {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
@@ -326,12 +335,17 @@ input, textarea, select, #tfnewsearch, .chosen-single {
 	min-width: 130px;
 }
 
-#nav ul li {
+#nav ul li, #settings_wrapper ul li {
 	display: inline-block;
 	min-width: 130px;
 }
 
-#nav ul li:hover {
+#settings_wrapper ul li
+{
+	min-width: 150px;
+}
+
+#nav ul li:hover, #settings_wrapper ul li:hover {
 	background-color: #333;
 }
 
@@ -342,22 +356,22 @@ input, textarea, select, #tfnewsearch, .chosen-single {
 	text-decoration: none;
 }
 
-#nav ul li:hover ul {
+#nav ul li:hover ul, #settings_wrapper ul li:hover ul {
 	display: block;
 }
 
-#nav ul ul {
+#nav ul ul, #settings_wrapper ul ul {
 	display: none;
 	position: absolute;
 	background-color: #333;
 	z-index: 1;
 }
 
-#nav ul ul li {
+#nav ul ul li, #settings_wrapper ul ul li {
 	display: block;
 }
 
-#nav ul ul li a:hover {
+#nav ul ul li a:hover, #settings_wrapper ul ul li a:hover {
 	color: #699;
 }
 
