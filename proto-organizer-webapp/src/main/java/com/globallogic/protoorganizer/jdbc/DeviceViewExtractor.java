@@ -32,7 +32,8 @@ public class DeviceViewExtractor implements ResultSetExtractor<DeviceView> {
 			rs.getString(rs.findColumn(DevicesColumns.MODIFIERS_FIRST_NAME)),
 			rs.getString(rs.findColumn(DevicesColumns.MODIFIERS_LAST_NAME)),			
 			rs.getTimestamp(rs.findColumn(DevicesColumns.DATE)),
-			rs.getString(rs.findColumn(DevicesColumns.ORIGIN)));
+			rs.getString(rs.findColumn(DevicesColumns.ORIGIN)),
+			rs.getBoolean(rs.findColumn(DevicesColumns.ISOWNERAPERSON)));
 	
 	return device;
 	}

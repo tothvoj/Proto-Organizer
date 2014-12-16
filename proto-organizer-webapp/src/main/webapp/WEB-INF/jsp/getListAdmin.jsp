@@ -187,8 +187,13 @@
 							<span class="minor-text"><fmt:formatDate pattern="HH:mm" value="${device.date}" /></span>
 						</td>
 						<td>
-							<a class="newButton dialog hideEnabled" href="selectUser?id=${device.id}">MOVE TO</a>
-							<a class="dialog showEnabled ui-icon ui-icon-trash ui-icon-green ui-icon-scale1-5" href="deleteSingleDevice?id=${device.id}" ></a>	
+							  	<c:if test="${device.isOwnerAPerson}">
+						      		<a class="newButton dialog hideEnabled" href="selectUser?id=${device.id}">MOVE TO</a>
+						      	</c:if>
+								<c:if test="${device.isOwnerAPerson == false}">
+						      		<a class="newButton disabled hideEnabled" >MOVE TO</a>
+						      	</c:if>
+						    <a class="dialog showEnabled ui-icon ui-icon-trash ui-icon-green ui-icon-scale1-5" href="deleteSingleDevice?id=${device.id}" ></a>	
 						</td>
 					</tr>
 				</c:forEach>

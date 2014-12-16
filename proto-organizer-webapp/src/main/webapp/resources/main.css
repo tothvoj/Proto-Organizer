@@ -74,6 +74,12 @@ table a
 	text-decoration: none;
 }
 
+table a.disabled
+{
+	background-color: gray;
+	cursor: not-allowed;
+}
+
 #dialog table
 {
 	width:auto;

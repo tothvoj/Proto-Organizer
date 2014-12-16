@@ -23,4 +23,5 @@ public interface DevicesColumns {
     String OWNER_LAST_NAME = "owner_last_name";
     String MODIFIERS_FIRST_NAME = "modifiers_first_name";
     String MODIFIERS_LAST_NAME = "modifiers_last_name";
+    String ISOWNERAPERSON = "is_owner_person";
 }

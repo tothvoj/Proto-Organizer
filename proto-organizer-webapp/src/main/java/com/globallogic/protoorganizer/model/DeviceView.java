@@ -14,6 +14,7 @@ public class DeviceView extends Device {
 	private String ownerFirstName;
 	private String modifierFirstName;
 	private String modifierLastName;
+	private Boolean isOwnerAPerson;
 	
 	public String getProjectName() {
 		return projectName;
@@ -71,6 +72,14 @@ public class DeviceView extends Device {
 		this.modifierLastName = modifierLastName;
 	}
 
+	public Boolean getIsOwnerAPerson() {
+		return isOwnerAPerson;
+	}
+	
+	public void setIsOwnerAPerson(Boolean isOwnerAPerson) {
+		this.isOwnerAPerson = isOwnerAPerson;
+	}
+	
 	public DeviceView() {
 		
 	}
@@ -79,7 +88,7 @@ public class DeviceView extends Device {
 			String platformVersion, String imei, String status, int projectId,
 			String projectName, int ownerId, String ownerFirstName, String ownerLastName,
 			String reason, int lastModifiedBy, String modifiersFirstName, String modifiersLastName,
-			Timestamp date, String origin) {
+			Timestamp date, String origin, Boolean isOwnerAPerson) {
 		
 		this.id = id;
 		this.device = device;
@@ -99,6 +108,7 @@ public class DeviceView extends Device {
 		this.modifierLastName = modifiersLastName;
 		this.date = date;
 		this.origin = origin;
+		this.isOwnerAPerson = isOwnerAPerson;
 	}
 
 	public String getOwnerFullName()
