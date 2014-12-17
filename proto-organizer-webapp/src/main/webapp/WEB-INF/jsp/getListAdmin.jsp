@@ -18,6 +18,10 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/main.css'/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/chosen.css'/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/jquery.toastmessage.css'/>" />
+	
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/fonts/flaticon/flaticon.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/tooltip.css'/>" />
+	
 	<title>Košice Devices GlobalLogic</title>
 </head>
 <body>
@@ -170,10 +174,19 @@
 							<input class="showEnabled" name="devicesList[${status.index}].origin" value="${device.origin}"/>
 						</td>
 						<td>
-							<input type="hidden" value="${device.ownerId}" />
- 							<span class="hideDisabled" >${device.getOwnerLastName()}</span>
- 							<br />
- 							<span class="hideDisabled minor-text" >${device.getOwnerFirstName()}</span>
+							<c:if test="${device.ownerId != userId}" >
+								<input type="hidden" value="${device.ownerId}" />
+								<span class="hideDisabled" >${device.getOwnerLastName()}</span>
+	 							<br />
+	 							<span class="hideDisabled minor-text" >${device.getOwnerFirstName()}</span>
+ 							</c:if>
+ 							<c:if test="${device.ownerId == userId}">
+ 								<input type='checkbox' name='thing${status.index}' id="thing${status.index}" class="flaticon" />
+ 								<label class="flaticon-plane19" for="thing${status.index}" title="taking device for a trip"></label>
+ 								
+ 								<input type='checkbox' name='home${status.index}' id="home${status.index}" class="flaticon" />
+ 								<label class="flaticon-house158" for="home${status.index}" title="taking device home"></label>
+ 							</c:if> 
 						</td>
 						<td>
 							<input type="hidden" value="${device.lastModifiedBy}" />

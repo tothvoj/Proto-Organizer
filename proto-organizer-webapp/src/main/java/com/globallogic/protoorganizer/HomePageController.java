@@ -86,6 +86,7 @@ public class HomePageController {
 		mav.addObject("devicesViewWrapper", 
 				new DevicesViewWrapper(devicesList, removedDevicesList, projects, platforms));
 		mav.addObject("username", dbUser.getFullName());
+		mav.addObject("userId", dbUser.getId());
 		mav.addObject("q", searchText);
 
 		return mav;

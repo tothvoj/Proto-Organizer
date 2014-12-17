@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	$(document).tooltip();
+	
 	$(".dialog").click(function(e) {
 		e.preventDefault();
 		$("#dialog").load($(this).attr("href"), 
