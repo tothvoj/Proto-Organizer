@@ -54,14 +54,14 @@
 							<li><a href="addPlatform" class="dialog">NEW PLATFORM</a></li>
 							<li><a href="addVault" class="dialog">NEW VAULT</a></li>
 						</ul></li>
-					<li><a href="#" class="bold">REMOVE</a>
+					<li><a href="#" class="bold">MANAGE</a>
 
 						<ul>
-							<li><a href="deleteDevice" class="dialog">REMOVE DEVICE</a></li>
-							<li><a href="deleteUser" class="dialog">REMOVE USER</a></li>
-							<li><a href="deleteProject" class="dialog">REMOVE PROJECT</a></li>
-							<li><a href="deletePlatform" class="dialog">REMOVE PLATFORM</a></li>
-							<li><a href="deleteVault" class="dialog">REMOVE VAULT</a></li>
+							<li><a href="deleteDevice" class="dialog">MANAGE DEVICES</a></li>
+							<li><a href="deleteUser" class="dialog">MANAGE USERS</a></li>
+							<li><a href="deleteProject" class="dialog">MANAGE PROJECTS</a></li>
+							<li><a href="deletePlatform" class="dialog">MANAGE PLATFORMS</a></li>
+							<li><a href="deleteVault" class="dialog">MANAGE VAULTS</a></li>
 						</ul></li>
 					<li><a href="#" class="bold toggleEdit">EDIT</a></li>
 					<li><a href="#" onclick='javascript:window.print()'>PRINT</a>

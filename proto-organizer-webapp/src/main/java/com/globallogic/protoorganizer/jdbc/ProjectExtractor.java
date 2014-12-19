@@ -17,7 +17,8 @@ public class ProjectExtractor implements ResultSetExtractor<Project> {
 		
 		project.setId(rs.getLong(rs.findColumn(ProjectsColumns.ID)));
 		project.setProjectName(rs.getString(rs.findColumn(ProjectsColumns.PROJECT_NAME)));
+		project.setIsActive(rs.getBoolean(rs.findColumn(ProjectsColumns.IS_ACTIVE)));
+		
 		return project;
 	}
-
 }

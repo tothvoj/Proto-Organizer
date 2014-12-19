@@ -20,8 +20,9 @@ public class User
     private long id;
     private String password;
     private boolean isPerson;
+    private Boolean isActive;
     
-    /**
+    	/**
      * Construct.
      * 
      * @param firstName
@@ -36,6 +37,8 @@ public class User
      *            rights
      * @param isPerson
      *            isPerson
+     * @param isActive
+     *            isActive
      */
     
     public User(){
@@ -43,7 +46,7 @@ public class User
     }
     
     
-    public User(long id, String firstName, String lastName, String email, String barcode, boolean rights, String password, boolean isPerson)
+    public User(long id, String firstName, String lastName, String email, String barcode, boolean rights, String password, boolean isPerson, Boolean isActive)
     {
     	this.id = id;
         this.firstName = firstName;
@@ -53,6 +56,7 @@ public class User
         this.email = email;
         this.password = password;
         this.isPerson = isPerson;
+        this.isActive = isActive;
     }
 
     /**
@@ -175,6 +179,15 @@ public class User
     {
         this.isPerson = isPerson;
     }
+    
+    public Boolean getIsActive() {
+		return isActive;
+	}
+
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
        
     public long getId() {
 		return id;

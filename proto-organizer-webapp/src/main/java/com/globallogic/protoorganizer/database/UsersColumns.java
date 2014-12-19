@@ -10,5 +10,5 @@ public interface UsersColumns {
     String SPECIAL_RIGHTS = "special_rights";
     String PASSWORD = "password";
     String IS_PERSON = "is_person";
-    
+    String IS_ACTIVE="is_active";
 }

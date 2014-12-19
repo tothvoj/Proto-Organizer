@@ -7,17 +7,19 @@ public class Platform {
 	private int masterPlatform;
 	private String version;
 	private String comment;
+	private Boolean isActive;
 	
 	private String fullName;
 	
 	
 	public Platform(long id, String name, int masterPlatform, String version,
-			String comment) {
+			String comment, Boolean isActive) {
 		this.id = id;
 		this.name = name;
 		this.masterPlatform = masterPlatform;
 		this.version = version;
 		this.comment = comment;
+		this.isActive = isActive;
 		
 		if(version != null && version != "")
 			setFullName(name + " " + version);
@@ -56,6 +58,12 @@ public class Platform {
 	}
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 	public String getFullName()

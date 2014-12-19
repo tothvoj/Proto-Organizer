@@ -7,5 +7,5 @@ public interface PlatformsColumns {
     String MASTER_PLATFORM = "master_platform";
     String VERSION = "version";
     String COMMENT = "comment";
-    
+    String IS_ACTIVE = "is_active";
 }

@@ -21,7 +21,8 @@ public class PlatformExtractor implements ResultSetExtractor<Platform> {
 				rs.getString(rs.findColumn(PlatformsColumns.NAME)), 
 				rs.getInt(rs.findColumn(PlatformsColumns.MASTER_PLATFORM)), 
 				rs.getString(rs.findColumn(PlatformsColumns.VERSION)), 
-				rs.getString(rs.findColumn(PlatformsColumns.COMMENT))); 
+				rs.getString(rs.findColumn(PlatformsColumns.COMMENT)),
+				rs.getBoolean(rs.findColumn(PlatformsColumns.IS_ACTIVE))); 
 				
 		return platform;
 	}
