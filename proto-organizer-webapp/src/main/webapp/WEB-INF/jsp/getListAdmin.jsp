@@ -33,6 +33,7 @@
 					<ul>
 						<li>
 							<a href="userProfile">${username}</a>
+							<input type="hidden" id="userId" value="${userId}" />
 							<ul>
 								<li><a href="changePassword" class="dialog">CHANGE PASSWORD</a></li>
 								<li><a href="logout">LOGOUT</a><li>
@@ -181,10 +182,12 @@
 	 							<span class="hideDisabled minor-text" >${device.getOwnerFirstName()}</span>
  							</c:if>
  							<c:if test="${device.ownerId == userId}">
- 								<input type='checkbox' name='thing${status.index}' id="thing${status.index}" class="flaticon" />
+ 								<input type='checkbox' name='thing${status.index}' id="thing${status.index}" class="flaticon offsite" 
+ 									deviceid="${device.id}" ${device.status == "taken-offsite" ? "checked" : "" } />
  								<label class="flaticon-plane19" for="thing${status.index}" title="taking device for a trip"></label>
  								
- 								<input type='checkbox' name='home${status.index}' id="home${status.index}" class="flaticon" />
+ 								<input type='checkbox' name='home${status.index}' id="home${status.index}" class="flaticon home" 
+ 									deviceid="${device.id}" ${device.status == "taken-home" ? "checked" : "" } />
  								<label class="flaticon-house158" for="home${status.index}" title="taking device home"></label>
  							</c:if> 
 						</td>

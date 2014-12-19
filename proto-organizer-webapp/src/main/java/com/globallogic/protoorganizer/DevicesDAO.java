@@ -25,6 +25,8 @@ public interface DevicesDAO {
 	
 	public void changeOwner(long deviceID, long userID);
 	
+	public String changeDeviceStatus(int deviceId, int userId, String newStatus);
+	
 	public void sort(List<Device> deviceList, int sortingParam);
 	
 	public void sortInView(List<DeviceView> deviceList, int sortingParam);

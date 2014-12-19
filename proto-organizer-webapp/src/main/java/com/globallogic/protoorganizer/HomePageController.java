@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.globallogic.protoorganizer.model.Device;
@@ -391,6 +392,12 @@ public class HomePageController {
 		return "redirect:/getListAdmin";
 	}
 	
+	@RequestMapping(value = "/changeDeviceStatus", method = RequestMethod.POST)
+	@ResponseBody
+	public String changeDeviceStatus(int deviceId, int userId, String newStatus)
+	{
+		return devicesDAO.changeDeviceStatus(deviceId, userId, newStatus);
+	}
 	
 	@RequestMapping(value = "/updateDevicesView", method = RequestMethod.POST)
 	public String updateDevicesView(@ModelAttribute DevicesViewWrapper devicesViewWrapper)

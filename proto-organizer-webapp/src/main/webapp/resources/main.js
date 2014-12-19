@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$(document).tooltip();
+	//$(document).tooltip();
 	
 	$(".dialog").click(function(e) {
 		e.preventDefault();
@@ -64,6 +64,28 @@ $(document).ready(function() {
     });
 
 	$().toastmessage({sticky : true, stayTime: 5000});
+	
+	$(".flaticon:checkbox").change(function() {
+		if( $(this).hasClass("offsite") ) {
+			if(this.checked) {
+				changeDeviceStatus($(this).attr("deviceid"), $("#userId").val(), "taken-offsite");
+				$(this).siblings("input").removeAttr("checked");
+			}
+			else {
+				changeDeviceStatus($(this).attr("deviceid"), $("#userId").val(), "returned");
+			}
+		}
+		else if ( $(this).hasClass("home") ) {
+			if(this.checked) {
+				changeDeviceStatus($(this).attr("deviceid"), $("#userId").val(), "taken-home");
+				$(this).siblings("input").removeAttr("checked");
+			}
+			else {
+				changeDeviceStatus($(this).attr("deviceid"), $("#userId").val(), "returned");
+			}
+			
+		}
+	});
 });
 
 function showRemovedDevices() {
@@ -98,4 +120,41 @@ function deleteSingleDevice()
 		  }
 		});
 };
+
+function changeDeviceStatus(deviceId, userId, newStatus)
+{
+	$.ajax({
+		  type: "POST",
+		  url: "changeDeviceStatus",
+		  data: "deviceId=" + deviceId + "&userId=" + userId + "&newStatus=" + newStatus,
+		  success: function(msg){
+			  /* $('#main_table').load('getListAdmin #main_table'); 
+			  $().toastmessage('showSuccessToast', "Delete successful"); */
+			  showToastMessage(msg);
+		  },
+		  error: function(XMLHttpRequest, textStatus, errorThrown) {
+			  /* $().toastmessage('showErrorToast', "Change failed"); */
+			  showToastMessage(msg);
+		  }
+		});
+};
+
+function showToastMessage(msg) {
+	var toastType = 'showSuccessToast';
+	
+	if(msg.indexOf("O:") || msg.indexOf("o:"))	{
+		toastType = 'showSuccessToast';
+	}
+	else if(msg.indexOf("I:") || msg.indexOf("i:"))	{
+		toastType = 'showNoticeToast';
+	}
+	else if(msg.indexOf("E:") || msg.indexOf("e:"))	{
+		toastType = 'showErrorToast';
+	}
+	else if(msg.indexOf("W:") || msg.indexOf("w:"))	{
+		toastType = 'showWarningToast';
+	}
+	
+	$().toastmessage(toastType, msg.substring(2, msg.length));
+}
 		

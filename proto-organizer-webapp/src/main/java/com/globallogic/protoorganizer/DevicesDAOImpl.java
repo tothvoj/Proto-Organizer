@@ -240,6 +240,32 @@ public class DevicesDAOImpl implements DevicesDAO {
 		jdbcTemplate.update(sql2, new Object[] { getCurrentTime(),
 				userID, deviceID });
 	}
+	
+	public String changeDeviceStatus(int deviceId, int userId, String newStatus)	{
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		List<Device> devicesList = new ArrayList<Device>();
+		devicesList = jdbcTemplate.query("SELECT * FROM " 
+				+ TableNames.DEVICES + " WHERE " + DevicesColumns.ID + " = " + deviceId, new DeviceRowMapper());
+		
+		if(devicesList.size() == 0)  {
+			return "E:No matching device";
+		}
+		else if(devicesList.get(0).getStatus() == newStatus) {
+				return "I:Status was already '" + newStatus + "'";
+		}
+		else if(devicesList.get(0).getOwnerId() != userId) { 
+			return "E:Incorrect user";
+		}
+		else if(devicesList.size() == 1){
+			jdbcTemplate.execute("UPDATE " + TableNames.DEVICES + " "
+					+ "SET " + DevicesColumns.STATUS + " = \"" + newStatus + "\" WHERE " + DevicesColumns.ID + " = " + deviceId);
+			return "O: Updated to '" + newStatus + "'";
+		}
+		
+		return "W:Problem occured, no update";
+	}
 
 	private List<Device> selectDevices(JdbcTemplate jdbcTemplate, final List<Long> ids) {
 
