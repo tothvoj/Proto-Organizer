@@ -12,9 +12,10 @@
 	height: auto;
 	background: #333;
 	opacity: 0.9;
-	/* border-radius: 10px; */
+	/* border-radius: 10px; 
 	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	-webkit-border-radius: 10px; */
+	border: 1px black solid;
 	color: #eee;
 	padding-top: 20px;
 	padding-bottom: 20px;

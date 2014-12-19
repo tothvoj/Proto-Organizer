@@ -63,7 +63,7 @@ $(document).ready(function() {
 		oTable.fnFilter(filter, null, true, false, true, true);
     });
 
-	$().toastmessage({sticky : true, stayTime: 5000});
+	$().toastmessage({sticky : false, stayTime: 5000});
 	
 	$(".flaticon:checkbox").change(function() {
 		if( $(this).hasClass("offsite") ) {
