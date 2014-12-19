@@ -261,6 +261,16 @@ input, textarea, select, #tfnewsearch, .chosen-single {
 	display: block;
 }
 
+#main_table thead tr td:nth-child(1) { width: 155px; }
+#main_table thead tr td:nth-child(2) { width: 100px; }
+#main_table thead tr td:nth-child(3) { width: 140px; }
+#main_table thead tr td:nth-child(4) { width: 100px; }
+#main_table thead tr td:nth-child(5) { width: 80px; }
+#main_table thead tr td:nth-child(6) { width: 105px; }
+#main_table thead tr td:nth-child(7) { width: 105px; }
+#main_table thead tr td:nth-child(8) { width: 80px; }
+#main_table thead tr td:nth-child(9) { width: 85px; }
+
 #removed_devices_table {
 	display: none;
 }

@@ -48,7 +48,8 @@ $(document).ready(function() {
 			{
 				"paging": false,
 				"ordering": true,
-				"info" : false
+				"info" : false,
+				"bAutoWidth" : false
 			});
 	oTable.fnSearchHighlighting();
 	
