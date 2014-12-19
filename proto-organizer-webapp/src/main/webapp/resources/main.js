@@ -1,31 +1,56 @@
 $(document).ready(function() {
 	//$(document).tooltip();
 	
-	$(".dialog").click(function(e) {
-		e.preventDefault();
-		$("#dialog").load($(this).attr("href"), 
-			function()
-			{
-				var theDialog = $("#dialog").dialog({
-					width : 'auto',
-					height : 'auto',
-					modal: true,
-					resizable: false,
-					draggable: true,
-					modal : true,
-					open: function() {
-						$(".ui-dialog-title").text($("#dialog").find("title").text());
-				     },
-					close : function() {
-						$("#thedialog").attr('src', "about:blank");
-					}
+	function init() {
+		$(".dialog").click(function(e) {
+			e.preventDefault();
+			$("#dialog").load($(this).attr("href"), 
+				function()
+				{
+					var theDialog = $("#dialog").dialog({
+						width : 'auto',
+						height : 'auto',
+						modal: true,
+						resizable: false,
+						draggable: true,
+						modal : true,
+						open: function() {
+							$(".ui-dialog-title").text($("#dialog").find("title").text());
+					     },
+						close : function() {
+							$("#thedialog").attr('src', "about:blank");
+						}
+					});
+					
+					setTimeout(function(){ theDialog.dialog('open') }, 100);
 				});
-				
-				setTimeout(function(){ theDialog.dialog('open') }, 100);
-			});
+			
+			return false;
+		});
 		
-		return false;
-	});
+		$(".flaticon:checkbox").change(function() {
+			if( $(this).hasClass("offsite") ) {
+				if(this.checked) {
+					changeDeviceStatus($(this).attr("deviceid"), $("#userId").val(), "taken-offsite");
+					$(this).siblings("input").removeAttr("checked");
+				}
+				else {
+					changeDeviceStatus($(this).attr("deviceid"), $("#userId").val(), "returned");
+				}
+			}
+			else if ( $(this).hasClass("home") ) {
+				if(this.checked) {
+					changeDeviceStatus($(this).attr("deviceid"), $("#userId").val(), "taken-home");
+					$(this).siblings("input").removeAttr("checked");
+				}
+				else {
+					changeDeviceStatus($(this).attr("deviceid"), $("#userId").val(), "returned");
+				}
+				
+			}
+		});
+	}
+	
 	
 	$(".toggleEdit").click(function(e)
 		{
@@ -44,7 +69,7 @@ $(document).ready(function() {
 					$(".hideDisabled").css("color", "gray");
 				}
 		});
-	var oTable = $('#main_table').dataTable(
+	var oTable = $('#main_table').on( 'order.dt',  function () { init(); } ).dataTable(
 			{
 				"paging": false,
 				"ordering": true,
@@ -65,28 +90,7 @@ $(document).ready(function() {
     });
 
 	$().toastmessage({sticky : false, stayTime: 5000});
-	
-	$(".flaticon:checkbox").change(function() {
-		if( $(this).hasClass("offsite") ) {
-			if(this.checked) {
-				changeDeviceStatus($(this).attr("deviceid"), $("#userId").val(), "taken-offsite");
-				$(this).siblings("input").removeAttr("checked");
-			}
-			else {
-				changeDeviceStatus($(this).attr("deviceid"), $("#userId").val(), "returned");
-			}
-		}
-		else if ( $(this).hasClass("home") ) {
-			if(this.checked) {
-				changeDeviceStatus($(this).attr("deviceid"), $("#userId").val(), "taken-home");
-				$(this).siblings("input").removeAttr("checked");
-			}
-			else {
-				changeDeviceStatus($(this).attr("deviceid"), $("#userId").val(), "returned");
-			}
-			
-		}
-	});
+	init();
 });
 
 function showRemovedDevices() {
