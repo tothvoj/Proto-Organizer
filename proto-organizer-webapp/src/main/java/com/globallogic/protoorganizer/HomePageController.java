@@ -70,6 +70,7 @@ public class HomePageController {
 	public ModelAndView getDevicesListAdmin(
 			@RequestParam(value = "q", required = false) String searchText,
 			@RequestParam(value = "sort", required = false) Integer sortingParam) {
+		
 		List<DeviceView> devicesList = devicesDAO.getDevicesViewList(searchText);
 		
 		if (sortingParam != null) {
@@ -94,19 +95,19 @@ public class HomePageController {
 	}
 
 	@RequestMapping("/getList")
-	public ModelAndView getDevicesList(
-			@RequestParam(value = "q", required = false) String searchText,
-			@RequestParam(value = "sort", required = false) Integer sortingParam) {
-		List<Device> devicesList = devicesDAO.getDevicesList(searchText);
-		if (sortingParam != null) {
-			devicesDAO.sort(devicesList, sortingParam);
-		}
-
-		List<Device> removedDevicesList = devicesDAO.getRemovedDevicesList();
-
+	public ModelAndView getDevicesList() {
+		List<DeviceView> devicesList = devicesDAO.getDevicesViewList(null);
+		List<Project> projects = projectsDAO.getProjectsList();
+		List<Platform> platforms = platformsDAO.getChildPlatforms();
+		
+		org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User dbUser = usersDAO.getUserByEmail(user.getUsername());
+		
 		ModelAndView mav = new ModelAndView("getList");
-		mav.addObject("devicesList", devicesList);
-		mav.addObject("removedDevicesList", removedDevicesList);
+		mav.addObject("devicesViewWrapper", 
+				new DevicesViewWrapper(devicesList, null, projects, platforms));
+		mav.addObject("username", dbUser.getFullName());
+		mav.addObject("userId", dbUser.getId());
 
 		return mav;
 	}
