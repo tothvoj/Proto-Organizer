@@ -95,7 +95,6 @@ $(document).ready(function() {
     });
 
 	$().toastmessage({sticky : false, stayTime: 5000});
-	init();
 });
 
 function showRemovedDevices() {
