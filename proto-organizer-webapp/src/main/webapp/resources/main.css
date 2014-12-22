@@ -649,7 +649,8 @@ input[type=checkbox].flaticon {
 	display:none;
 }
  
-input[type=checkbox].flaticon + label
+input[type=checkbox].flaticon + label,
+.flaticon span
 {
 	color: gray;
 	height: 16px;
@@ -657,6 +658,18 @@ input[type=checkbox].flaticon + label
 	display:inline-block;
 	padding: 0 0 0 0px;
 	cursor:pointer;
+}
+.flaticon span
+{
+	margin: 0px 3px 0px 3px;
+	vertical-align: center;
+}
+div.flaticon
+{
+	float:left; 
+	position:absolute; 
+	transform: scale(0.7, 0.7); 
+	margin-top: 7px;
 }
 input[type=checkbox].flaticon:checked + label
 {

@@ -176,6 +176,16 @@
 						</td>
 						<td>
 							<c:if test="${device.ownerId != userId}" >
+								<c:if test='${device.status == "taken-offsite"}' >
+									<div class="flaticon">
+										<span class="flaticon flaticon-plane19"></span>
+									</div>
+								</c:if>
+								<c:if test='${device.status == "taken-home"}' >
+									<div class="flaticon">
+										<span class="flaticon-house158"></span>
+									</div>
+								</c:if>
 								<input type="hidden" value="${device.ownerId}" />
 								<span class="hideDisabled" >${device.getOwnerLastName()}</span>
 	 							<br />
