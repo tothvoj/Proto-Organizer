@@ -178,12 +178,12 @@
 							<c:if test="${device.ownerId != userId}" >
 								<c:if test='${device.status == "taken-offsite"}' >
 									<div class="flaticon">
-										<span class="flaticon flaticon-plane19"></span>
+										<span class="flaticon flaticon-plane19" title="device taken offsite/abroad"></span>
 									</div>
 								</c:if>
 								<c:if test='${device.status == "taken-home"}' >
 									<div class="flaticon">
-										<span class="flaticon-house158"></span>
+										<span class="flaticon-house158" title="device taken home"></span>
 									</div>
 								</c:if>
 								<input type="hidden" value="${device.ownerId}" />

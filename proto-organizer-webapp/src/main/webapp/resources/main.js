@@ -7,22 +7,27 @@ $(document).ready(function() {
 			$("#dialog").load($(this).attr("href"), 
 				function()
 				{
-					var theDialog = $("#dialog").dialog({
-						width : 'auto',
-						height : 'auto',
-						modal: true,
-						resizable: false,
-						draggable: true,
-						modal : true,
-						open: function() {
-							$(".ui-dialog-title").text($("#dialog").find("title").text());
-					     },
-						close : function() {
-							$("#thedialog").attr('src', "about:blank");
-						}
-					});
-					
-					setTimeout(function(){ theDialog.dialog('open') }, 100);
+					if( $("#dialog").text().indexOf('Login') >= 0 )	{
+						window.location.replace("login");
+					}
+					else 	{
+						var theDialog = $("#dialog").dialog({
+							width : 'auto',
+							height : 'auto',
+							modal: true,
+							resizable: false,
+							draggable: true,
+							modal : true,
+							open: function() {
+								$(".ui-dialog-title").text($("#dialog").find("title").text());
+						     },
+							close : function() {
+								$("#thedialog").attr('src', "about:blank");
+							}
+						});
+						
+						setTimeout(function(){ theDialog.dialog('open') }, 100);
+					}
 				});
 			
 			return false;
