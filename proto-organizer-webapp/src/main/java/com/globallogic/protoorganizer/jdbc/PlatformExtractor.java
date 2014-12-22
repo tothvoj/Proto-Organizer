@@ -6,9 +6,7 @@ import java.sql.SQLException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
-import com.globallogic.protoorganizer.database.DevicesUsageLogColumns;
 import com.globallogic.protoorganizer.database.PlatformsColumns;
-import com.globallogic.protoorganizer.model.DeviceUsageLog;
 import com.globallogic.protoorganizer.model.Platform;
 
 public class PlatformExtractor implements ResultSetExtractor<Platform> {

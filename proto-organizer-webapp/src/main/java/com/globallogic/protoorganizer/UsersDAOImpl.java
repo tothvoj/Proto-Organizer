@@ -12,13 +12,9 @@ import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 
-import com.globallogic.protoorganizer.database.DevicesColumns;
-import com.globallogic.protoorganizer.database.ProjectsColumns;
 import com.globallogic.protoorganizer.database.TableNames;
 import com.globallogic.protoorganizer.database.UsersColumns;
-import com.globallogic.protoorganizer.jdbc.ProjectRowMapper;
 import com.globallogic.protoorganizer.jdbc.UserRowMapper;
-import com.globallogic.protoorganizer.model.Project;
 import com.globallogic.protoorganizer.model.User;
 
 public class UsersDAOImpl implements UsersDAO {

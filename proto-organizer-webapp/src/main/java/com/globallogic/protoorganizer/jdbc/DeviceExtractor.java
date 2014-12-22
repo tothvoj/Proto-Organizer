@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 
 import com.globallogic.protoorganizer.database.DevicesColumns;
 import com.globallogic.protoorganizer.model.Device;
-import com.globallogic.protoorganizer.model.DeviceView;
 
 public class DeviceExtractor implements ResultSetExtractor<Device> {
 

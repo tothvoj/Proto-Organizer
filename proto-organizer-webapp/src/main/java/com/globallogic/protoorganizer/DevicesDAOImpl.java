@@ -21,7 +21,6 @@ import com.globallogic.protoorganizer.jdbc.DeviceRowMapper;
 import com.globallogic.protoorganizer.jdbc.DeviceViewRowMapper;
 import com.globallogic.protoorganizer.model.Device;
 import com.globallogic.protoorganizer.model.DeviceView;
-import com.globallogic.protoorganizer.model.User;
 import com.mysql.jdbc.PreparedStatement;
 
 public class DevicesDAOImpl implements DevicesDAO {
@@ -47,7 +46,6 @@ public class DevicesDAOImpl implements DevicesDAO {
 	}
 	
 	public Device getDevice(int deviceId) {
-		Device device = new Device();
 		String sql = "select * from " + TableNames.DEVICES_VIEW + 
 				" where " + DevicesColumns.ID + " = " + deviceId;
 	
@@ -145,7 +143,7 @@ public class DevicesDAOImpl implements DevicesDAO {
 	
 	public void updateDevicePartially(List<DeviceView> devices) {
 
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		//JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		Connection connection;
 		
 		try {
@@ -223,7 +221,7 @@ public class DevicesDAOImpl implements DevicesDAO {
 
 	public void changeOwner(long deviceID, long userID) {
 
-		List<User> users = new ArrayList<User>();
+		//List<User> users = new ArrayList<User>();
 
 //		String sql = "select * from " + TableNames.USERS + " where "
 //				+ UsersColumns.ID + "=" + userID;
@@ -267,6 +265,7 @@ public class DevicesDAOImpl implements DevicesDAO {
 		return "W:Problem occured, no update";
 	}
 
+	@SuppressWarnings("unused")
 	private List<Device> selectDevices(JdbcTemplate jdbcTemplate, final List<Long> ids) {
 
 		PreparedStatementCreator creator = new PreparedStatementCreator() {

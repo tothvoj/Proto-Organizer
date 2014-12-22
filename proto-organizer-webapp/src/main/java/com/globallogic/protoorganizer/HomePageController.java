@@ -1,12 +1,9 @@
 package com.globallogic.protoorganizer;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -14,7 +11,6 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -119,6 +115,7 @@ public class HomePageController {
 		List<Project> projectsList = projectsDAO.getProjectsList();
 		List<Platform> platformsList = platformsDAO.getChildPlatforms();
 
+		@SuppressWarnings("rawtypes")
 		Map<String, List> map = new HashMap<String, List>();
 		map.put("projectsList", projectsList);
 		map.put("platformsList", platformsList);
@@ -285,9 +282,10 @@ public class HomePageController {
 	
 	@RequestMapping("/addVaultToDB")
 	public String addVaultToDB(@ModelAttribute User user) {
-		boolean result = usersDAO.insertUser(user);
+		//boolean result = 
+			usersDAO.insertUser(user);
 
-				return "redirect:/getListAdmin";
+		return "redirect:/getListAdmin";
 	}
 	
 	@RequestMapping("/deleteUser")

@@ -1,5 +1,4 @@
 package com.globallogic.protoorganizer.model;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class DeviceUsageLog {

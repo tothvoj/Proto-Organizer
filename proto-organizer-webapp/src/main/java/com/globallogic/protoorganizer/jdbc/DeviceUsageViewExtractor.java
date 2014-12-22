@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import com.globallogic.protoorganizer.database.DevicesColumns;
 import com.globallogic.protoorganizer.database.DevicesUsageLogColumns;
 import com.globallogic.protoorganizer.database.UsersColumns;
-import com.globallogic.protoorganizer.model.DeviceUsageLog;
 import com.globallogic.protoorganizer.model.DeviceUsageView;
 
 public class DeviceUsageViewExtractor implements ResultSetExtractor<DeviceUsageView> {

@@ -11,13 +11,11 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.BuiltinFormats;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Font;
 import org.springframework.web.servlet.view.document.AbstractExcelView;
 
-import com.globallogic.protoorganizer.model.Device;
 import com.globallogic.protoorganizer.model.DeviceView;
 
 public class ExcelBuilder extends AbstractExcelView{
@@ -71,7 +69,8 @@ public class ExcelBuilder extends AbstractExcelView{
         
         response.setHeader("Content-Disposition", "attachment; filename=\"" + "devices.xls" + "\"");
         
-        List<DeviceView> deviceList = (List<DeviceView>) model.get("devicesList");
+        @SuppressWarnings("unchecked")
+		List<DeviceView> deviceList = (List<DeviceView>) model.get("devicesList");
         
         
         CellStyle dateCellStyle = workbook.createCellStyle();

@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.globallogic.protoorganizer.model.DeviceUsageLog;
 import com.globallogic.protoorganizer.model.DeviceUsageView;
 
 public class DeviceUsageViewRowMapper implements RowMapper<DeviceUsageView> {

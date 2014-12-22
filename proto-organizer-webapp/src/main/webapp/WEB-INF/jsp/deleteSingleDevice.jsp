@@ -13,7 +13,7 @@
 	<center>
 
 		<form:form method="post" action="deleteSingleDeviceFromDB" modelAttribute="device" commandName="device" >
-			Do you really want to delete </span> 
+			Do you really want to delete
 			<br />
 			${device.device}
 			<br />

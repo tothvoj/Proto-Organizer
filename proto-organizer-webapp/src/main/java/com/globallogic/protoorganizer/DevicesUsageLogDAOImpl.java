@@ -1,12 +1,8 @@
 package com.globallogic.protoorganizer;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.sql.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -14,7 +10,6 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.globallogic.protoorganizer.database.DevicesUsageLogColumns;
