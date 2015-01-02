@@ -15,7 +15,7 @@ public interface DevicesDAO {
 
 	public void insertDevice(Device device);
 
-	public void deleteDevice(long id);
+	public int deleteDevice(long id);
 
 	public void updateDevice(Device device);
 

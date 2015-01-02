@@ -65,6 +65,7 @@ $(document).ready(function() {
 					$(".hideEnabled").css("display", "block");
 					$(".showEnabled").css("display", "none");
 					$(".hideDisabled").css("color", "white");
+					$("label.hideEnabled").css("display", "inline-block");
 				}
 			else
 				{
@@ -116,12 +117,17 @@ function deleteSingleDevice()
 {
 	$.ajax({
 		  type: "POST",
-		  url: "deleteSingleDeviceFromDB",
+		  url: "deleteSingleDeviceFromDBusingJS",
 		  data: $("#deleteSingleDeviceInput").val(),
 		  success: function(msg){
 			  $("#dialog").dialog("close");
-			  $('#main_table').load('getListAdmin #main_table');
-			  $().toastmessage('showSuccessToast', "Delete successful");
+			  if(msg == 1 || msg == "1") 			  {
+				  $('#main_table').load('getListAdmin #main_table');
+				  $().toastmessage('showSuccessToast', "Delete successful");
+			  }
+			  else {
+				  $().toastmessage('showErrorToast', "Delete failed - remove dependencies");
+			  }
 		  },
 		  error: function(XMLHttpRequest, textStatus, errorThrown) {
 			  $("#dialog").dialog("close");

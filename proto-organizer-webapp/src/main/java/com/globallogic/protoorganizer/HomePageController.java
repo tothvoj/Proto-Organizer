@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.globallogic.protoorganizer.model.Device;
@@ -187,8 +189,18 @@ public class HomePageController {
 	
 	@RequestMapping(value = "/deleteSingleDeviceFromDB", method = RequestMethod.POST)
 	public String deleteSingleDeviceFromDB(@ModelAttribute Device device) {
-		devicesDAO.deleteDevice(device.getId());
+		int rowsChanged = devicesDAO.deleteDevice(device.getId());
+		
 		return "redirect:/getListAdmin";
+	}
+	
+	@RequestMapping(value = "/deleteSingleDeviceFromDBusingJS", method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.OK)
+	@ResponseBody
+	public String deleteSingleDeviceFromDBusingJS(@ModelAttribute Device device) {
+		int rowsChanged = devicesDAO.deleteDevice(device.getId());
+		
+		return Integer.toString(rowsChanged);
 	}
 
 	@RequestMapping("/addProject")

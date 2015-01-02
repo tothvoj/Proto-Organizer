@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 
 import com.globallogic.protoorganizer.database.DevicesColumns;
 import com.globallogic.protoorganizer.database.TableNames;
+import com.globallogic.protoorganizer.database.UsersColumns;
 import com.globallogic.protoorganizer.jdbc.DeviceRowMapper;
 import com.globallogic.protoorganizer.jdbc.DeviceViewRowMapper;
 import com.globallogic.protoorganizer.model.Device;
@@ -113,12 +114,16 @@ public class DevicesDAOImpl implements DevicesDAO {
 
 	}
 
-	public void deleteDevice(long id) {
-		String sql = "delete from " + TableNames.DEVICES + " where "
-				+ DevicesColumns.ID + "=" + id;
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcTemplate.update(sql);
+	public int deleteDevice(long id) {
+		String sql = "delete " + TableNames.DEVICES + ".* from " + TableNames.DEVICES + 
+				" left join " + TableNames.USERS + 
+				" on " + TableNames.DEVICES + "." + DevicesColumns.OWNER_ID + " = " + TableNames.USERS + "." + UsersColumns.ID +
+				" where " + TableNames.DEVICES + "." + DevicesColumns.ID + " = " + id + 
+				" and " + TableNames.USERS + "." + UsersColumns.IS_PERSON + " = false";
 
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		return jdbcTemplate.update(sql);
 	}
 
 	public void updateDevice(Device device) {
