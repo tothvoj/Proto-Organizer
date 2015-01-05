@@ -57,7 +57,7 @@
 					<li><a href="#" class="bold">MANAGE</a>
 
 						<ul>
-							<li><a href="deleteDevice" class="dialog">MANAGE DEVICES</a></li>
+<!-- 							<li><a href="deleteDevice" class="dialog">MANAGE DEVICES</a></li> -->
 							<li><a href="deleteUser" class="dialog">MANAGE USERS</a></li>
 							<li><a href="deleteProject" class="dialog">MANAGE PROJECTS</a></li>
 							<li><a href="deletePlatform" class="dialog">MANAGE PLATFORMS</a></li>

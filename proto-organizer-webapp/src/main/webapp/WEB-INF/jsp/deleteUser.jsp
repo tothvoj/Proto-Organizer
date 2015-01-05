@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>REMOVE USER</title>
+<title>MANAGE USERS</title>
 </head>
 <body>
 	<center>

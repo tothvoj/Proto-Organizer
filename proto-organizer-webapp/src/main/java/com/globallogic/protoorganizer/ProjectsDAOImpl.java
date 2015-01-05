@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.globallogic.protoorganizer.database.ProjectsColumns;
 import com.globallogic.protoorganizer.database.TableNames;
+import com.globallogic.protoorganizer.database.UsersColumns;
 import com.globallogic.protoorganizer.jdbc.ProjectRowMapper;
 import com.globallogic.protoorganizer.model.Project;
 
@@ -24,6 +25,18 @@ public class ProjectsDAOImpl implements ProjectsDAO {
 		List<Project> projects = new ArrayList<Project>();
 
 		String sql = "select * from " + TableNames.PROJECTS;
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		projects = jdbcTemplate.query(sql, new ProjectRowMapper());
+
+		return projects;
+	}
+	
+	public List<Project> getActiveProjectsList(boolean isActive) {
+		List<Project> projects = new ArrayList<Project>();
+
+		String sql = "select * from " + TableNames.PROJECTS + " where " + ProjectsColumns.IS_ACTIVE + " = " + 
+				(isActive ? "1" : "0");
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		projects = jdbcTemplate.query(sql, new ProjectRowMapper());
@@ -79,5 +92,26 @@ public class ProjectsDAOImpl implements ProjectsDAO {
 		}
 	  });
 	}
+	
+	public int deactivateBatch(final List<Long> ids, boolean isActive){
+		 
+		String sql = "update " + TableNames.PROJECTS + " set " + ProjectsColumns.IS_ACTIVE + " = " + 
+				(isActive ? 1 : 0 ) + " where " + ProjectsColumns.ID + " =? ";
+	 
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		int[] result = jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+	 
+		public void setValues(java.sql.PreparedStatement ps, int i)
+				throws SQLException {
+			ps.setLong(1, ids.get(i));
+			
+		}
 
+		public int getBatchSize() {
+			return ids.size();
+		}
+	  });
+	  
+	  return result[0];
+	}
 }

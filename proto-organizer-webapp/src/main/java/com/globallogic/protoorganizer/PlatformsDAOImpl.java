@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.globallogic.protoorganizer.database.PlatformsColumns;
+import com.globallogic.protoorganizer.database.ProjectsColumns;
 import com.globallogic.protoorganizer.database.TableNames;
 import com.globallogic.protoorganizer.jdbc.PlatformRowMapper;
 import com.globallogic.protoorganizer.model.Platform;
@@ -24,6 +25,18 @@ public class PlatformsDAOImpl implements PlatformsDAO {
 		List<Platform> platforms = new ArrayList<Platform>();
 
 		String sql = "select * from " + TableNames.PLATFORMS;
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		platforms = jdbcTemplate.query(sql, new PlatformRowMapper());
+
+		return platforms;
+	}
+	
+	public List<Platform> getActiveChildPlatforms(boolean isActive) {
+		List<Platform> platforms = new ArrayList<Platform>();
+
+		String sql = "select * from " + TableNames.PLATFORMS + " where " + PlatformsColumns.IS_ACTIVE + " = " +
+				(isActive ? "1" : "0");
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		platforms = jdbcTemplate.query(sql, new PlatformRowMapper());
@@ -101,6 +114,26 @@ public class PlatformsDAOImpl implements PlatformsDAO {
 	 
 	  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 	  jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+	 
+		
+		public void setValues(java.sql.PreparedStatement ps, int i)
+				throws SQLException {
+			ps.setLong(1, ids.get(i));
+			
+		}
+
+		public int getBatchSize() {
+			return ids.size();
+		}
+	  });
+	}
+	
+	public void deactivateBatch(final List<Long> ids, boolean isActive) {
+		String sql = "update " + TableNames.PLATFORMS + " set " + PlatformsColumns.IS_ACTIVE + " = " + 
+				(isActive ? 1 : 0 ) + " where " + ProjectsColumns.ID + " =? ";
+	 
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
 	 
 		
 		public void setValues(java.sql.PreparedStatement ps, int i)

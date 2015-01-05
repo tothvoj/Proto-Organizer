@@ -6,12 +6,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>REMOVE VAULT</title>
+<title>MANAGE VAULTS</title>
 </head>
 <body>
 	<center>
 
-		<form:form method="post" action="deleteVaultFromDB"
+		<form:form method="post" action="deactivateUsersFromDB"
 			commandName="helper">
 
 			<table border="1">
@@ -22,15 +22,14 @@
 				</tr>
 				<c:forEach var="user" items="${usersList}">
 					<tr>
-						<td>${user.lastName}</td>
-						<td>${user.barcode}</td>
-						<td><form:checkbox path="ids" value="${user.id}" /></td>
+						<td style='${user.isActive ? "" : "color:gray;" }'>${user.lastName}</td>
+						<td style='${user.isActive ? "" : "color:gray;" }'>${user.barcode}</td>
+						<td style='${user.isActive ? "" : "color:gray;" }'><input type="checkbox" name="ids" value="${user.id}" ${user.isActive ? "" : "checked" } /></td>
 					</tr>
 				</c:forEach>
-				
 			</table>
 			<br />
-			<input type="submit" value="Delete" />
+			<input type="submit" value="Deactivate" />
 
 		</form:form>
 

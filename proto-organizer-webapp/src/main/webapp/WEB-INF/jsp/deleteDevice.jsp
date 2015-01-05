@@ -7,7 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-<title>REMOVE DEVICE</title>
+<title>MANAGE DEVICES</title>
 </head>
 <body>
 	<center>

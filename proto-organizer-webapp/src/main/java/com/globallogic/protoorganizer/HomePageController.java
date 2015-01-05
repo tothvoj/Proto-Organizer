@@ -114,8 +114,8 @@ public class HomePageController {
 	public ModelAndView addDevice() {
 
 		List<User> usersList = usersDAO.getUsersList();
-		List<Project> projectsList = projectsDAO.getProjectsList();
-		List<Platform> platformsList = platformsDAO.getChildPlatforms();
+		List<Project> projectsList = projectsDAO.getActiveProjectsList(true);
+		List<Platform> platformsList = platformsDAO.getActiveChildPlatforms(true);
 
 		@SuppressWarnings("rawtypes")
 		Map<String, List> map = new HashMap<String, List>();
@@ -238,6 +238,12 @@ public class HomePageController {
 		return "redirect:/getListAdmin";
 	}
 	
+	@RequestMapping("/deactivateProjectsFromDB")
+	public String deactivateProjectsFromDB(@ModelAttribute Helper helper) {
+		projectsDAO.deactivateBatch(helper.getIds(), false);
+		return "redirect:/getListAdmin";
+	}
+	
 	@RequestMapping("/deletePlatform")
 	public ModelAndView deletePlatform() {
 
@@ -253,7 +259,13 @@ public class HomePageController {
 		platformsDAO.deleteBatch(helper.getIds());
 		return "redirect:/getListAdmin";
 	}
-
+	
+	@RequestMapping("/deactivatePlatformsFromDB")
+	public String deactivatePlatformsFromDB(@ModelAttribute Helper helper) {
+		platformsDAO.deactivateBatch(helper.getIds(), false);
+		return "redirect:/getListAdmin";
+	}
+	
 	@RequestMapping("/addProjectToDB")
 	public String addProjectToDB(@ModelAttribute Project project) {
 		projectsDAO.insertProject(project.getProjectName());
