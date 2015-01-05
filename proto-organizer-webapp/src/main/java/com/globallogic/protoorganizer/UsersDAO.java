@@ -18,6 +18,8 @@ public interface UsersDAO {
 
 	public void deleteBatch(final List<Long> ids);
 	
+	public int deactivateBatch(final List<Long> ids, Boolean isActive);
+	
 	public User getUserByEmail(String email);
 	
 	public void changePassword(String username, String password);

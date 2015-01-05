@@ -316,6 +316,13 @@ public class HomePageController {
 		return "redirect:/getListAdmin";
 
 	}
+
+	@RequestMapping("/deactivateUsersFromDB")
+	public String deactivateUsersFromDB(@ModelAttribute Helper helper) {
+		usersDAO.deactivateBatch(helper.getIds(), false);
+		return "redirect:/getListAdmin";
+
+	}
 	
 	@RequestMapping("/deleteVault")
 	public ModelAndView deleteVault() {

@@ -29,9 +29,18 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if (user == null){
 			throw new UsernameNotFoundException("Error in retrieving user");
 		}
+//		else if(!user.getIsActive()) {
+//			throw new UsernameNotFoundException("User is inactive");
+//		}
 		
-		springUser = new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), getAuthorities(user.getRights()));
-		
+		if(user.getIsActive()) {
+			springUser = new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), getAuthorities(user.getRights()));
+		}
+		else {
+			springUser = new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), 
+				new ArrayList<SimpleGrantedAuthority>(0));
+		}
+			
 		return springUser;
 	}
 
@@ -45,10 +54,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 	 * @return collection of granted authorities
 	 */
 	public Collection<SimpleGrantedAuthority> getAuthorities(boolean specialRights) {
+		
 		// Create a list of grants for this user
-		List<SimpleGrantedAuthority> authList = new ArrayList<SimpleGrantedAuthority>(
-				2);
-
+		List<SimpleGrantedAuthority> authList = new ArrayList<SimpleGrantedAuthority>(2);
+		
 		// All users are granted with ROLE_USER access
 		// Therefore this user gets a ROLE_USER by default
 		authList.add(new SimpleGrantedAuthority("ROLE_USER"));

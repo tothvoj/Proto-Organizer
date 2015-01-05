@@ -20,7 +20,7 @@
 
 	<!-- This is where we configure Spring-Security -->
 	<security:http auto-config="true" use-expressions="true"
-		access-denied-page="/getList">
+		access-denied-page="/userInactive">
 
 		<security:intercept-url pattern="/changePassword"
 			access="hasRole('ROLE_USER')" />

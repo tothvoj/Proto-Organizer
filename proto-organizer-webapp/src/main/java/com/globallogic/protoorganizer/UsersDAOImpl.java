@@ -52,8 +52,9 @@ public class UsersDAOImpl implements UsersDAO {
 				+ UsersColumns.EMAIL + ", "
 				+ UsersColumns.BAR_CODE + ", " 
 				+ UsersColumns.SPECIAL_RIGHTS + ", "
-				+ UsersColumns.IS_PERSON 
-				+ ") VALUES (?, ?, ?, ?, ?, ?)";
+				+ UsersColumns.IS_PERSON + ", "
+				+ UsersColumns.IS_ACTIVE 
+				+ ") VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -63,7 +64,8 @@ public class UsersDAOImpl implements UsersDAO {
 				user.getEmail(), 
 				user.getBarcode(), 
 				user.getRights(),
-				user.getIsPerson()});		
+				user.getIsPerson(),
+				1});		
 		if (rows == 1){
 			return true;
 		}
@@ -122,6 +124,28 @@ public class UsersDAOImpl implements UsersDAO {
 			return ids.size();
 		}
 	  });
+	}
+	
+	public int deactivateBatch(final List<Long> ids, Boolean isActive){
+		 
+		String sql = "update " + TableNames.USERS + " set " + UsersColumns.IS_ACTIVE + " = " + 
+				(isActive ? 1 : 0 ) + " where " + UsersColumns.ID + " =? ";
+	 
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		int[] result = jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+	 
+		public void setValues(java.sql.PreparedStatement ps, int i)
+				throws SQLException {
+			ps.setLong(1, ids.get(i));
+			
+		}
+
+		public int getBatchSize() {
+			return ids.size();
+		}
+	  });
+	  
+	  return result[0];
 	}
 
 	public User getUserByEmail(final String email) {

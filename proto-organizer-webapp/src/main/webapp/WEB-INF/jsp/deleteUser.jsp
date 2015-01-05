@@ -11,7 +11,7 @@
 <body>
 	<center>
 
-		<form:form method="post" action="deleteUsersFromDB"
+		<form:form method="post" action="deactivateUsersFromDB"
 			commandName="helper">
 
 			<table border="1">
@@ -21,22 +21,22 @@
 					<td class="heading">EMAIL</td>
 					<td class="heading">BARCODE</td>
 					<td class="heading">SPECIAL RIGHTS</td>
-					<td class="heading"></td>
+					<td class="heading">deactivate</td>
 				</tr>
 				<c:forEach var="user" items="${usersList}">
-					<tr>
-						<td>${user.firstName}</td>
-						<td>${user.lastName}</td>
-						<td>${user.email}</td>
-						<td>${user.barcode}</td>
-						<td>${user.rights}</td>
-						<td><form:checkbox path="ids" value="${user.id}" /></td>
+					<tr >
+						<td style='${user.isActive ? "" : "color:gray;" }'>${user.firstName}</td>
+						<td style='${user.isActive ? "" : "color:gray;" }'>${user.lastName}</td>
+						<td style='${user.isActive ? "" : "color:gray;" }'>${user.email}</td>
+						<td style='${user.isActive ? "" : "color:gray;" }'>${user.barcode}</td>
+						<td style='${user.isActive ? "" : "color:gray;" }'>${user.rights}</td>
+						<td style='${user.isActive ? "" : "color:gray;" }'><input type="checkbox" name="ids" value="${user.id}" ${user.isActive ? "" : "checked" } /></td>
 					</tr>
 				</c:forEach>
 				
 			</table>
 			<br />
-			<input type="submit" value="Delete" />
+			<input type="submit" value="Deactivate" />
 
 		</form:form>
 
