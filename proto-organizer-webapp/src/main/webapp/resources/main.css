@@ -187,7 +187,10 @@ input, textarea, select, #tfnewsearch, .chosen-single {
 	margin-bottom: 20px;
 	margin-bottom: 10px;
 }
-
+input[type=button].cancel-button
+{
+	background-color:red;
+}
 .ui-icon-closethick
 {
 	border: 1px gray solid;

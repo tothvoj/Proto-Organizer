@@ -28,6 +28,7 @@
 			<br />
 			<br />
 			<input id="changeOwnerSubmit" type="submit" value="Change" />
+			<input type="button" class="cancel-button" value="Cancel" onClick="javascript:$('#dialog').dialog('close');" />
 		</form:form>
 	</center>
 	<script type="text/javascript" >

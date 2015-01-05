@@ -19,7 +19,10 @@
 					<td><form:input path="projectName" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="Save" /></td>
+					<td colspan="2">
+						<input type="submit" value="Save" />
+						<input type="button" class="cancel-button" value="Cancel" onClick="javascript:$('#dialog').dialog('close');" />
+					</td>
 				</tr>
 			</table>
 		</form:form>

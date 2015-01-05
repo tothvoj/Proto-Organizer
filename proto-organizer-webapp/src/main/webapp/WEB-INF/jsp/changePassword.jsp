@@ -33,6 +33,7 @@
 				<tr>
 					<td colspan="2">
 						<input type="submit" value="Change" /> 
+						<input type="button" class="cancel-button" value="Cancel" onClick="javascript:$('#dialog').dialog('close');" />
 					</td>
 				</tr>
 

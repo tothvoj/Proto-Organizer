@@ -46,7 +46,7 @@
 			
 			<br />
 			<input id="deleteDevicesButton" type="button" value="Delete" />
-
+			<input type="button" class="cancel-button" value="Cancel" onClick="javascript:$('#dialog').dialog('close');" />
 		</form:form>
 	</center>
 </body>

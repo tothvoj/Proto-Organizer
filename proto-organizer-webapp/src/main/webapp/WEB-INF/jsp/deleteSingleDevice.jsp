@@ -21,6 +21,7 @@
 			<br />
 			<br />
 			<input id="deleteSingleDeviceSubmit" type="button" value="Delete" onclick="deleteSingleDevice()" />
+			<input type="button" class="cancel-button" value="Cancel" onClick="javascript:$('#dialog').dialog('close');" />
 			<input type="hidden" value="device=${device.device}&id=${device.id}" id="deleteSingleDeviceInput" />
 		</form:form>
 	</center>

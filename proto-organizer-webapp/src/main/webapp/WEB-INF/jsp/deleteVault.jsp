@@ -30,6 +30,7 @@
 			</table>
 			<br />
 			<input type="submit" value="Deactivate" />
+			<input type="button" class="cancel-button" value="Cancel" onClick="javascript:$('#dialog').dialog('close');" />
 
 		</form:form>
 
