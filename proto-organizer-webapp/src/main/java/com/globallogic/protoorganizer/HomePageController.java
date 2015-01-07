@@ -487,4 +487,10 @@ public class HomePageController {
 			System.err.println(ex.getMessage());
 		}
 	}
+	
+	@RequestMapping(value = "/userInactive", method = RequestMethod.GET)
+	public String userInactive()
+	{
+		return "userInactive";
+	}
 }
