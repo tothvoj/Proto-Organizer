@@ -224,7 +224,7 @@ public class DevicesDAOImpl implements DevicesDAO {
 
 	}
 
-	public void changeOwner(long deviceID, long userID) {
+	public Boolean changeOwner(long deviceID, long userID) {
 
 		//List<User> users = new ArrayList<User>();
 
@@ -242,6 +242,8 @@ public class DevicesDAOImpl implements DevicesDAO {
 
 		jdbcTemplate.update(sql2, new Object[] { getCurrentTime(),
 				userID, deviceID });
+		
+		return true;
 	}
 	
 	public String changeDeviceStatus(int deviceId, int userId, String newStatus)	{

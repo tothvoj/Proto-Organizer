@@ -23,7 +23,7 @@ public interface DevicesDAO {
 	
 	public void deleteBatch(final List<Long> ids);
 	
-	public void changeOwner(long deviceID, long userID);
+	public Boolean changeOwner(long deviceID, long userID);
 	
 	public String changeDeviceStatus(int deviceId, int userId, String newStatus);
 	

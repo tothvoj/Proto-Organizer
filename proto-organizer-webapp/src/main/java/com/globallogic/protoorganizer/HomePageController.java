@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.globallogic.protoorganizer.model.Device;
+import com.globallogic.protoorganizer.model.DeviceUsageActionEnum;
 import com.globallogic.protoorganizer.model.DeviceUsageView;
 import com.globallogic.protoorganizer.model.DeviceView;
 import com.globallogic.protoorganizer.model.DevicesViewWrapper;
@@ -376,7 +377,23 @@ public class HomePageController {
 	@RequestMapping("/moveTo")
 	public String moveTo(@ModelAttribute Helper helper,
 			@RequestParam Long deviceID) {
-		devicesDAO.changeOwner(deviceID, helper.getUserID());
+		
+		Boolean success = devicesDAO.changeOwner(deviceID, helper.getUserID());
+		
+		if(success) {
+			org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			User dbUser = usersDAO.getUserByEmail(user.getUsername());
+			
+			changeDeviceStatus(deviceID.intValue(), (int)helper.getUserID(), "returned");
+			
+			if(dbUser.getId() == helper.getUserID()) {
+				devicesUsageLogDao.insertDeviceUsageLog((int)dbUser.getId(), deviceID.intValue(), DeviceUsageActionEnum.MovingToMe);
+			}
+			else {
+				devicesUsageLogDao.insertDeviceUsageLog((int)dbUser.getId(), deviceID.intValue(), DeviceUsageActionEnum.MovingToSomeone);
+				devicesUsageLogDao.insertDeviceUsageLog((int)helper.getUserID(), deviceID.intValue(), DeviceUsageActionEnum.MovedTo);
+			}
+		}
 		
 		return "redirect:/getListAdmin";
 

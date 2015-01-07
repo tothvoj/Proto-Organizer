@@ -77,18 +77,15 @@ public class DevicesUsageLogDAOImpl implements DevicesUsageLogDAO {
 				+ DevicesUsageLogColumns.ACTION + 
 				") VALUES (?, ?, ?, ?)";
 		
-		org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User dbUser = usersDAO.getUserByEmail(user.getUsername());
-
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 		jdbcTemplate.update(
 				sql,
 				new Object[] { 
-						dbUser.getId(), 
+						userId, 
 						date, 
 						deviceId, 
-						action});
+						action.getNumVal()});
 	}
 
 	public void updateDeviceUsageLog(DeviceUsageLog deviceUsageLog) {

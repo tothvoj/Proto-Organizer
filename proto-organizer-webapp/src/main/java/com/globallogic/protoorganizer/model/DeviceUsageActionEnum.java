@@ -9,15 +9,16 @@ public enum DeviceUsageActionEnum {
 	
 	MovingToSomeone(3),
 	MovingToMe(4),
+	MovedTo(5),
 	
-	TakenOffSite(5),
-	TakenHome(6),
+	TakenOffSite(6),
+	TakenHome(7),
 	
-	ReturnedToCustomer(7),
+	ReturnedToCustomer(8),
 	
-	Lost(8),
-	Stolen(9),
-	LocationUnknown(10);
+	Lost(9),
+	Stolen(10),
+	LocationUnknown(11);
 	
 	private int numVal;
 	
