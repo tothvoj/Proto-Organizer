@@ -18,7 +18,10 @@ public enum DeviceUsageActionEnum {
 	
 	Lost(9),
 	Stolen(10),
-	LocationUnknown(11);
+	LocationUnknown(11),
+	
+	Deactivated(12),
+	Reactivated(13);
 	
 	private int numVal;
 	

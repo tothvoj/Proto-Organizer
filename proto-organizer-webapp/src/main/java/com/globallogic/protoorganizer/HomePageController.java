@@ -192,6 +192,10 @@ public class HomePageController {
 	public String deleteSingleDeviceFromDB(@ModelAttribute Device device) {
 		int rowsChanged = devicesDAO.deleteDevice(device.getId());
 		
+		if(rowsChanged > 0) {
+			devicesUsageLogDao.insertDeviceUsageLog((int)device.getId(), DeviceUsageActionEnum.Deactivated);
+		}
+		
 		return "redirect:/getListAdmin";
 	}
 	
@@ -200,6 +204,10 @@ public class HomePageController {
 	@ResponseBody
 	public String deleteSingleDeviceFromDBusingJS(@ModelAttribute Device device) {
 		int rowsChanged = devicesDAO.deleteDevice(device.getId());
+		
+		if(rowsChanged > 0) {
+			devicesUsageLogDao.insertDeviceUsageLog((int)device.getId(), DeviceUsageActionEnum.Deactivated);
+		}
 		
 		return Integer.toString(rowsChanged);
 	}
